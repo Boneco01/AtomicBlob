@@ -1,8 +1,9 @@
 package modele;
 
+import javafx.collections.ObservableList;
+
 public class Terrain {
 
-	private int cordX;
-	private int cordY;
+	private ObservableList<Block> map;
 	
 }
