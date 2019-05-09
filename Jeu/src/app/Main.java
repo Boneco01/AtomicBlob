@@ -16,7 +16,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("../vue/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			//Oui c'est bien
+			//oui
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
