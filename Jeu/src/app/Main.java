@@ -19,7 +19,6 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		//Yo !
 	}
 	
 	public static void main(String[] args) {
