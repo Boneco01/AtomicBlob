@@ -6,9 +6,11 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 public class Terrain {
 
 	private ObservableList<Block> map = FXCollections.observableList(new ArrayList());
+	
 	public int tailleRecupMap(String adresseFichierMap) {
 		int tailleLigne = -1;
 		String line;
@@ -33,6 +35,7 @@ public class Terrain {
 		return tailleLigne;
 		
 	}
+	
 	public ObservableList<Block> getMap() {
 		return map;
 	}
