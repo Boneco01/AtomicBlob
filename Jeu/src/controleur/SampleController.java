@@ -1,5 +1,3 @@
-
-
 package controleur;
 
 import java.net.URL;
@@ -44,6 +42,8 @@ public class SampleController implements Initializable{
     }
     
 }
+
+
 
 
 
