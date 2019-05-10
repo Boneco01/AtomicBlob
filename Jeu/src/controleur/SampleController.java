@@ -6,16 +6,14 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import modele.Joueur;
 
-public class SampleController implements Initializable{
-	private Joueur joueur;
-	
-	
+public class SampleController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.joueur=new Joueur(10, 5, 1, "Jacques", 200, 200 );
+		// TODO Auto-generated method stub
 		
 	}
+	
 	
 }
 
