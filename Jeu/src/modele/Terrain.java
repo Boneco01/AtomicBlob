@@ -9,20 +9,51 @@ import javafx.collections.ObservableList;
 
 public class Terrain {
 
-	private ObservableList<Block> map = FXCollections.observableList(new ArrayList());
+	// Ajout du constructeur pour séparer remplissage de la map avec le calcul de sa largeur + ajout des calculs de largeur et de hauteur.
+	// A voir si possible de faire une ObservableList à deux dimensions pour faciliter les interactions joueur/map.
 	
-	public int tailleRecupMap(String adresseFichierMap) {
-		int tailleLigne = -1;
+	private String cheminMap;
+	//private ObservableList<ArrayList<Block>> map; // <-- Deux dimensions ?
+	private ObservableList<Block> map;
+	
+	public Terrain(String cheminMap) {
+		this.cheminMap = cheminMap;
+		this.map = FXCollections.observableList(new ArrayList<Block>());
+		remplirMap();
+	}
+	
+	private void remplirMap() {
 		String line;
 		try {
-		File fichierMap = new File(adresseFichierMap);
+		File fichierMap = new File(this.cheminMap);
 		FileReader fr = new FileReader(fichierMap);
         BufferedReader br = new BufferedReader(fr);
         for (line = br.readLine(); line != null; line = br.readLine()) {
-            String tableauChaine[] =  line.split(":");
+            String[] tableauChaine = line.split(":");
             for(int i=0;i<tableauChaine.length;i++) 
             	map.add(new Block(tableauChaine[i].charAt(0)));
-            	tailleLigne=line.split(":").length;
+            //Ne récupère pas le bon caractère
+        }
+        fr.close();
+        br.close();
+        
+		}
+		catch(Exception E) {
+			E.printStackTrace();
+		}
+	}
+	
+	public int largeurMap() {
+		int largeur = -1;
+		String line;
+		try {
+		File fichierMap = new File(this.cheminMap);
+		FileReader fr = new FileReader(fichierMap);
+        BufferedReader br = new BufferedReader(fr);
+        for (line = br.readLine(); line != null; line = br.readLine()) {
+            String tableauChaine[] = line.split(":");
+            for(int i=0;i<tableauChaine.length;i++) 
+            	largeur=line.split(":").length;
             
         }
         fr.close();
@@ -32,8 +63,17 @@ public class Terrain {
 		catch(Exception E) {
 			E.printStackTrace();
 		}
-		return tailleLigne;
+		return largeur;
+	}
+	
+	public int hauteurMap() {
+		int hauteur=0;
 		
+		for(Block b : this.map) {
+			hauteur++;
+		}
+		
+		return hauteur/largeurMap();
 	}
 	
 	public ObservableList<Block> getMap() {

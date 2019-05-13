@@ -7,8 +7,10 @@ public class Block {
 	public Block(char id) {
 		this.id = id;
 	}
-	public String toString() {
-		return id+"";
+	
+	//Modif --> toString en getId
+	public char getId() {
+		return id;
 	}
 	
 }
