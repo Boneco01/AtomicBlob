@@ -3,8 +3,8 @@ package modele;
 public class Personnage {
 	private String nom;
 	private int vie;
-	private double vitesse;
-	private int taille;
+	private double vitesse; //nb de pixels parcourus en un déplacement ( un tour de jeu ) A utiliser plus tard.
+	private int taille; // Sert à la hitbox ?
 	private int x;
 	private int y;
 	
@@ -16,6 +16,22 @@ public class Personnage {
 		this.nom=nom;
 		this.x=x;
 		this.y=y;
+	}
+	
+	public void goDroite() {
+		this.x += vitesse;
+	}
+	
+	public void goGauche() {
+		this.x -= vitesse;
+	}
+	
+	public void saute() {
+		this.y -= vitesse;
+	}
+	
+	public void tombe() {
+		this.y += vitesse;
 	}
 	
 	public int getX() {
