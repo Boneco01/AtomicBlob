@@ -1,0 +1,1 @@
+32x32 --> Exporter en x4 soit 128x128 pour une taille correcte à l'écran.
