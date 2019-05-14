@@ -12,6 +12,7 @@ public class Sprite {
 	public Sprite(Personnage personnage) {
 		this.personnage=personnage;
 		this.cercle=new Circle(10);
+		this.cercle.setFocusTraversable(true);
 	}
 	
 	public Circle getCercle() {

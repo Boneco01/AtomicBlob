@@ -19,18 +19,19 @@ import javafx.scene.input.KeyEvent;
 
 public class SampleController implements Initializable{
 
-    private Sprite modele;
+    private Sprite spriteJoueur;
     
     
     
     
     @FXML
-    private Pane terrain;
+    private Pane coucheJoueur;
     
     public void creerPersonnage() {
-    	terrain.getChildren().add(this.modele.getCercle());
-    	this.modele.getCercle().centerXProperty().bind(this.modele.getPersonnage().getX());
-    	this.modele.getCercle().centerYProperty().bind(this.modele.getPersonnage().getY());
+    	System.out.println(coucheJoueur);
+    	coucheJoueur.getChildren().add(this.spriteJoueur.getCercle());
+    	this.spriteJoueur.getCercle().centerXProperty().bind(this.spriteJoueur.getPersonnage().getX());
+    	this.spriteJoueur.getCercle().centerYProperty().bind(this.spriteJoueur.getPersonnage().getY());
     	
     	
     }
@@ -46,8 +47,8 @@ public class SampleController implements Initializable{
     public void gererFleches(KeyEvent e) {
 		switch (e.getCode()) {
         	//case UP:    ; break;
-        	case LEFT:  goGauche(this.modele); break;
-        	case RIGHT: goDroite(this.modele); break;
+        	case LEFT:  goGauche(this.spriteJoueur); break;
+        	case RIGHT: goDroite(this.spriteJoueur); break;
         default: break;
     	}
 	}
@@ -56,12 +57,12 @@ public class SampleController implements Initializable{
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     	Joueur joueur=new Joueur(5,5,1,"Grisou",100,100);
-    	this.modele=new Sprite(joueur);
+    	this.spriteJoueur=new Sprite(joueur);
     	creerPersonnage();
         /*
          * déplacement du joueur à l'aide des flèches
          */
-    	terrain.setOnKeyPressed(e -> gererFleches(e));
+    	this.spriteJoueur.getCercle().setOnKeyPressed(e -> gererFleches(e));
     }
 
 	
