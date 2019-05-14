@@ -34,6 +34,18 @@ public class Personnage {
 		this.y += vitesse;
 	}
 	
+	public String getNom() {
+		return this.nom;
+	}
+	
+	public int getVie() {
+		return this.vie;
+	}
+	
+	public int getTaille() {
+		return this.taille;
+	}
+	
 	public int getX() {
 		return this.x;
 	}

@@ -8,24 +8,24 @@ public class classeTestPersoMap {
 		
 		//Faire la classe jeu qui comprends toutes les autres classes
 		//Faire une classe mapJoueur ou un attribut mapJoueur dans jeu ?
-		//Jeu correspond aux méthodes dans cette classe de test, c'est le "moteur de jeu".
+		//Jeu correspond aux mï¿½thodes dans cette classe de test, c'est le "moteur de jeu".
 		//Gerer les collisions.
 		
 		//Ubuntu
-		//String cheminMap = "/home/etudiants/info/prynkiewicz/prive/S2/Projet/AtomicBlob/Map/MapTestModele.csv";
+		String cheminMap = "/home/etudiants/info/prynkiewicz/prive/S2/Projet/AtomicBlob/Map/MapTestModele.csv";
 		
 		//Windows
-		String cheminMap = "C:\\Users\\Paul\\Documents\\DUT\\S2\\Projet\\AtomicBlob\\Map\\MapTestModele.csv";
+		//String cheminMap = "C:\\Users\\Paul\\Documents\\DUT\\S2\\Projet\\AtomicBlob\\Map\\MapTestModele.csv";
 		
 		Terrain testTerrain = new Terrain(cheminMap);
-		Personnage joueur = new Joueur(10, 1, 32, "Boneco", 5, 4);
+		Personnage joueur = new Joueur(10, 1, 32, "Boneco", 3, 3);
 		Personnage[][] mapJoueur = new Personnage[testTerrain.largeurMap()][testTerrain.hauteurMap()];
 		mapJoueur = remplirMapJoueur(mapJoueur, joueur);
 		
 		Scanner saisie = new Scanner(System.in);
 		String commande = null;
 		
-		System.out.println("Début du test");
+		System.out.println("Dï¿½but du test");
 		afficherMapJoueurDansConsole(mapJoueur);
 		System.out.println();
 		afficherTerrainDansConsole(testTerrain);
@@ -33,6 +33,17 @@ public class classeTestPersoMap {
 		//Game Loop
 		while(commande==null) {
 		
+			while(gererCollision(joueur, testTerrain, 0, 1)) {
+				mapJoueur[joueur.getY()][joueur.getX()] = null;
+				joueur.tombe();
+				mapJoueur = repositionnerPersonnage(joueur, mapJoueur);
+				System.out.println();
+				afficherMapJoueurDansConsole(mapJoueur);
+				System.out.println();
+				afficherTerrainDansConsole(testTerrain);
+				System.out.println();
+			}
+			
 			commande = saisie.nextLine();
 			if(!checkCommande(commande)) {
 				System.out.println("Mauvaise commande.");
@@ -40,17 +51,25 @@ public class classeTestPersoMap {
 				mapJoueur[joueur.getY()][joueur.getX()] = null;
 				switch(commande) {
 				
-					case "godroite" : joueur.goDroite();
-									  break;
+					case "godroite" : 	if(gererCollision(joueur, testTerrain, 1, 0)) {
+											joueur.goDroite();
+										}
+										break;
 					
-					case "gogauche" : joueur.goGauche();
-					  				  break;
+					case "gogauche" : 	if(gererCollision(joueur, testTerrain, -1, 0)) {
+											joueur.goGauche();
+										}
+					  				  	break;
 					  				  
-					case "sauter" : joueur.saute();
-	  								break;
+					case "sauter" : 	if(gererCollision(joueur, testTerrain, 0, -1)) {
+											joueur.saute();
+										}
+	  									break;
 	  								
-					case "tomber" : joueur.tombe();
-									break;
+					case "tomber" : 	if(gererCollision(joueur, testTerrain, 0, 1)) {
+											joueur.tombe();
+										}
+										break;
 					
 					default : break;
 				}
@@ -66,6 +85,16 @@ public class classeTestPersoMap {
 		
 		saisie.close();
 		
+		
+	}
+	
+	private static boolean gererCollision(Personnage joueur, Terrain terrain, int x, int y) {
+		
+		if(terrain.getMap().get(joueur.getY()+y).get(joueur.getX()+x).getCollision()) {
+			return false;
+		} else {
+			return true;
+		}
 		
 	}
 	
@@ -109,7 +138,7 @@ public class classeTestPersoMap {
 		
 		for(int i=0;i<terrain.hauteurMap();i++) {
 			for(int j=0;j<terrain.largeurMap();j++) {
-				System.out.print(terrain.getMap().get(j).getId() + "|");
+				System.out.print(terrain.getMap().get(i).get(j).getId() + "|");
 			}
 			System.out.println();
 		}
