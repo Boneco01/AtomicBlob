@@ -30,7 +30,7 @@ public class Terrain {
 	            String[] tableauChaine = line.split(":");
 	            ligneMap = FXCollections.observableList(new ArrayList<Block>());
 	            for(int i=0;i<tableauChaine.length;i++) {
-	            	ligneMap.add(new Block(tableauChaine[i].charAt(0), creerCollision(tableauChaine[i].charAt(0))));
+	            	ligneMap.add(blockDe(tableauChaine[i].charAt(0)));
 	            }
 	            this.map.add(ligneMap);
 	        }
@@ -82,5 +82,14 @@ public class Terrain {
 	
 	public ArrayList<ObservableList<Block>> getMap() {
 		return this.map;
+	}
+	
+	private Block blockDe(char a) {
+		if(a=='A')
+			return new Air();
+		else if (a=='T')
+			return new Terre();
+		else
+			return new Air();
 	}
 }

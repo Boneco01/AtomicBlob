@@ -1,6 +1,6 @@
 package modele;
 
-public class Block {
+public abstract class Block {
 	
 	private char id;
 	private boolean collision;
