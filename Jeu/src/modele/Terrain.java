@@ -9,74 +9,78 @@ import javafx.collections.ObservableList;
 
 public class Terrain {
 
-	// Ajout du constructeur pour s�parer remplissage de la map avec le calcul de sa largeur + ajout des calculs de largeur et de hauteur.
-	// A voir si possible de faire une ObservableList � deux dimensions pour faciliter les interactions joueur/map.
-	
 	private String cheminMap;
-	//private ObservableList<ArrayList<Block>> map; // <-- Deux dimensions ?
-	private ObservableList<Block> map;
+	private ArrayList<ObservableList<Block>> map;
 	
 	public Terrain(String cheminMap) {
 		this.cheminMap = cheminMap;
-		this.map = FXCollections.observableList(new ArrayList<Block>());
+		this.map = new ArrayList<ObservableList<Block>>();
 		remplirMap();
 	}
 	
 	private void remplirMap() {
 		String line;
+		ObservableList<Block> ligneMap;
 		try {
-		File fichierMap = new File(this.cheminMap);
-		FileReader fr = new FileReader(fichierMap);
-        BufferedReader br = new BufferedReader(fr);
-        for (line = br.readLine(); line != null; line = br.readLine()) {
-            String[] tableauChaine = line.split(":");
-            for(int i=0;i<tableauChaine.length;i++) 
-            	map.add(new Block(tableauChaine[i].charAt(0)));
-            //Ne r�cup�re pas le bon caract�re
-        }
-        fr.close();
-        br.close();
-        
-		}
-		catch(Exception E) {
+			File fichierMap = new File(this.cheminMap);
+			FileReader fr = new FileReader(fichierMap);
+	        BufferedReader br = new BufferedReader(fr);
+	        
+	        for (line = br.readLine(); line != null; line = br.readLine()) {
+	            String[] tableauChaine = line.split(":");
+	            ligneMap = FXCollections.observableList(new ArrayList<Block>());
+	            for(int i=0;i<tableauChaine.length;i++) {
+	            	ligneMap.add(new Block(tableauChaine[i].charAt(0), creerCollision(tableauChaine[i].charAt(0))));
+	            }
+	            this.map.add(ligneMap);
+	        }
+	        
+	        fr.close();
+	        br.close();
+	        
+		} catch(Exception E) {
 			E.printStackTrace();
 		}
 	}
 	
+	private boolean creerCollision(char id) {
+		boolean collision=false;
+		
+		switch(id) {
+		
+			case 'A' : break;
+			
+			case 'T' : collision = true;
+					   break;
+			
+			default :  break;
+		
+		}
+		
+		return collision;
+	}
+	
 	public int largeurMap() {
-		int largeur = -1;
-		String line;
-		try {
-		File fichierMap = new File(this.cheminMap);
-		FileReader fr = new FileReader(fichierMap);
-        BufferedReader br = new BufferedReader(fr);
-        for (line = br.readLine(); line != null; line = br.readLine()) {
-            String tableauChaine[] = line.split(":");
-            for(int i=0;i<tableauChaine.length;i++) 
-            	largeur=line.split(":").length;
-            
-        }
-        fr.close();
-        br.close();
-        
+		int largeur = 0;
+		
+		for(Block b : this.map.get(0)) {
+			largeur++;
 		}
-		catch(Exception E) {
-			E.printStackTrace();
-		}
+		
 		return largeur;
 	}
 	
 	public int hauteurMap() {
 		int hauteur=0;
 		
-		for(Block b : this.map) {
+		for(ObservableList<Block> l : this.map) {
 			hauteur++;
 		}
 		
-		return hauteur/largeurMap();
+		return hauteur;
 	}
 	
-	public ObservableList<Block> getMap() {
-		return map;
+	public ArrayList<ObservableList<Block>> getMap() {
+		return this.map;
 	}
 }
