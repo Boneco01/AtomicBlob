@@ -1,37 +1,42 @@
 package modele;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class Personnage {
 	private String nom;
 	private int vie;
-	private double vitesse; //nb de pixels parcourus en un déplacement ( un tour de jeu ) A utiliser plus tard.
-	private int taille; // Sert à la hitbox ?
-	private int x;
-	private int y;
+	private DoubleProperty vitesse; //nb de pixels parcourus en un dï¿½placement ( un tour de jeu ) A utiliser plus tard.
+	private int taille; // Sert ï¿½ la hitbox ?
+	private IntegerProperty xProperty;
+	private IntegerProperty yProperty;
 	
 	
 	public Personnage (int vie, double vitesse, int taille, String nom, int x, int y) {
 		this.vie=vie;
-		this.vitesse=vitesse;
+		this.vitesse=new SimpleDoubleProperty(vitesse);
 		this.taille=taille;
 		this.nom=nom;
-		this.x=x;
-		this.y=y;
+		this.xProperty=new SimpleIntegerProperty(x);
+		this.yProperty=new SimpleIntegerProperty(y);
 	}
 	
 	public void goDroite() {
-		this.x += vitesse;
+		this.xProperty.setValue(this.xProperty.getValue()+this.vitesse.getValue());
 	}
 	
 	public void goGauche() {
-		this.x -= vitesse;
+		this.xProperty.setValue(this.xProperty.getValue()-this.vitesse.getValue());
 	}
 	
 	public void saute() {
-		this.y -= vitesse;
+		this.yProperty.setValue(this.yProperty.getValue()-2*(this.vitesse.getValue()));
 	}
 	
 	public void tombe() {
-		this.y += vitesse;
+		this.yProperty.setValue(this.yProperty.getValue()+2*(this.vitesse.getValue()));
 	}
 	
 	public String getNom() {
@@ -46,11 +51,15 @@ public class Personnage {
 		return this.taille;
 	}
 	
-	public int getX() {
-		return this.x;
+	public IntegerProperty getX() {
+		return this.xProperty;
 	}
 	
-	public int getY() {
-		return this.y;
+	public IntegerProperty getY() {
+		return this.yProperty;
+	}
+	
+	public DoubleProperty getVitesse() {
+		return this.vitesse;
 	}
 }
