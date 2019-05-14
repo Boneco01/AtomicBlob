@@ -3,16 +3,16 @@ package controleur;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
+import modele.Air;
+import modele.Block;
 import modele.Joueur;
-import modele.Personnage;
+import modele.Terrain;
+import modele.Terre;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 
@@ -26,6 +26,9 @@ public class SampleController implements Initializable{
     
     @FXML
     private Pane coucheJoueur;
+    
+    @FXML
+    private Pane terrain;
     
     public void creerPersonnage() {
     	System.out.println(coucheJoueur);
@@ -53,16 +56,33 @@ public class SampleController implements Initializable{
     	}
 	}
     
+    public ImageView imageDe(Block b) {
+		if (b instanceof Terre)
+			return new ImageView(new Image("file:../Sprites/Block/Terre.png"));
+		else if (b instanceof Air)
+			return new ImageView(new Image("file:../Sprites/Block/Air.png"));
+		else 
+			return new ImageView(new Image("file:../Sprites/Block/Air.png"));
+	}
+    
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     	Joueur joueur=new Joueur(5,5,1,"Grisou",100,100);
     	this.spriteJoueur=new Sprite(joueur);
     	creerPersonnage();
-        /*
-         * déplacement du joueur à l'aide des flèches
-         */
+      
+         //déplacement du joueur à l'aide des flèches       
     	this.spriteJoueur.getCercle().setOnKeyPressed(e -> gererFleches(e));
+    	
+    	Terrain a=new Terrain("../Map/MapTestModele.csv");
+	    for(int i=0;i<a.hauteurMap();i++) {
+	    	for(int y=0;y<a.largeurMap();y++) {
+	    		ImageView png = imageDe(a.getMap().get(i).get(y));
+	    		this.terrain.getChildren().add(png);
+	    		png.relocate(64*y, 64*i);
+	    	}
+	    }
     }
 
 	

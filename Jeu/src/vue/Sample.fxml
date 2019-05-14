@@ -7,6 +7,10 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.SampleController">
    <center>
-      <Pane fx:id="coucheJoueur" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="coucheJoueur" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="terrain" prefHeight="1920.0" prefWidth="1080.0" />
+         </children>
+      </Pane>
    </center>
 </BorderPane>
