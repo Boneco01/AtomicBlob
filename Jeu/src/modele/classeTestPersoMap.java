@@ -12,7 +12,7 @@ public class classeTestPersoMap {
 		//Gerer les collisions.
 		
 		//Ubuntu
-		String cheminMap = "/home/etudiants/info/prynkiewicz/prive/S2/Projet/AtomicBlob/Map/MapTestModele.csv";
+		String cheminMap = "../Map/MapTestModele.csv";
 		
 		//Windows
 		//String cheminMap = "C:\\Users\\Paul\\Documents\\DUT\\S2\\Projet\\AtomicBlob\\Map\\MapTestModele.csv";
@@ -25,7 +25,7 @@ public class classeTestPersoMap {
 		Scanner saisie = new Scanner(System.in);
 		String commande = null;
 		
-		System.out.println("D�but du test");
+		System.out.println("Debut du test");
 		afficherMapJoueurDansConsole(mapJoueur);
 		System.out.println();
 		afficherTerrainDansConsole(testTerrain);
