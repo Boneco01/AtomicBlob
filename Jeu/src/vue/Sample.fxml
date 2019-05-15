@@ -9,7 +9,7 @@
    <center>
       <Pane fx:id="coucheJoueur" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane fx:id="terrain" prefHeight="1920.0" prefWidth="1080.0" />
+            <TilePane fx:id="terrain" prefHeight="1920.0" prefWidth="1080.0" />
          </children>
       </Pane>
    </center>

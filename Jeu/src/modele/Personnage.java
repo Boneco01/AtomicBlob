@@ -5,19 +5,21 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Personnage {
+public abstract class Personnage {
 	private String nom;
 	private int vie;
 	private DoubleProperty vitesse; //nb de pixels parcourus en un dï¿½placement ( un tour de jeu ) A utiliser plus tard.
-	private int taille; // Sert ï¿½ la hitbox ?
+	private int largeur; //sert à la hitbox du personnage, à choisir en fonction de la largeur du sprite
+	private int hauteur; //sert à la hitbox du personnage, à choisir en fonction du la hauteur du sprite
 	private IntegerProperty xProperty;
 	private IntegerProperty yProperty;
 	
 	
-	public Personnage (int vie, double vitesse, int taille, String nom, int x, int y) {
+	public Personnage (int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y) {
 		this.vie=vie;
 		this.vitesse=new SimpleDoubleProperty(vitesse);
-		this.taille=taille;
+		this.largeur = largeur;
+		this.hauteur = hauteur;
 		this.nom=nom;
 		this.xProperty=new SimpleIntegerProperty(x);
 		this.yProperty=new SimpleIntegerProperty(y);
@@ -36,7 +38,7 @@ public class Personnage {
 	}
 	
 	public void tombe() {
-		this.yProperty.setValue(this.yProperty.getValue()+2*(this.vitesse.getValue()));
+		this.yProperty.setValue(this.yProperty.getValue()+(this.vitesse.getValue()));
 	}
 	
 	public String getNom() {
@@ -47,12 +49,24 @@ public class Personnage {
 		return this.vie;
 	}
 	
-	public int getTaille() {
-		return this.taille;
+	public int getLargeur() {
+		return this.largeur;
+	}
+	
+	public int getHauteur() {
+		return this.hauteur;
 	}
 	
 	public IntegerProperty getX() {
 		return this.xProperty;
+	}
+	
+	public void setX(int x) {
+		this.xProperty.setValue(x);
+	}
+	
+	public void setY(int y) {
+		this.yProperty.setValue(y);
 	}
 	
 	public IntegerProperty getY() {

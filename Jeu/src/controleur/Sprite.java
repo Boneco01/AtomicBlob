@@ -2,16 +2,20 @@ package controleur;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import modele.Personnage;
 
 public class Sprite {
 	private Personnage personnage;
+	//private ImageView spriteDuPerso;
 	private Circle cercle;  //a remplacer plus tard par un sprite
 	
 	public Sprite(Personnage personnage) {
 		this.personnage=personnage;
-		this.cercle=new Circle(10);
+		//this.spriteDuPerso = new ImageView(new Image("file:../Sprites/Joueur/JoueurBase/JoueurBase.gif"));
+		this.cercle=new Circle(this.personnage.getHauteur()/2);
 		this.cercle.setFocusTraversable(true);
 	}
 	

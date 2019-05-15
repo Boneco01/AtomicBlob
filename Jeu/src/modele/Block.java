@@ -3,6 +3,7 @@ package modele;
 public abstract class Block {
 	
 	private char id;
+	private int taillePx = 64;
 	private boolean collision;
 	
 	public Block(char id, boolean collision) {
@@ -13,6 +14,10 @@ public abstract class Block {
 	//Modif --> toString en getId
 	public char getId() {
 		return this.id;
+	}
+	
+	public int getTaillePx() {
+		return this.taillePx;
 	}
 	
 	public boolean getCollision() {

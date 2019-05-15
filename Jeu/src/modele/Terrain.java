@@ -10,17 +10,18 @@ import javafx.collections.ObservableList;
 public class Terrain {
 
 	private String cheminMap;
-	private ArrayList<ObservableList<Block>> map;
+	private ObservableList<Block> map;
+	private int hauteurMap;
 	
 	public Terrain(String cheminMap) {
 		this.cheminMap = cheminMap;
-		this.map = new ArrayList<ObservableList<Block>>();
-		remplirMap();
+		this.map = FXCollections.observableList(new ArrayList<Block>());
+		this.hauteurMap = remplirMap();
 	}
 	
-	private void remplirMap() {
+	private int remplirMap() {
 		String line;
-		ObservableList<Block> ligneMap;
+		int hauteur = 0;
 		try {
 			File fichierMap = new File(this.cheminMap);
 			FileReader fr = new FileReader(fichierMap);
@@ -28,11 +29,10 @@ public class Terrain {
 	        
 	        for (line = br.readLine(); line != null; line = br.readLine()) {
 	            String[] tableauChaine = line.split(":");
-	            ligneMap = FXCollections.observableList(new ArrayList<Block>());
 	            for(int i=0;i<tableauChaine.length;i++) {
-	            	ligneMap.add(blockDe(tableauChaine[i].charAt(0)));
+	            	this.map.add(blockDe(tableauChaine[i].charAt(0)));
 	            }
-	            this.map.add(ligneMap);
+	            hauteur++;
 	        }
 	        
 	        fr.close();
@@ -41,46 +41,29 @@ public class Terrain {
 		} catch(Exception E) {
 			E.printStackTrace();
 		}
-	}
-	
-	private boolean creerCollision(char id) {
-		boolean collision=false;
 		
-		switch(id) {
-		
-			case 'A' : break;
-			
-			case 'T' : collision = true;
-					   break;
-			
-			default :  break;
-		
-		}
-		
-		return collision;
+		return hauteur;
 	}
 	
 	public int largeurMap() {
 		int largeur = 0;
 		
-		for(Block b : this.map.get(0)) {
+		for(Block b : this.map) {
 			largeur++;
 		}
 		
-		return largeur;
+		return largeur/this.hauteurMap;
+	}
+	
+	public Block blockParCord(int x, int y) {
+		
 	}
 	
 	public int hauteurMap() {
-		int hauteur=0;
-		
-		for(ObservableList<Block> l : this.map) {
-			hauteur++;
-		}
-		
-		return hauteur;
+		return this.hauteurMap;
 	}
 	
-	public ArrayList<ObservableList<Block>> getMap() {
+	public ObservableList<Block> getMap() {
 		return this.map;
 	}
 	
