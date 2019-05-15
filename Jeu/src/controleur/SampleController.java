@@ -3,10 +3,13 @@ package controleur;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.util.Duration;
 import modele.Air;
 import modele.Block;
 import modele.Jeu;
@@ -69,6 +72,31 @@ public class SampleController implements Initializable{
     
     private Jeu game;
     
+    private void initAnimation() {
+		Timeline gameLoop = new Timeline();
+		gameLoop.setCycleCount(Timeline.INDEFINITE);
+
+		KeyFrame kf = new KeyFrame(
+				// Nombre de fps
+				Duration.seconds(0.017), 
+				// A chaque frame
+				(ev ->{
+					if(this.game.getJoueur().getVie() == 0){
+					System.out.println("Fin du jeu");
+					gameLoop.stop();
+					}
+					else {
+						if(this.game.gererCollision(this.game.getJoueur(), this.game.getMap())) {
+							this.game.getJoueur().tombe();
+						}
+        		
+					}
+				})
+		);
+		gameLoop.getKeyFrames().add(kf);
+		gameLoop.play();
+	}
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.game = new Jeu();
@@ -85,6 +113,8 @@ public class SampleController implements Initializable{
 	    		this.terrain.getChildren().add(png);
 	    	
 	    }
+	    
+	    initAnimation();
 		
 	}
 	

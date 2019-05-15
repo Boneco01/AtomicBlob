@@ -11,27 +11,14 @@ public class Jeu {
 		this.map = new Terrain(this.cheminMap);
 	}
 	
-	public void GameLoop() {
+	public boolean gererCollision(Personnage joueur, Terrain terrain) {
 		
-		//while(this.joueur.getVie() != 0) {
-			
-			while (gererCollision(this.joueur, this.map)) {
-				this.joueur.tombe();
-			}
-			
-		//}
+		int yJoueur = joueur.getY().getValue()/64;
+		int xJoueur = joueur.getX().getValue()/64;
 		
-	}
-	
-	private boolean gererCollision(Personnage joueur, Terrain terrain) {
-		
-		int yJoueur = joueur.getY().getValue();
-		int xJoueur = joueur.getX().getValue();
-		
-		if(!terrain.getMap().get(yJoueur/64).getCollision()) {
+		if(!terrain.blockParCord(xJoueur, yJoueur).getCollision()) {
 			return true;
 		} else {
-			this.joueur.setY(yJoueur-this.joueur.getHauteur()/2);
 			return false;
 		}
 	}

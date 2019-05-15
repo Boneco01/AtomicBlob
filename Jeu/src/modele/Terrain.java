@@ -55,9 +55,9 @@ public class Terrain {
 		return largeur/this.hauteurMap;
 	}
 	
-	//public Block blockParCord(int x, int y) {
-		
-	//}
+	public Block blockParCord(int x, int y) {
+		return this.map.get((largeurMap()*y)+x);
+	}
 	
 	public int hauteurMap() {
 		return this.hauteurMap;
