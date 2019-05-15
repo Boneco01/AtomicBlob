@@ -78,9 +78,8 @@ public class SampleController implements Initializable{
       
          //déplacement du joueur à l'aide des flèches       
     	this.spriteJoueur.getCercle().setOnKeyPressed(e -> gererFleches(e));
-    	
-    	terrain.setPrefTileWidth((64*game.getMap().largeurMap()));
-    	terrain.setPrefTileHeight((64*game.getMap().hauteurMap()));
+    	terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
+    	terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
 	    for(int i=0;i<this.game.getMap().getMap().size();i++) {
 	    		ImageView png = imageDe(this.game.getMap().getMap().get(i));
 	    		this.terrain.getChildren().add(png);
