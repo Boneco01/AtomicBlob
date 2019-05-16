@@ -84,17 +84,17 @@ public class SampleController implements Initializable{
                     }
                     
                     if (this.spriteJoueur.getPersonnage().getGauche() &&
-                    		this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), -this.spriteJoueur.getPersonnage().getHauteur()+50, 0)){
+                    		this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), -this.spriteJoueur.getPersonnage().getHauteur(), 0)){
                     	this.spriteJoueur.getPersonnage().goGauche();
                     }
                     
                     if (this.spriteJoueur.getPersonnage().getDroite() &&
-                    		this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), this.spriteJoueur.getPersonnage().getHauteur()+30, 0)){
+                    		this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), this.spriteJoueur.getPersonnage().getHauteur(), 0)){
                     	this.spriteJoueur.getPersonnage().goDroite();
                     }
                     
                     if (this.spriteJoueur.getPersonnage().getHaut() && 
-                    		!this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), 0, this.spriteJoueur.getPersonnage().getHauteur()/2))
+                    		!this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), 0, this.spriteJoueur.getPersonnage().getHauteur()))
                     {
                     	this.spriteJoueur.getPersonnage().saute();
                     	
@@ -122,6 +122,7 @@ public class SampleController implements Initializable{
          //dÃ©placement du joueur Ã  l'aide des flÃ¨ches       
         this.spriteJoueur.getImage().setOnKeyPressed(e -> gererFlechesAppuyees(e));
         this.spriteJoueur.getImage().setOnKeyReleased(e -> gererFlechesRelachees(e));
+        
         terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
         terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
         for(int i=0;i<this.game.getMap().getMap().size();i++) {

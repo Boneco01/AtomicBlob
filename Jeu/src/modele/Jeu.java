@@ -7,11 +7,11 @@ public class Jeu {
 	private String cheminMap = "../Map/MapTestModele.csv";
 	
 	public Jeu() {
-		this.joueur = new Joueur(10, 3, 52, 52, "Joueur", 300, 100);
+		this.joueur = new Joueur(10, 3, 88, 52, "Joueur", 300, 100);
 		this.map = new Terrain(this.cheminMap);
 	}
 	
-public boolean gererCollision(Personnage perso, Terrain terrain, int boxLargeur, int boxHauteur) { //TODO box relative au sprite
+public boolean gererCollision(Personnage perso, Terrain terrain, int boxLargeur, int boxHauteur) {
         
         int xJoueur = (joueur.getX().getValue()+boxLargeur)/64;
         int yJoueur = (joueur.getY().getValue()+boxHauteur)/64;
