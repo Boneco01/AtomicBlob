@@ -1,9 +1,5 @@
 package controleur;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import modele.Personnage;
 

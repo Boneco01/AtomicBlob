@@ -14,6 +14,7 @@ import modele.Air;
 import modele.Block;
 import modele.Jeu;
 import modele.Terre;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -26,6 +27,9 @@ public class SampleController implements Initializable{
     
     @FXML
     private Pane coucheJoueur;
+    
+    @FXML
+    private ScrollPane vision;
     
     @FXML
     private TilePane terrain;
@@ -100,12 +104,12 @@ public class SampleController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.game = new Jeu();
-		 
     	this.spriteJoueur=new Sprite(this.game.getJoueur());
     	creerPersonnage();
-      
+    	 vision.setPannable(true);
          //déplacement du joueur à l'aide des flèches       
-    	this.spriteJoueur.getCercle().setOnKeyPressed(e -> gererFleches(e));
+
+		this.spriteJoueur.getCercle().setOnKeyPressed(e -> gererFleches(e));
     	terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
     	terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
 	    for(int i=0;i<this.game.getMap().getMap().size();i++) {
