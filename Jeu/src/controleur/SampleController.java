@@ -30,91 +30,100 @@ public class SampleController implements Initializable{
     @FXML
     private TilePane terrain;
     
-    public void creerPersonnage() {
+    public void creerSprite() {
     	coucheJoueur.getChildren().add(this.spriteJoueur.getCercle());
     	this.spriteJoueur.getCercle().centerXProperty().bind(this.spriteJoueur.getPersonnage().getX());
     	this.spriteJoueur.getCercle().centerYProperty().bind(this.spriteJoueur.getPersonnage().getY());
     	
     	
-    }
+    }  
     
-    public void sauter(Sprite personnage) {
-    	personnage.getPersonnage().saute();
-    }
-    
-    public void goDroite(Sprite personnage) {
-    	personnage.getPersonnage().goDroite();
-    }
-    
-    public void goGauche(Sprite personnage) {
-    	personnage.getPersonnage().goGauche();
-    }
-    
-    public void gererFleches(KeyEvent e) {
-		switch (e.getCode()) {
-        	case UP:    sauter(this.spriteJoueur); break;
-        	case LEFT:  goGauche(this.spriteJoueur); break;
-        	case RIGHT: goDroite(this.spriteJoueur); break;
+    public void gererFlechesAppuyees(KeyEvent e) {
+        switch (e.getCode()) {
+            case UP:    this.spriteJoueur.getPersonnage().setHaut(true); break;
+            case LEFT:  this.spriteJoueur.getPersonnage().setGauche(true); break;
+            case RIGHT: this.spriteJoueur.getPersonnage().setDroite(true); break;
         default: break;
+        }
+    }
+    
+    public void gererFlechesRelachees(KeyEvent e) {
+    	switch (e.getCode()) {
+        	case UP:    this.spriteJoueur.getPersonnage().setHaut(false); break;
+        	case LEFT:  this.spriteJoueur.getPersonnage().setGauche(false); break;
+        	case RIGHT: this.spriteJoueur.getPersonnage().setDroite(false); break;
+        	default: break;
     	}
-	}
+    }
     
     public ImageView imageDe(Block b) {
-		if (b instanceof Terre)
-			return new ImageView(new Image("file:../Sprites/Block/Terre.png"));
-		else if (b instanceof Air)
-			return new ImageView(new Image("file:../Sprites/Block/Air.png"));
-		else 
-			return new ImageView(new Image("file:../Sprites/Block/Air.png"));
-	}
+        if (b instanceof Terre)
+            return new ImageView(new Image("file:../Sprites/Block/Terre.png"));
+        else if (b instanceof Air)
+            return new ImageView(new Image("file:../Sprites/Block/Air.png"));
+        else
+            return new ImageView(new Image("file:../Sprites/Block/Air.png"));
+    }
     
     //private Timeline gameLoop;
     
     private Jeu game;
     
     private void initAnimation() {
-		Timeline gameLoop = new Timeline();
-		gameLoop.setCycleCount(Timeline.INDEFINITE);
+        Timeline gameLoop = new Timeline();
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
 
-		KeyFrame kf = new KeyFrame(
-				// Nombre de fps
-				Duration.seconds(0.017), 
-				// A chaque frame
-				(ev ->{
-					if(this.game.getJoueur().getVie() == 0){
-					System.out.println("Fin du jeu");
-					gameLoop.stop();
-					}
-					else {
-						if(this.game.gererCollision(this.game.getJoueur(), this.game.getMap())) {
-							this.game.getJoueur().tombe();
-						}
-        		
-					}
-				})
-		);
-		gameLoop.getKeyFrames().add(kf);
-		gameLoop.play();
-	}
+        KeyFrame kf = new KeyFrame(
+                // Nombre de fps
+                Duration.seconds(0.017),
+                // A chaque frame
+                (ev ->{
+                    
+                    if (this.game.getJoueur().getVie()==0) {
+                        gameLoop.stop();
+                    }
+                    
+                    else if (this.spriteJoueur.getPersonnage().getGauche() &&
+                    		this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), -this.spriteJoueur.getPersonnage().getHauteur()/2, 0)){
+                    	this.spriteJoueur.getPersonnage().goGauche();
+                    }
+                    
+                    else if (this.spriteJoueur.getPersonnage().getDroite() &&
+                    		this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), this.spriteJoueur.getPersonnage().getHauteur()/2, 0)){
+                    	this.spriteJoueur.getPersonnage().goDroite();
+                    }
+                    
+                  
+                    else if (this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), 0, this.spriteJoueur.getPersonnage().getHauteur()/2)) {
+                            this.spriteJoueur.getPersonnage().tombe();
+                    
+                    }
+                    
+                })
+        );
+        gameLoop.getKeyFrames().add(kf);
+        gameLoop.play();
+    }
     
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		this.game = new Jeu();
-		 
-    	this.spriteJoueur=new Sprite(this.game.getJoueur());
-    	creerPersonnage();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.game = new Jeu();
+        
+        this.spriteJoueur=new Sprite(this.game.getJoueur());
+        creerSprite();
       
-         //déplacement du joueur à l'aide des flèches       
-    	this.spriteJoueur.getCercle().setOnKeyPressed(e -> gererFleches(e));
-    	terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
-    	terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
-	    for(int i=0;i<this.game.getMap().getMap().size();i++) {
-	    		ImageView png = imageDe(this.game.getMap().getMap().get(i));
-	    		this.terrain.getChildren().add(png);
-	    	
-	    }
-	    
-	    initAnimation();
+         //dÃ©placement du joueur Ã  l'aide des flÃ¨ches       
+        this.spriteJoueur.getCercle().setOnKeyPressed(e -> gererFlechesAppuyees(e));
+        this.spriteJoueur.getCercle().setOnKeyReleased(e -> gererFlechesRelachees(e));
+        terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
+        terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
+        for(int i=0;i<this.game.getMap().getMap().size();i++) {
+                ImageView png = imageDe(this.game.getMap().getMap().get(i));
+                this.terrain.getChildren().add(png);
+            
+        }
+        
+        initAnimation();
 		
 	}
 	
