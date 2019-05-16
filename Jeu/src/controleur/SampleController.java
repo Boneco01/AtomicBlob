@@ -12,7 +12,7 @@ import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 import modele.Air;
 import modele.Block;
-import modele.Jeu;
+import modele.Monde;
 import modele.Terre;
 import vue.Sprite;
 import javafx.scene.image.Image;
@@ -34,8 +34,8 @@ public class SampleController implements Initializable{
     public void creerSprite() {
     	this.spriteJoueur=new Sprite(this.game.getJoueur());
     	coucheJoueur.getChildren().add(this.spriteJoueur.getImage());
-    	this.spriteJoueur.getImage().xProperty().bind(this.spriteJoueur.getPersonnage().getX());
-    	this.spriteJoueur.getImage().yProperty().bind(this.spriteJoueur.getPersonnage().getY());
+    	this.spriteJoueur.getImage().xProperty().bind(this.game.getJoueur().getXProperty());
+    	this.spriteJoueur.getImage().yProperty().bind(this.game.getJoueur().getYProperty());
     	this.spriteJoueur.getImage().setOnKeyPressed(e -> gererFlechesAppuyees(e));
         this.spriteJoueur.getImage().setOnKeyReleased(e -> gererFlechesRelachees(e));
     } 
@@ -52,18 +52,18 @@ public class SampleController implements Initializable{
     
     public void gererFlechesAppuyees(KeyEvent e) {
         switch (e.getCode()) {
-            case UP:    this.spriteJoueur.getPersonnage().setHaut(true); break;
-            case LEFT:  this.spriteJoueur.getPersonnage().setGauche(true); break;
-            case RIGHT: this.spriteJoueur.getPersonnage().setDroite(true); break;
+            case UP:    this.game.getJoueur().setHaut(true); break;
+            case LEFT:  this.game.getJoueur().setGauche(true); break;
+            case RIGHT: this.game.getJoueur().setDroite(true); break;
         default: break;
         }
     }
     
     public void gererFlechesRelachees(KeyEvent e) {
     	switch (e.getCode()) {
-        	case UP:    this.spriteJoueur.getPersonnage().setHaut(false); break;
-        	case LEFT:  this.spriteJoueur.getPersonnage().setGauche(false); break;
-        	case RIGHT: this.spriteJoueur.getPersonnage().setDroite(false); break;
+        	case UP:    this.game.getJoueur().setHaut(false); break;
+        	case LEFT:  this.game.getJoueur().setGauche(false); break;
+        	case RIGHT: this.game.getJoueur().setDroite(false); break;
         	default: break;
     	}
     }
@@ -77,7 +77,7 @@ public class SampleController implements Initializable{
             return new ImageView(new Image("file:../Sprites/Block/Air.png"));
     }
     
-    private Jeu game;
+    private Monde game;
     
     private void initAnimation() {
         Timeline gameLoop = new Timeline();
@@ -93,28 +93,7 @@ public class SampleController implements Initializable{
                         gameLoop.stop();
                     }
                     
-                    if (this.spriteJoueur.getPersonnage().getGauche() &&
-                    		this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), -this.spriteJoueur.getPersonnage().getHauteur(), 0)){
-                    	this.spriteJoueur.getPersonnage().goGauche();
-                    }
-                    
-                    if (this.spriteJoueur.getPersonnage().getDroite() &&
-                    		this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), this.spriteJoueur.getPersonnage().getHauteur(), 0)){
-                    	this.spriteJoueur.getPersonnage().goDroite();
-                    }
-                    
-                    if (this.spriteJoueur.getPersonnage().getHaut() && 
-                    		!this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), 0, this.spriteJoueur.getPersonnage().getHauteur()))
-                    {
-                    	this.spriteJoueur.getPersonnage().saute();
-                    	
-                    }
-                    
-                  
-                    if (this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), 0, this.spriteJoueur.getPersonnage().getHauteur())) {
-                            this.spriteJoueur.getPersonnage().tombe();
-                    
-                    }
+                   this.game.getJoueur().agir();
                     
                 })
         );
@@ -124,7 +103,7 @@ public class SampleController implements Initializable{
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.game = new Jeu();
+        this.game = new Monde();
         creerSprite();
         creerTerrain();
         initAnimation();

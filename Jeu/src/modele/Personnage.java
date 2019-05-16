@@ -13,9 +13,6 @@ public abstract class Personnage {
 	private int hauteur; //sert � la hitbox du personnage, � choisir en fonction du la hauteur du sprite
 	private IntegerProperty xProperty;
 	private IntegerProperty yProperty;
-	private boolean droite;
-	private boolean gauche;
-	private boolean haut;
 	
 	
 	public Personnage (int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y) {
@@ -61,7 +58,7 @@ public abstract class Personnage {
 		return this.hauteur;
 	}
 	
-	public IntegerProperty getX() {
+	public IntegerProperty getXProperty() {
 		return this.xProperty;
 	}
 	
@@ -73,7 +70,7 @@ public abstract class Personnage {
 		this.yProperty.setValue(y);
 	}
 	
-	public IntegerProperty getY() {
+	public IntegerProperty getYProperty() {
 		return this.yProperty;
 	}
 	
@@ -81,27 +78,5 @@ public abstract class Personnage {
 		return this.vitesse;
 	}
 	
-	public boolean getGauche() {
-		return this.gauche;
-	}
-	
-	public boolean getDroite() {
-		return this.droite;
-	}
-	
-	public boolean getHaut() {
-		return this.haut;
-	}
-	
-	public void setGauche(boolean estPresse) {
-		this.gauche=estPresse;
-	}
-	
-	public void setDroite(boolean estPresse) {
-		this.droite=estPresse;
-	}
-	
-	public void setHaut(boolean estPresse) {
-		this.haut=estPresse;
-	}
+	public abstract void agir();
 }
