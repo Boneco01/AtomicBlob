@@ -1,22 +1,23 @@
-package controleur;
+package vue;
 
-import javafx.scene.shape.Circle;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import modele.Personnage;
 
 public class Sprite {
 	private Personnage personnage;
 	//private ImageView spriteDuPerso;
-	private Circle cercle;  //a remplacer plus tard par un sprite
+	private ImageView image;  //a remplacer plus tard par un sprite
 	
 	public Sprite(Personnage personnage) {
 		this.personnage=personnage;
 		//this.spriteDuPerso = new ImageView(new Image("file:../Sprites/Joueur/JoueurBase/JoueurBase.gif"));
-		this.cercle=new Circle(this.personnage.getHauteur()/2);
-		this.cercle.setFocusTraversable(true);
+		this.image=new ImageView(new Image("file:../Sprites/Joueur/JoueurBase/JoueurBase.gif"));
+		this.image.setFocusTraversable(true);
 	}
 	
-	public Circle getCercle() {
-		return this.cercle;
+	public ImageView getImage() {
+		return this.image;
 	}
 	
 	public Personnage getPersonnage() {

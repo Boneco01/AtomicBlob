@@ -8,16 +8,22 @@
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.ScrollPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.SampleController">
-   <center>
-      <ScrollPane fx:id="vision" prefHeight="1920.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
-         <content>
-      		<Pane fx:id="coucheJoueur" prefHeight="6400.0" prefWidth="6400.0">
-      				<children>
-      					<TilePane fx:id="terrain" prefHeight="100000.0" prefWidth="100000.0" />
-      				</children>
-      			</Pane>
-        </content>
-      </ScrollPane>
-   </center>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.40"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controleur.SampleController">
+	<center>
+		<ScrollPane fx:id="vision" prefHeight="1920.0"
+			prefWidth="1080.0" hbarPolicy="ALWAYS" vbarPolicy="ALWAYS"
+			BorderPane.alignment="CENTER"><!--hbarPolicy="NEVER" vbarPolicy="NEVER" -->
+			<content>
+				<Pane fx:id="coucheJoueur" prefHeight="1920.0"
+					prefWidth="1080.0">
+					<children>
+						<TilePane fx:id="terrain" prefHeight="6400.0"
+							prefWidth="6400.0"></TilePane>
+					</children>
+				</Pane>
+			</content>
+		</ScrollPane>
+	</center>
 </BorderPane>
