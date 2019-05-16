@@ -9,10 +9,13 @@ public abstract class Personnage {
 	private String nom;
 	private int vie;
 	private DoubleProperty vitesse; //nb de pixels parcourus en un dï¿½placement ( un tour de jeu ) A utiliser plus tard.
-	private int largeur; //sert à la hitbox du personnage, à choisir en fonction de la largeur du sprite
-	private int hauteur; //sert à la hitbox du personnage, à choisir en fonction du la hauteur du sprite
+	private int largeur; //sert ï¿½ la hitbox du personnage, ï¿½ choisir en fonction de la largeur du sprite
+	private int hauteur; //sert ï¿½ la hitbox du personnage, ï¿½ choisir en fonction du la hauteur du sprite
 	private IntegerProperty xProperty;
 	private IntegerProperty yProperty;
+	private boolean droite;
+	private boolean gauche;
+	private boolean haut;
 	
 	
 	public Personnage (int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y) {
@@ -75,5 +78,29 @@ public abstract class Personnage {
 	
 	public DoubleProperty getVitesse() {
 		return this.vitesse;
+	}
+	
+	public boolean getGauche() {
+		return this.gauche;
+	}
+	
+	public boolean getDroite() {
+		return this.droite;
+	}
+	
+	public boolean getHaut() {
+		return this.haut;
+	}
+	
+	public void setGauche(boolean estPresse) {
+		this.gauche=estPresse;
+	}
+	
+	public void setDroite(boolean estPresse) {
+		this.droite=estPresse;
+	}
+	
+	public void setHaut(boolean estPresse) {
+		this.haut=estPresse;
 	}
 }
