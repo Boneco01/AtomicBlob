@@ -37,11 +37,12 @@ public abstract class Personnage {
 	}
 	
 	public void saute() {
-		this.yProperty.setValue(this.yProperty.getValue()-2*(this.vitesse.getValue()));
+		
+		this.yProperty.setValue(this.yProperty.getValue()-30*(this.vitesse.getValue()));
 	}
 	
 	public void tombe() {
-		this.yProperty.setValue(this.yProperty.getValue()+(this.vitesse.getValue()));
+		this.yProperty.setValue(this.yProperty.getValue()+5);
 	}
 	
 	public String getNom() {
