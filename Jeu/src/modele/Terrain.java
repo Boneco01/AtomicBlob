@@ -50,6 +50,7 @@ public class Terrain {
 		
 		for(Block b : this.map) {
 			largeur++;
+
 		}
 		
 		return largeur/this.hauteurMap;

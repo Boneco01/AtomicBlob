@@ -14,6 +14,7 @@ import modele.Air;
 import modele.Block;
 import modele.Monde;
 import modele.Terre;
+import javafx.scene.control.ScrollPane;
 import vue.Sprite;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,6 +30,9 @@ public class SampleController implements Initializable{
     private Pane coucheJoueur;
     
     @FXML
+    private ScrollPane vision;
+    
+    @FXML
     private TilePane terrain;
     
     public void creerSprite() {
@@ -41,6 +45,8 @@ public class SampleController implements Initializable{
     } 
     
     public void creerTerrain() {
+
+   	 	vision.setPannable(true);
     	terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
         terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
         for(int i=0;i<this.game.getMap().getMap().size();i++) {
@@ -92,7 +98,7 @@ public class SampleController implements Initializable{
                     if (this.game.getJoueur().getVie()==0) {
                         gameLoop.stop();
                     }
-                    
+
                    this.game.getJoueur().agir();
                     
                 })
@@ -107,7 +113,6 @@ public class SampleController implements Initializable{
         creerSprite();
         creerTerrain();
         initAnimation();
-		
 	}
     
 }
