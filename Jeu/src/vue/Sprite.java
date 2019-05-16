@@ -1,4 +1,4 @@
-package controleur;
+package vue;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
