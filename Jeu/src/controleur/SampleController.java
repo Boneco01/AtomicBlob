@@ -31,9 +31,9 @@ public class SampleController implements Initializable{
     private TilePane terrain;
     
     public void creerSprite() {
-    	coucheJoueur.getChildren().add(this.spriteJoueur.getCercle());
-    	this.spriteJoueur.getCercle().centerXProperty().bind(this.spriteJoueur.getPersonnage().getX());
-    	this.spriteJoueur.getCercle().centerYProperty().bind(this.spriteJoueur.getPersonnage().getY());
+    	coucheJoueur.getChildren().add(this.spriteJoueur.getImage());
+    	this.spriteJoueur.getImage().xProperty().bind(this.spriteJoueur.getPersonnage().getX());
+    	this.spriteJoueur.getImage().yProperty().bind(this.spriteJoueur.getPersonnage().getY());
     	
     	
     }  
@@ -83,18 +83,25 @@ public class SampleController implements Initializable{
                         gameLoop.stop();
                     }
                     
-                    else if (this.spriteJoueur.getPersonnage().getGauche() &&
-                    		this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), -this.spriteJoueur.getPersonnage().getHauteur()/2, 0)){
+                    if (this.spriteJoueur.getPersonnage().getGauche() &&
+                    		this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), -this.spriteJoueur.getPersonnage().getHauteur()+50, 0)){
                     	this.spriteJoueur.getPersonnage().goGauche();
                     }
                     
-                    else if (this.spriteJoueur.getPersonnage().getDroite() &&
-                    		this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), this.spriteJoueur.getPersonnage().getHauteur()/2, 0)){
+                    if (this.spriteJoueur.getPersonnage().getDroite() &&
+                    		this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), this.spriteJoueur.getPersonnage().getHauteur()+30, 0)){
                     	this.spriteJoueur.getPersonnage().goDroite();
                     }
                     
+                    if (this.spriteJoueur.getPersonnage().getHaut() && 
+                    		!this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), 0, this.spriteJoueur.getPersonnage().getHauteur()/2))
+                    {
+                    	this.spriteJoueur.getPersonnage().saute();
+                    	
+                    }
+                    
                   
-                    else if (this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), 0, this.spriteJoueur.getPersonnage().getHauteur()/2)) {
+                    if (this.game.gererCollision(this.game.getJoueur(), this.game.getMap(), 0, this.spriteJoueur.getPersonnage().getHauteur())) {
                             this.spriteJoueur.getPersonnage().tombe();
                     
                     }
@@ -113,8 +120,8 @@ public class SampleController implements Initializable{
         creerSprite();
       
          //dÃ©placement du joueur Ã  l'aide des flÃ¨ches       
-        this.spriteJoueur.getCercle().setOnKeyPressed(e -> gererFlechesAppuyees(e));
-        this.spriteJoueur.getCercle().setOnKeyReleased(e -> gererFlechesRelachees(e));
+        this.spriteJoueur.getImage().setOnKeyPressed(e -> gererFlechesAppuyees(e));
+        this.spriteJoueur.getImage().setOnKeyReleased(e -> gererFlechesRelachees(e));
         terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
         terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
         for(int i=0;i<this.game.getMap().getMap().size();i++) {
