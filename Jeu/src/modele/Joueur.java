@@ -50,18 +50,24 @@ public class Joueur extends Personnage{
 	public void seDeplace() {
 		
         if (this.getGauche() &&
-        		this.monde.gererCollision(this, this.monde.getMap(), 0, 0)){
+        		this.monde.gererCollision(this.monde.getMap(), -3, 0) &&
+        		this.monde.gererCollision(this.monde.getMap(), -3, this.getHauteur()-3)){
         	this.goGauche();
         }
-        
+          
         if (this.getDroite() &&
-        		this.monde.gererCollision(this, this.monde.getMap(), this.getLargeur(), 0)){
+        		this.monde.gererCollision(this.monde.getMap(), this.getLargeur()+3, 0) &&
+        		this.monde.gererCollision(this.monde.getMap(), this.getLargeur()+3, this.getHauteur()-3)){
         	this.goDroite();
         }
         
+        
+        
         if (this.getHaut() && 
-        		!this.monde.gererCollision(this, this.monde.getMap(), 0, this.getHauteur()))
+        		(!this.monde.gererCollision(this.monde.getMap(), 0, this.getHauteur()) ||
+        		!this.monde.gererCollision(this.monde.getMap(), this.getLargeur(), this.getHauteur())))
         {
+        	
         	this.hauteurSaut = 12;
         } 
         
@@ -75,9 +81,16 @@ public class Joueur extends Personnage{
         	this.hauteurSaut--;
         }
         
-        else if (this.monde.gererCollision(this, this.monde.getMap(), 0, this.getHauteur())) {
+        else if (this.monde.gererCollision(this.monde.getMap(), 0, this.getHauteur()) && 
+        		this.monde.gererCollision(this.monde.getMap(), this.getLargeur(), this.getHauteur())) {
         	this.tombe();
         }
+        
+        
+	}
+	
+	public void creuse() {
+		
 	}
 	
 }

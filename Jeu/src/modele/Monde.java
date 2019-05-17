@@ -11,7 +11,7 @@ public class Monde {
 		this.joueur = new Joueur(10, 3, 44, 26, "Joueur", 300, 100, this);
 	}
 	
-	public boolean gererCollision(Personnage perso, Terrain terrain, int boxLargeur, int boxHauteur) {
+	public boolean gererCollision(Terrain terrain, int boxLargeur, int boxHauteur) {
         
         int xJoueur = (joueur.getXProperty().getValue()+boxLargeur)/64;
         int yJoueur = (joueur.getYProperty().getValue()+boxHauteur)/64;
