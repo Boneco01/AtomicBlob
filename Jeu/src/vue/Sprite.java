@@ -2,27 +2,35 @@ package vue;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import modele.Personnage;
 
-public class Sprite {
-	private Personnage personnage;
-	//private ImageView spriteDuPerso;
-	private ImageView image;  //a remplacer plus tard par un sprite
+public abstract class Sprite {
 	
-	public Sprite(Personnage personnage) {
-		this.personnage=personnage;
-		//this.spriteDuPerso = new ImageView(new Image("file:../Sprites/Joueur/JoueurBase/JoueurBase.gif"));
-		this.image=new ImageView(new Image("file:../Sprites/Joueur/JoueurBase/JoueurBase.gif"));
-		this.image.setFocusTraversable(true);
+	private char spriteCode;
+	private ImageView sprite;
+	
+	public Sprite(String cheminSprite) {
+		this.spriteCode = 'b';
+		this.sprite=new ImageView(new Image(cheminSprite));
+		this.sprite.setFocusTraversable(true);
 	}
 	
-	public ImageView getImage() {
-		return this.image;
+	public ImageView getSprite() {
+		return this.sprite;
 	}
 	
-	public Personnage getPersonnage() {
-		return this.personnage;
+	public void setSprite(String sprite) {
+		this.sprite.setImage(new Image(sprite));
 	}
+	
+	public char getSpriteCode() {
+		return this.spriteCode;
+	}
+	
+	public void setSpriteCode(char spriteCode) {
+		this.spriteCode = spriteCode;
+	}
+	
+	public abstract void changerSprite();
 	
 	
 	

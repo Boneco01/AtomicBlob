@@ -12,7 +12,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("../vue/Sample.fxml"));
-			Scene map = new Scene(root, 1980, 1080);
+			Scene map = new Scene(root, 1200, 720);
 		    primaryStage.setTitle("AtomicBlob");
 		    primaryStage.setScene(map);
 		    map.getStylesheets().add(getClass().getResource("../vue/application.css").toExternalForm());

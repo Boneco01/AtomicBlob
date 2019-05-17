@@ -16,6 +16,7 @@ import modele.Monde;
 import modele.Terre;
 import javafx.scene.control.ScrollPane;
 import vue.Sprite;
+import vue.SpriteJoueur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -36,12 +37,12 @@ public class SampleController implements Initializable{
     private TilePane terrain;
     
     public void creerSprite() {
-    	this.spriteJoueur=new Sprite(this.game.getJoueur());
-    	coucheJoueur.getChildren().add(this.spriteJoueur.getImage());
-    	this.spriteJoueur.getImage().xProperty().bind(this.game.getJoueur().getXProperty());
-    	this.spriteJoueur.getImage().yProperty().bind(this.game.getJoueur().getYProperty());
-    	this.spriteJoueur.getImage().setOnKeyPressed(e -> gererFlechesAppuyees(e));
-        this.spriteJoueur.getImage().setOnKeyReleased(e -> gererFlechesRelachees(e));
+    	this.spriteJoueur=new SpriteJoueur(this.game.getJoueur());
+    	coucheJoueur.getChildren().add(this.spriteJoueur.getSprite());
+    	this.spriteJoueur.getSprite().xProperty().bind(this.game.getJoueur().getXProperty());
+    	this.spriteJoueur.getSprite().yProperty().bind(this.game.getJoueur().getYProperty());
+    	this.spriteJoueur.getSprite().setOnKeyPressed(e -> gererFlechesAppuyees(e));
+        this.spriteJoueur.getSprite().setOnKeyReleased(e -> gererFlechesRelachees(e));
     } 
     
     public void creerTerrain() {
@@ -91,7 +92,7 @@ public class SampleController implements Initializable{
 
         KeyFrame kf = new KeyFrame(
                 // Nombre de fps
-                Duration.seconds(0.017),
+                Duration.seconds(0.015),
                 // A chaque frame
                 (ev ->{
                     
@@ -99,7 +100,8 @@ public class SampleController implements Initializable{
                         gameLoop.stop();
                     }
 
-                   this.game.getJoueur().agir();
+                    this.game.getJoueur().agir();
+                    this.spriteJoueur.changerSprite();
                     
                 })
         );
