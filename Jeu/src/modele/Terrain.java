@@ -60,6 +60,10 @@ public class Terrain {
 		return this.map.get((largeurMap()*y)+x);
 	}
 	
+	public void remplacerBlock(Block blockQuiRemplace, int x, int y) {
+		this.map.set((hauteurMap()*y)+x, blockQuiRemplace);
+	}
+	
 	public int hauteurMap() {
 		return this.hauteurMap;
 	}
@@ -69,11 +73,10 @@ public class Terrain {
 	}
 	
 	private Block blockDe(char a) {
-		if(a=='A')
-			return new Air();
-		else if (a=='T')
-			return new Terre();
-		else
-			return new Air();
+		switch (a) {
+			case 'T' : return new Terre();
+			case 'A' : return new Air();
+			default : return new Air();
+		}
 	}
 }

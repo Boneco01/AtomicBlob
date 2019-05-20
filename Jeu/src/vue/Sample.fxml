@@ -12,10 +12,10 @@
 	xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controleur.SampleController">
 	<center>
-		<ScrollPane fx:id="vision" prefHeight="1920.0"
-			prefWidth="1080.0" hbarPolicy="ALWAYS" vbarPolicy="ALWAYS"
-			BorderPane.alignment="CENTER"><!--hbarPolicy="NEVER" vbarPolicy="NEVER" -->
-			<content>
+		<!-- <ScrollPane fx:id="vision" prefHeight="1920.0"
+			prefWidth="1080.0" hbarPolicy="NEVER" vbarPolicy="NEVER"
+			BorderPane.alignment="CENTER">
+			<content>-->
 				<Pane fx:id="coucheJoueur" prefHeight="1920.0"
 					prefWidth="1080.0">
 					<children>
@@ -23,7 +23,7 @@
 							prefWidth="6400.0"></TilePane>
 					</children>
 				</Pane>
-			</content>
-		</ScrollPane>
+			<!--</content>
+		</ScrollPane>-->
 	</center>
 </BorderPane>
