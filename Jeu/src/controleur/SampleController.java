@@ -30,7 +30,6 @@ public class SampleController implements Initializable{
 
     private Sprite spriteJoueur;
     
-    
     @FXML
     private Pane coucheJoueur;
     
@@ -64,9 +63,9 @@ public class SampleController implements Initializable{
     }
     
     public void changerImageBlock() {
-    	int xSouris=(int)this.game.getJoueur().getXBlocAModifier();
-    	int ySouris=(int)this.game.getJoueur().getYBlocAModifier();
-    	int index=(this.game.getMap().hauteurMap()*ySouris)+xSouris;
+    	int xSouris=this.game.getJoueur().getXBlocAModifier();
+    	int ySouris=this.game.getJoueur().getYBlocAModifier();
+    	int index=(this.game.getMap().largeurMap()*ySouris)+xSouris;
     	
     	ImageView png = imageDe(this.game.getMap().getListMap().get(index));
     	this.terrain.getChildren().set(index, png);
@@ -154,7 +153,7 @@ public class SampleController implements Initializable{
                     if (this.game.getJoueur().getVie()==0) {
                         gameLoop.stop();
                     }
-
+                    
                     this.game.getJoueur().agir();
                     this.spriteJoueur.changerSprite();
                     

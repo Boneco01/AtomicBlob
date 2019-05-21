@@ -14,12 +14,10 @@ public class SpriteJoueur extends Sprite {
 	public void changerSprite() {
 		char ancienSpriteCode = this.getSpriteCode();
 		
-		if(this.joueur.getDroite() && ancienSpriteCode != 'h') {
+		if(this.joueur.getDroite()) {
 			this.setSpriteCode('d');
-		} else if(this.joueur.getGauche() && ancienSpriteCode != 'h') {
+		} else if(this.joueur.getGauche()) {
 			this.setSpriteCode('g');
-		} else if(this.joueur.getHaut() && ancienSpriteCode != 'h') {
-			this.setSpriteCode('h');
 		}
 		
 		if(this.getSpriteCode() != ancienSpriteCode) {
@@ -27,9 +25,6 @@ public class SpriteJoueur extends Sprite {
 				
 				case 'g' : this.setSprite("file:../Sprites/Joueur/JoueurBase/JoueurBaseLeft.gif");
 				   		   break;
-		   		   		   
-				case 'h' : this.setSprite("file:../Sprites/Joueur/JoueurJump/JoueurJumpAir.gif");
-						   break;
 						   
 				default : this.setSprite("file:../Sprites/Joueur/JoueurBase/JoueurBaseRight.gif");
 				   		  break;
