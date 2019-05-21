@@ -30,6 +30,7 @@ public class SampleController implements Initializable{
 
     private Sprite spriteJoueur;
     
+    
     @FXML
     private Pane coucheJoueur;
     
@@ -54,8 +55,8 @@ public class SampleController implements Initializable{
         terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
         terrain.setOnMousePressed(event->gererClicAppuye(event));
         terrain.setOnMouseReleased(event->gererClicRelache(event));
-        for(int i=0;i<this.game.getMap().getMap().size();i++) {
-            ImageView png = imageDe(this.game.getMap().getMap().get(i));
+        for(int i=0;i<this.game.getMap().getListMap().size();i++) {
+            ImageView png = imageDe(this.game.getMap().getListMap().get(i));
             this.terrain.getChildren().add(png);
         
     	}
@@ -63,16 +64,16 @@ public class SampleController implements Initializable{
     }
     
     public void changerImageBlock() {
-    	int xSouris=(int)this.game.getJoueur().getXSouris();
-    	int ySouris=(int)this.game.getJoueur().getYSouris();
+    	int xSouris=(int)this.game.getJoueur().getXBlocAModifier();
+    	int ySouris=(int)this.game.getJoueur().getYBlocAModifier();
     	int index=(this.game.getMap().hauteurMap()*ySouris)+xSouris;
     	
-    	ImageView png = imageDe(this.game.getMap().getMap().get(index));
+    	ImageView png = imageDe(this.game.getMap().getListMap().get(index));
     	this.terrain.getChildren().set(index, png);
     }
     
     public void ecouterMap() {
-    	this.game.getMap().getMap().addListener(new ListChangeListener<Block>() {
+    	this.game.getMap().getListMap().addListener(new ListChangeListener<Block>() {
 
 			@Override
 			public void onChanged(Change<? extends Block> c) {
@@ -89,8 +90,8 @@ public class SampleController implements Initializable{
     public void gererClicAppuye(MouseEvent e) {
 		int xSouris=(int)e.getX()/64;
 		int ySouris=(int)e.getY()/64;
-		this.game.getJoueur().setXSouris(xSouris);
-		this.game.getJoueur().setYSouris(ySouris);
+		this.game.getJoueur().setXBlocAModifier(xSouris);
+		this.game.getJoueur().setYBlocAModifier(ySouris);
 		
 		if (e.getButton() == MouseButton.PRIMARY) {
 			this.game.getJoueur().setCreuse(true);

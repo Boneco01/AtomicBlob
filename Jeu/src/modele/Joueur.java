@@ -10,8 +10,8 @@ public class Joueur extends Personnage{
 	private int vSaut;
 	private boolean construire;
 	private boolean creuse;
-	private int xSouris;
-	private int ySouris;
+	private int xBlocAModifier;
+	private int yBlocAModifier;
 
 	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
 		super(vie, vitesse, largeur, hauteur, nom, x, y);
@@ -33,12 +33,12 @@ public class Joueur extends Personnage{
 		this.haut=estPresse;
 	}
 	
-	public void setXSouris(int x) {
-		this.xSouris=x;
+	public void setXBlocAModifier(int x) {
+		this.xBlocAModifier=x;
 	}
 	
-	public void setYSouris(int y) {
-		this.ySouris=y;
+	public void setYBlocAModifier(int y) {
+		this.yBlocAModifier=y;
 	}
 	
 	public void setConstruire(boolean a) {
@@ -61,12 +61,12 @@ public class Joueur extends Personnage{
 		return this.haut;
 	}
 	
-	public int getXSouris() {
-		return this.xSouris;
+	public int getXBlocAModifier() {
+		return this.xBlocAModifier;
 	}
 	
-	public int getYSouris() {
-		return this.ySouris;
+	public int getYBlocAModifier() {
+		return this.yBlocAModifier;
 	}
 
 	@Override
@@ -123,14 +123,14 @@ public class Joueur extends Personnage{
 	public void creuse() {
 		if(this.creuse) {
 			Air blockAir=new Air();
-			this.monde.getMap().remplacerBlock(blockAir, this.xSouris, this.ySouris);
+			this.monde.getMap().remplacerBlock(blockAir, this.xBlocAModifier, this.yBlocAModifier);
 		}
 	}
 	
 	public void construit() {
 		if (this.construire) {
 			Terre blockTerre=new Terre(); //ici le block sera determine en fonction du block tenu par le joueur
-			this.monde.getMap().remplacerBlock(blockTerre, this.xSouris, this.ySouris);
+			this.monde.getMap().remplacerBlock(blockTerre, this.xBlocAModifier, this.yBlocAModifier);
 		}
 	}
 	

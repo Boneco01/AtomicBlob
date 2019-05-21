@@ -68,7 +68,7 @@ public class Terrain {
 		return this.hauteurMap;
 	}
 	
-	public ObservableList<Block> getMap() {
+	public ObservableList<Block> getListMap() {
 		return this.map;
 	}
 	
