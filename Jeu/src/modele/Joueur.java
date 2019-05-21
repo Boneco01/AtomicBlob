@@ -8,6 +8,7 @@ public class Joueur extends Personnage{
 	private boolean haut;
 	private int hauteurSaut;
 	private int vSaut;
+	//private int vChute;
 
 	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
 		super(vie, vitesse, largeur, hauteur, nom, x, y);
@@ -51,13 +52,13 @@ public class Joueur extends Personnage{
 		
         if (this.getGauche() &&
         		this.monde.gererCollision(this.monde.getMap(), -3, 0) &&
-        		this.monde.gererCollision(this.monde.getMap(), -3, this.getHauteur()-3)){
+        		this.monde.gererCollision(this.monde.getMap(), -3, this.getHauteur()-6)){
         	this.goGauche();
         }
           
         if (this.getDroite() &&
         		this.monde.gererCollision(this.monde.getMap(), this.getLargeur()+3, 0) &&
-        		this.monde.gererCollision(this.monde.getMap(), this.getLargeur()+3, this.getHauteur()-3)){
+        		this.monde.gererCollision(this.monde.getMap(), this.getLargeur()+3, this.getHauteur()-6)){
         	this.goDroite();
         }
         

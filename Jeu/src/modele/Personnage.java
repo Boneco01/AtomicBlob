@@ -38,7 +38,7 @@ public abstract class Personnage {
 	}
 	
 	public void tombe() {
-		this.yProperty.setValue(this.yProperty.getValue()+4);
+		this.yProperty.setValue(this.yProperty.getValue()+6);
 	}
 	
 	public String getNom() {
