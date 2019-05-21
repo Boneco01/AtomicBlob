@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
@@ -20,12 +21,15 @@ import vue.SpriteJoueur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 
 
 public class SampleController implements Initializable{
 
     private Sprite spriteJoueur;
+    
     
     @FXML
     private Pane coucheJoueur;
@@ -47,17 +51,68 @@ public class SampleController implements Initializable{
     
     public void creerTerrain() {
 
-   	 	vision.setPannable(true);
     	terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
         terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
-        for(int i=0;i<this.game.getMap().getMap().size();i++) {
-                ImageView png = imageDe(this.game.getMap().getMap().get(i));
-                this.terrain.getChildren().add(png);
-            
-        }
+        terrain.setOnMousePressed(event->gererClicAppuye(event));
+        terrain.setOnMouseReleased(event->gererClicRelache(event));
+        for(int i=0;i<this.game.getMap().getListMap().size();i++) {
+            ImageView png = imageDe(this.game.getMap().getListMap().get(i));
+            this.terrain.getChildren().add(png);
+        
+    	}
+        ecouterMap();
     }
     
-    public void gererFlechesAppuyees(KeyEvent e) {
+    public void changerImageBlock() {
+    	int xSouris=(int)this.game.getJoueur().getXBlocAModifier();
+    	int ySouris=(int)this.game.getJoueur().getYBlocAModifier();
+    	int index=(this.game.getMap().hauteurMap()*ySouris)+xSouris;
+    	
+    	ImageView png = imageDe(this.game.getMap().getListMap().get(index));
+    	this.terrain.getChildren().set(index, png);
+    }
+    
+    public void ecouterMap() {
+    	this.game.getMap().getListMap().addListener(new ListChangeListener<Block>() {
+
+			@Override
+			public void onChanged(Change<? extends Block> c) {
+				while (c.next()) {
+                    if (c.wasReplaced()) {
+                    	changerImageBlock();
+                    }
+                }
+			}
+    	});
+    		
+    }
+    
+    public void gererClicAppuye(MouseEvent e) {
+		int xSouris=(int)e.getX()/64;
+		int ySouris=(int)e.getY()/64;
+		this.game.getJoueur().setXBlocAModifier(xSouris);
+		this.game.getJoueur().setYBlocAModifier(ySouris);
+		
+		if (e.getButton() == MouseButton.PRIMARY) {
+			this.game.getJoueur().setCreuse(true);
+		}
+		else if(e.getButton() == MouseButton.SECONDARY) {
+			this.game.getJoueur().setConstruire(true);
+		}
+		
+		
+	}
+    
+    public void gererClicRelache(MouseEvent e) {
+    	if (e.getButton() == MouseButton.PRIMARY) {
+			this.game.getJoueur().setCreuse(false);
+		}
+		else if(e.getButton() == MouseButton.SECONDARY) {
+			this.game.getJoueur().setConstruire(false);
+		}
+    }
+
+	public void gererFlechesAppuyees(KeyEvent e) {
         switch (e.getCode()) {
             case UP:    this.game.getJoueur().setHaut(true); break;
             case LEFT:  this.game.getJoueur().setGauche(true); break;
@@ -122,4 +177,4 @@ public class SampleController implements Initializable{
 
 
 
-
+    
