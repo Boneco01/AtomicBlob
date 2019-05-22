@@ -20,6 +20,7 @@ import vue.Sprite;
 import vue.SpriteJoueur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -53,6 +54,8 @@ public class SampleController implements Initializable{
 
     	terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
         terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
+        coucheJoueur.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
+        coucheJoueur.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
         terrain.setOnMousePressed(event->gererClicAppuye(event));
         terrain.setOnMouseReleased(event->gererClicRelache(event));
         for(int i=0;i<this.game.getMap().getListMap().size();i++) {
@@ -60,6 +63,10 @@ public class SampleController implements Initializable{
             this.terrain.getChildren().add(png);
         
     	}
+        vision.setOnKeyPressed(event -> {
+            if(event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.UP || event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.LEFT)
+                event.consume();
+        });
         ecouterMap();
     }
     
@@ -138,7 +145,10 @@ public class SampleController implements Initializable{
         else
             return new ImageView(new Image("file:../Sprites/Block/Air.png"));
     }
-    
+    private void suiviVision() {
+    	vision.setHvalue((double)this.game.getJoueur().getXProperty().get()/game.getMap().largeurMap()/64);
+    	vision.setVvalue((double)this.game.getJoueur().getYProperty().get()/game.getMap().hauteurMap()/64);
+    }
     private Monde game;
     
     private void initAnimation() {
@@ -157,7 +167,7 @@ public class SampleController implements Initializable{
 
                     this.game.getJoueur().agir();
                     this.spriteJoueur.changerSprite();
-                    
+                    this.suiviVision();
                 })
         );
         gameLoop.getKeyFrames().add(kf);

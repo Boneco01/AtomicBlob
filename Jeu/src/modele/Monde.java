@@ -4,7 +4,7 @@ public class Monde {
 
 	private Joueur joueur;
 	private Terrain map;
-	private String cheminMap = "../Map/MapTestModele.csv";
+	private String cheminMap = "../Map/MapTestModeleV3.csv";
 	
 	public Monde() {
 		this.map = new Terrain(this.cheminMap);
