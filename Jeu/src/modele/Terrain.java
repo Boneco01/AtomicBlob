@@ -62,7 +62,6 @@ public class Terrain {
 	
 	public void remplacerBlock(Block blockQuiRemplace, int x, int y) {
 		this.map.set((largeurMap()*y)+x, blockQuiRemplace);
-		
 	}
 	
 	public int hauteurMap() {

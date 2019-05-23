@@ -35,7 +35,6 @@ public class SampleController implements Initializable{
 
     private Sprite spriteJoueur;
     
-    
     @FXML
     private Pane coucheJoueur;
     
@@ -169,7 +168,7 @@ public class SampleController implements Initializable{
                     if (this.game.getJoueur().getVie()==0) {
                         gameLoop.stop();
                     }
-
+                    
                     this.game.getJoueur().agir();
                     this.spriteJoueur.changerSprite();
                     

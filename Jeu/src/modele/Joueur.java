@@ -86,14 +86,13 @@ public class Joueur extends Personnage{
 	}
 	
 	public void seDeplace() {
-		
         if (gauche && !this.getBoite().collisionGauche()){
         	this.goGauche();
         }
           
         if (droite && !this.getBoite().collisionDroite()){
         	this.goDroite();
-        }       
+        }
         
         if (haut && this.getBoite().collisionBas()) {
         	this.hauteurSaut = 12;
