@@ -126,14 +126,6 @@ public class Joueur extends Personnage{
         
 	}
 	
-	public void creuse() {
-		if(this.creuse) {
-			Air blockAir=new Air();
-			this.ramasseBlock(this.monde.getMap().blockParCord(xBlocAModifier, yBlocAModifier));
-			this.monde.getMap().remplacerBlock(blockAir, this.xBlocAModifier, this.yBlocAModifier);
-		}
-	}
-	
 	public boolean verificationPointBlock(String point) {
 		int largeur=0;
 		int hauteur=0;
@@ -167,9 +159,17 @@ public class Joueur extends Personnage{
 			this.monde.getMap().remplacerBlock(blockTerre, this.xBlocAModifier, this.yBlocAModifier);
 		}
 	}
+
+	public void creuse() {
+		if(this.creuse) {
+			Air blockAir=new Air();
+			//this.ramasseBlock(this.monde.getMap().blockParCord(xBlocAModifier, yBlocAModifier));
+			this.monde.getMap().remplacerBlock(blockAir, this.xBlocAModifier, this.yBlocAModifier);
+		}
+	}
 	
 	public void ramasseBlock(Block b) {
-		Item item = new ItemBlock(b.getId(), b);
+		Item item = new ItemBlock(b);
 		this.inventaire.addItem(item);
 	}
 	
