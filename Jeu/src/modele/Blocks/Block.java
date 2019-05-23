@@ -1,4 +1,4 @@
-package modele;
+package modele.Blocks;
 
 public abstract class Block {
 	

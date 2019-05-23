@@ -1,4 +1,4 @@
-package modele;
+package modele.Blocks;
 
 public class Terre extends Block {
 	public Terre() {

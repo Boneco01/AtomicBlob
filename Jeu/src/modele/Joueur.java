@@ -1,8 +1,15 @@
 package modele;
 
+import modele.Blocks.Air;
+import modele.Blocks.Block;
+import modele.Blocks.Terre;
+import modele.Items.Item;
+import modele.Items.ItemBlock;
+
 public class Joueur extends Personnage{
 	
 	private Monde monde;
+	private Inventaire inventaire;
 	private boolean droite;
 	private boolean gauche;
 	private boolean haut;
@@ -122,6 +129,7 @@ public class Joueur extends Personnage{
 	public void creuse() {
 		if(this.creuse) {
 			Air blockAir=new Air();
+			this.ramasseBlock(this.monde.getMap().blockParCord(xBlocAModifier, yBlocAModifier));
 			this.monde.getMap().remplacerBlock(blockAir, this.xBlocAModifier, this.yBlocAModifier);
 		}
 	}
@@ -158,6 +166,26 @@ public class Joueur extends Personnage{
 			Terre blockTerre=new Terre(); //ici le block sera determine en fonction du block tenu par le joueur
 			this.monde.getMap().remplacerBlock(blockTerre, this.xBlocAModifier, this.yBlocAModifier);
 		}
+	}
+	
+	public void ramasseBlock(Block b) {
+		Item item = new ItemBlock(b.getId(), b);
+		this.inventaire.addItem(item);
+	}
+	
+	public void equipeGauche(Item item) {
+		this.inventaire.equiper(item, 'g');
+	}
+	public void equipeDroit(Item item) {
+		this.inventaire.equiper(item, 'd');
+	}
+	
+	public void desequipeGauche() {
+		this.inventaire.desequiper('g');
+	}
+	
+	public void desequipeDroite() {
+		this.inventaire.desequiper('g');
 	}
 	
 }
