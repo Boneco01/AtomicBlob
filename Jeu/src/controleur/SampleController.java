@@ -1,8 +1,9 @@
 package controleur;
 
 import java.net.URL;
+import java.awt.Dimension;
 import java.util.ResourceBundle;
-
+import javax.swing.ScrollPaneLayout;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
@@ -20,6 +21,7 @@ import vue.Sprite;
 import vue.SpriteJoueur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -34,10 +36,10 @@ public class SampleController implements Initializable{
     private Pane coucheJoueur;
     
     @FXML
-    private ScrollPane vision;
+    private TilePane terrain;
     
     @FXML
-    private TilePane terrain;
+    private Pane test;
     
     public void creerSprite() {
     	this.spriteJoueur=new SpriteJoueur(this.game.getJoueur());
@@ -49,11 +51,17 @@ public class SampleController implements Initializable{
     } 
     
     public void creerTerrain() {
-
+    	Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    	int height = (int)dimension.getHeight();
+    	int width  = (int)dimension.getWidth();
     	terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
         terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
-        terrain.setOnMousePressed(event->gererClicAppuye(event));
-        terrain.setOnMouseReleased(event->gererClicRelache(event));
+        coucheJoueur.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
+        coucheJoueur.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
+        test.setMinSize(width,height-10);
+        test.setMaxSize(width,height-10); 
+        test.setOnMousePressed(event->gererClicAppuye(event));
+        test.setOnMouseReleased(event->gererClicRelache(event));
         for(int i=0;i<this.game.getMap().getListMap().size();i++) {
             ImageView png = imageDe(this.game.getMap().getListMap().get(i));
             this.terrain.getChildren().add(png);
@@ -87,10 +95,10 @@ public class SampleController implements Initializable{
     }
     
     public void gererClicAppuye(MouseEvent e) {
-		int xSouris=(int)e.getX()/64;
-		int ySouris=(int)e.getY()/64;
-		this.game.getJoueur().setXBlocAModifier(xSouris);
-		this.game.getJoueur().setYBlocAModifier(ySouris);
+		
+		
+		this.game.getJoueur().setYBlocAModifier((int)(e.getY()/64));
+    	this.game.getJoueur().setXBlocAModifier((int)(e.getX()/64));
 		
 		if (e.getButton() == MouseButton.PRIMARY) {
 			this.game.getJoueur().setCreuse(true);
@@ -98,8 +106,10 @@ public class SampleController implements Initializable{
 		else if(e.getButton() == MouseButton.SECONDARY) {
 			this.game.getJoueur().setConstruire(true);
 		}
+		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		
-		
+		System.out.println((int)dimension.getHeight());
+		System.out.println((int)dimension.getWidth());
 	}
     
     public void gererClicRelache(MouseEvent e) {
@@ -137,7 +147,13 @@ public class SampleController implements Initializable{
         else
             return new ImageView(new Image("file:../Sprites/Block/Air.png"));
     }
-    
+    private void suiviVision() {
+    	Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    	int height = (int)dimension.getHeight();
+    	int width  = (int)dimension.getWidth();
+    	test.setTranslateX(-this.game.getJoueur().getXProperty().get()+width/2);
+    	test.setTranslateY(-this.game.getJoueur().getYProperty().get()+(height-10)/2);
+    }
     private Monde game;
     
     private void initAnimation() {
@@ -156,7 +172,7 @@ public class SampleController implements Initializable{
                     
                     this.game.getJoueur().agir();
                     this.spriteJoueur.changerSprite();
-                    
+                    this.suiviVision();
                 })
         );
         gameLoop.getKeyFrames().add(kf);
