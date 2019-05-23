@@ -12,16 +12,15 @@ public class Joueur extends Personnage{
 	private boolean creuse;
 	private int xBlocAModifier;
 	private int yBlocAModifier;
-	private BoiteCollision boiteJoueur;
+	
 	
 	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
-		super(vie, vitesse, largeur, hauteur, nom, x, y);
+		super(vie, vitesse, largeur, hauteur, nom, x, y,monde);
 		this.monde = monde;
 		this.hauteurSaut = 0;
 		this.vSaut = 3;
 		this.construire=false;
 		this.creuse=false;
-		this.boiteJoueur=new BoiteCollision(this);
 		
 	}
 	
@@ -88,19 +87,19 @@ public class Joueur extends Personnage{
 	
 	public void seDeplace() {
 		
-        if (gauche && !this.boiteJoueur.collisionGauche()){
+        if (gauche && !this.getBoite().collisionGauche()){
         	this.goGauche();
         }
           
-        if (droite && !this.boiteJoueur.collisionDroite()){
+        if (droite && !this.getBoite().collisionDroite()){
         	this.goDroite();
         }       
         
-        if (haut && this.boiteJoueur.collisionBas()) {
+        if (haut && this.getBoite().collisionBas()) {
         	this.hauteurSaut = 12;
         }
         
-        if(this.boiteJoueur.collisionHaut()) {
+        if(this.getBoite().collisionHaut()) {
         	this.hauteurSaut = 0;
         }
         
@@ -114,7 +113,7 @@ public class Joueur extends Personnage{
         	this.hauteurSaut--;
         }
         
-        else if (!this.boiteJoueur.collisionBas()) {
+        else if (!this.getBoite().collisionBas()) {
         	this.tombe();
         }
         
@@ -128,8 +127,34 @@ public class Joueur extends Personnage{
 		}
 	}
 	
+	public boolean verificationPointBlock(String point) {
+		int largeur=0;
+		int hauteur=0;
+		switch (point) {
+		 case "hd" : largeur=this.getLargeur(); break;
+		 case "bg" : hauteur=this.getHauteur(); break;
+		 case "bd" : largeur=this.getLargeur(); hauteur=this.getHauteur(); break;
+		}
+		if (this.getXBlocAModifier()!=(this.getXProperty().getValue()+largeur)/64 ||
+				this.getYBlocAModifier()!=(this.getYProperty().getValue()+hauteur)/64) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean peutConstruire() {
+		if (verificationPointBlock("") && verificationPointBlock ("hd") && verificationPointBlock("bg") && verificationPointBlock("bd")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	public void construit() {
-		if (this.construire && this.boiteJoueur.peutConstruire())
+		if (this.construire && peutConstruire())
 			{		
 			Terre blockTerre=new Terre(); //ici le block sera determine en fonction du block tenu par le joueur
 			this.monde.getMap().remplacerBlock(blockTerre, this.xBlocAModifier, this.yBlocAModifier);

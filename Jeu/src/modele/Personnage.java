@@ -13,9 +13,11 @@ public abstract class Personnage {
 	private int hauteur; //sert � la hitbox du personnage, � choisir en fonction du la hauteur du sprite
 	private IntegerProperty xProperty;
 	private IntegerProperty yProperty;
+	private Monde monde;
+	private BoiteCollision boite;
 	
 	
-	public Personnage (int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y) {
+	public Personnage (int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
 		this.vie=vie;
 		this.vitesse=new SimpleDoubleProperty(vitesse);
 		this.largeur = largeur;
@@ -23,6 +25,8 @@ public abstract class Personnage {
 		this.nom=nom;
 		this.xProperty=new SimpleIntegerProperty(x);
 		this.yProperty=new SimpleIntegerProperty(y);
+		this.monde=monde;
+		this.boite=new BoiteCollision(this);
 	}
 	
 	public void goDroite() {
@@ -55,6 +59,14 @@ public abstract class Personnage {
 	
 	public int getHauteur() {
 		return this.hauteur;
+	}
+	
+	public Monde getMonde() {
+		return this.monde;
+	}
+	
+	public BoiteCollision getBoite() {
+		return this.boite;
 	}
 	
 	public IntegerProperty getXProperty() {

@@ -1,16 +1,11 @@
 package modele;
 
-import javafx.beans.property.IntegerProperty;
 
 public class BoiteCollision {
-	private Joueur personnage;//TODO 
-	private int largeurPerso;
-	private int hauteurPerso;
+	private Personnage personnage;//TODO 
 	
-	public BoiteCollision(Joueur personnage) {
+	public BoiteCollision(Personnage personnage) {
 		this.personnage=personnage;
-		this.largeurPerso=personnage.getLargeur();
-		this.hauteurPerso=personnage.getHauteur();
 		
 	}
 	
@@ -51,33 +46,6 @@ public class BoiteCollision {
 		}
 		else {
 			return true;
-		}
-	}
-	
-	
-	public boolean verificationPointBlock(String point) {
-		int largeur=0;
-		int hauteur=0;
-		switch (point) {
-		 case "hd" : largeur=this.largeurPerso; break;
-		 case "bg" : hauteur=this.hauteurPerso; break;
-		 case "bd" : largeur=this.largeurPerso; hauteur=this.hauteurPerso; break;
-		}
-		if (this.personnage.getXBlocAModifier()!=(this.personnage.getXProperty().getValue()+largeur)/64 ||
-				this.personnage.getYBlocAModifier()!=(this.personnage.getYProperty().getValue()+hauteur)/64) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
-	public boolean peutConstruire() {
-		if (verificationPointBlock("") && verificationPointBlock ("hd") && verificationPointBlock("bg") && verificationPointBlock("bd")) {
-			return true;
-		}
-		else {
-			return false;
 		}
 	}
 	
