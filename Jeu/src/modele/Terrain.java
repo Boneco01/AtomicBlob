@@ -75,7 +75,12 @@ public class Terrain {
 	private Block blockDe(char a) {
 		switch (a) {
 			case 'T' : return new Terre();
+			case 'P' : return new Pierre();
 			case 'A' : return new Air();
+			case 'S' : return new Sable();
+			case 'B' : return new Bois();
+			case 'F' : return new MineraiFer();
+			case 'R' : return new MineraiRadium();
 			default : return new Air();
 		}
 	}

@@ -1,0 +1,7 @@
+package modele;
+
+public class MineraiFer extends Block{
+	public MineraiFer() {
+		super('F',true);
+	}
+}

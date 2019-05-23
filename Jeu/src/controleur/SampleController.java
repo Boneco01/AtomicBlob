@@ -14,7 +14,12 @@ import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 import modele.Air;
 import modele.Block;
+import modele.Bois;
+import modele.MineraiFer;
+import modele.MineraiRadium;
 import modele.Monde;
+import modele.Pierre;
+import modele.Sable;
 import modele.Terre;
 import javafx.scene.control.ScrollPane;
 import vue.Sprite;
@@ -144,6 +149,16 @@ public class SampleController implements Initializable{
             return new ImageView(new Image("file:../Sprites/Block/Terre.png"));
         else if (b instanceof Air)
             return new ImageView(new Image("file:../Sprites/Block/Air.png"));
+        else if (b instanceof Pierre)
+            return new ImageView(new Image("file:../Sprites/Block/Pierre.png"));
+        else if (b instanceof Bois)
+            return new ImageView(new Image("file:../Sprites/Block/Bois.png"));
+        else if (b instanceof Sable)
+            return new ImageView(new Image("file:../Sprites/Block/Sable.png"));
+        else if (b instanceof MineraiFer)
+            return new ImageView(new Image("file:../Sprites/Block/MineraiFer.png"));
+        else if (b instanceof MineraiRadium)
+            return new ImageView(new Image("file:../Sprites/Block/MineraiRadium.png"));
         else
             return new ImageView(new Image("file:../Sprites/Block/Air.png"));
     }
@@ -188,8 +203,4 @@ public class SampleController implements Initializable{
 	}
     
 }
-
-
-
-
     
