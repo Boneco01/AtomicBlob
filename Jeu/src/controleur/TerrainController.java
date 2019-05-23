@@ -36,6 +36,28 @@ public class TerrainController {
         ecouterMap();
     }
 	
+	/*
+	 public void creerTerrain() {
+    	Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    	int height = (int)dimension.getHeight();
+    	int width  = (int)dimension.getWidth();
+    	terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
+        terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
+        coucheJoueur.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
+        coucheJoueur.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
+        test.setMinSize(width,height-10);
+        test.setMaxSize(width,height-10); 
+        test.setOnMousePressed(event->gererClicAppuye(event));
+        test.setOnMouseReleased(event->gererClicRelache(event));
+        for(int i=0;i<this.game.getMap().getListMap().size();i++) {
+            ImageView png = imageDe(this.game.getMap().getListMap().get(i));
+            this.terrain.getChildren().add(png);
+        
+    	}
+        ecouterMap();
+    }
+	 */
+	
 	public void gererClicAppuye(MouseEvent e) {
 		int xSouris=(int)e.getX()/64;
 		int ySouris=(int)e.getY()/64;
