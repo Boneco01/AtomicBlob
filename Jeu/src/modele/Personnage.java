@@ -78,4 +78,6 @@ public abstract class Personnage {
 	}
 	
 	public abstract void agir();
+	
+	public abstract void seDeplace();
 }

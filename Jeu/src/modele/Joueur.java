@@ -12,13 +12,17 @@ public class Joueur extends Personnage{
 	private boolean creuse;
 	private int xBlocAModifier;
 	private int yBlocAModifier;
-
+	private BoiteCollision boiteJoueur;
+	
 	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
 		super(vie, vitesse, largeur, hauteur, nom, x, y);
 		this.monde = monde;
 		this.hauteurSaut = 0;
 		this.vSaut = 3;
 		this.construire=false;
+		this.creuse=false;
+		this.boiteJoueur=new BoiteCollision(this);
+		
 	}
 	
 	public void setGauche(boolean estPresse) {
@@ -68,6 +72,10 @@ public class Joueur extends Personnage{
 	public int getYBlocAModifier() {
 		return this.yBlocAModifier;
 	}
+	
+	public Monde getMonde() {
+		return this.monde;
+	}
 
 	@Override
 	public void agir() {
@@ -80,29 +88,23 @@ public class Joueur extends Personnage{
 	
 	public void seDeplace() {
 		
-        if (this.getGauche() &&
-        		this.monde.gererCollision(this.monde.getMap(), -3, 0) &&
-        		this.monde.gererCollision(this.monde.getMap(), -3, this.getHauteur()-3)){
+        if (gauche && !this.boiteJoueur.collisionGauche()){
         	this.goGauche();
         }
           
-        if (this.getDroite() &&
-        		this.monde.gererCollision(this.monde.getMap(), this.getLargeur()+3, 0) &&
-        		this.monde.gererCollision(this.monde.getMap(), this.getLargeur()+3, this.getHauteur()-3)){
+        if (droite && !this.boiteJoueur.collisionDroite()){
         	this.goDroite();
+        }       
+        
+        if (haut && this.boiteJoueur.collisionBas()) {
+        	this.hauteurSaut = 12;
         }
         
+        if(this.boiteJoueur.collisionHaut()) {
+        	this.hauteurSaut = 0;
+        }
         
-        
-        if (this.getHaut() && 
-        		(!this.monde.gererCollision(this.monde.getMap(), 0, this.getHauteur()) ||
-        		!this.monde.gererCollision(this.monde.getMap(), this.getLargeur(), this.getHauteur())))
-        {
-        	
-        	this.hauteurSaut = 12;
-        } 
-        
-        if( this.hauteurSaut > 0) {
+        if( this.hauteurSaut > 0 ) {
         	this.saute(this.vSaut);
         	if(this.hauteurSaut == this.hauteurSaut/2) {
         		this.vSaut = 2;
@@ -112,8 +114,7 @@ public class Joueur extends Personnage{
         	this.hauteurSaut--;
         }
         
-        else if (this.monde.gererCollision(this.monde.getMap(), 0, this.getHauteur()) && 
-        		this.monde.gererCollision(this.monde.getMap(), this.getLargeur(), this.getHauteur())) {
+        else if (!this.boiteJoueur.collisionBas()) {
         	this.tombe();
         }
         
@@ -128,7 +129,8 @@ public class Joueur extends Personnage{
 	}
 	
 	public void construit() {
-		if (this.construire) {
+		if (this.construire && this.boiteJoueur.peutConstruire())
+			{		
 			Terre blockTerre=new Terre(); //ici le block sera determine en fonction du block tenu par le joueur
 			this.monde.getMap().remplacerBlock(blockTerre, this.xBlocAModifier, this.yBlocAModifier);
 		}
