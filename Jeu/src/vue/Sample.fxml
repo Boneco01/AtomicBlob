@@ -12,18 +12,14 @@
 	xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controleur.GameController">
 	<center>
-		<!-- <ScrollPane fx:id="vision" prefHeight="1920.0"
-			prefWidth="1080.0" hbarPolicy="NEVER" vbarPolicy="NEVER"
-			BorderPane.alignment="CENTER">
-			<content>-->
-				<Pane fx:id="coucheJoueur" prefHeight="1920.0"
-					prefWidth="1080.0">
-					<children>
-						<TilePane fx:id="terrain" prefHeight="6400.0"
-							prefWidth="6400.0"></TilePane>
-					</children>
-				</Pane>
-			<!--</content>
-		</ScrollPane>-->
+		<Pane fx:id="test" prefHeight="6400.0" prefWidth="6400.0">
+			<Pane fx:id="coucheJoueur" prefHeight="1920.0"
+				prefWidth="1080.0">
+				<children>
+					<TilePane fx:id="terrain" prefHeight="6400.0"
+						prefWidth="6400.0"></TilePane>
+				</children>
+			</Pane>
+		</Pane>
 	</center>
 </BorderPane>

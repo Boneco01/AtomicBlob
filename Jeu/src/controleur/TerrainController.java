@@ -1,10 +1,9 @@
 package controleur;
 
+
 import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import modele.Monde;
 import modele.Blocks.Air;
@@ -24,63 +23,14 @@ public class TerrainController {
 	
 	public void creerTerrain() {
 
-    	this.terrain.setMinSize(this.game.getMap().largeurMap()*64, 64*this.game.getMap().hauteurMap());
-        this.terrain.setMaxSize(this.game.getMap().largeurMap()*64, 64*this.game.getMap().hauteurMap());
-        this.terrain.setOnMousePressed(event->gererClicAppuye(event));
-        this.terrain.setOnMouseReleased(event->gererClicRelache(event));
-        for(int i=0;i<this.game.getMap().getListMap().size();i++) {
-            ImageView png = imageDe(this.game.getMap().getListMap().get(i));
-            this.terrain.getChildren().add(png);
-        
-    	}
-        ecouterMap();
-    }
-	
-	/*
-	 public void creerTerrain() {
-    	Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-    	int height = (int)dimension.getHeight();
-    	int width  = (int)dimension.getWidth();
     	terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
         terrain.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
-        coucheJoueur.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
-        coucheJoueur.setMaxSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
-        test.setMinSize(width,height-10);
-        test.setMaxSize(width,height-10); 
-        test.setOnMousePressed(event->gererClicAppuye(event));
-        test.setOnMouseReleased(event->gererClicRelache(event));
         for(int i=0;i<this.game.getMap().getListMap().size();i++) {
             ImageView png = imageDe(this.game.getMap().getListMap().get(i));
             this.terrain.getChildren().add(png);
         
     	}
         ecouterMap();
-    }
-	 */
-	
-	public void gererClicAppuye(MouseEvent e) {
-		int xSouris=(int)e.getX()/64;
-		int ySouris=(int)e.getY()/64;
-		this.game.getJoueur().setXBlocAModifier(xSouris);
-		this.game.getJoueur().setYBlocAModifier(ySouris);
-		
-		if (e.getButton() == MouseButton.PRIMARY) {
-			this.game.getJoueur().setCreuse(true);
-		}
-		else if(e.getButton() == MouseButton.SECONDARY) {
-			this.game.getJoueur().setConstruire(true);
-		}
-		
-		
-	}
-    
-    public void gererClicRelache(MouseEvent e) {
-    	if (e.getButton() == MouseButton.PRIMARY) {
-			this.game.getJoueur().setCreuse(false);
-		}
-		else if(e.getButton() == MouseButton.SECONDARY) {
-			this.game.getJoueur().setConstruire(false);
-		}
     }
 	
 	public ImageView imageDe(Block b) {
