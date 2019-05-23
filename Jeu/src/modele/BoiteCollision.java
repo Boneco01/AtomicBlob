@@ -10,8 +10,7 @@ public class BoiteCollision {
 	}
 	
 	public boolean collisionGauche() {
-		if (this.personnage.getMonde().gererCollision(this.personnage.getMonde().getMap(), -3, 0) &&
-			this.personnage.getMonde().gererCollision(this.personnage.getMonde().getMap(), -3, this.personnage.getHauteur()-3)) {
+		if (this.personnage.getMonde().gererCollision(this.personnage.getMonde().getMap(), -3, this.personnage.getHauteur()/2)) {
 			return false;
 		}
 		else {
@@ -20,8 +19,7 @@ public class BoiteCollision {
 	}
 	
 	public boolean collisionDroite() {
-		if(this.personnage.getMonde().gererCollision(this.personnage.getMonde().getMap(), this.personnage.getLargeur()+3, 0) &&
-		this.personnage.getMonde().gererCollision(this.personnage.getMonde().getMap(), this.personnage.getLargeur()+3, this.personnage.getHauteur()-3)) {
+		if(this.personnage.getMonde().gererCollision(this.personnage.getMonde().getMap(), this.personnage.getLargeur()+3, this.personnage.getHauteur()/2)) {
 			return false;
 		}
 		else {
