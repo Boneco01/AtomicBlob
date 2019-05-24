@@ -1,4 +1,4 @@
-package modele;
+package modele.Blocks;
 
 public class MineraiRadium extends Block {
 	public MineraiRadium() {
