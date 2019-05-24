@@ -36,8 +36,21 @@ public class VisionController {
     	Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     	int height = (int)dimension.getHeight();
     	int width  = (int)dimension.getWidth();
-    	vision.setTranslateX(-this.game.getJoueur().getXProperty().get()+width/2);
-    	vision.setTranslateY(-this.game.getJoueur().getYProperty().get()+(height-10)/2);
+
+    	if(-this.game.getJoueur().getXProperty().get()+width/2>=0)
+    		vision.setTranslateX(0);
+    	else if(this.game.getJoueur().getXProperty().get()+width/2>=game.getMap().largeurMap()*64)
+    		vision.setTranslateX(-game.getMap().largeurMap()*64+width);
+    	else
+    		vision.setTranslateX(-this.game.getJoueur().getXProperty().get()+width/2);
+    	
+    	if(-this.game.getJoueur().getYProperty().get()+height/2>=0)
+       		vision.setTranslateY(0);
+       	else if(this.game.getJoueur().getYProperty().get()+height/2>=game.getMap().hauteurMap()*64)
+       		vision.setTranslateY(-game.getMap().hauteurMap()*64+height);
+       	else
+        	vision.setTranslateY(-this.game.getJoueur().getYProperty().get()+(height-10)/2);
+        		
     }
 	
 	public void gererClicAppuye(MouseEvent e) {
