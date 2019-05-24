@@ -12,7 +12,7 @@
 	xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controleur.GameController">
 	<center>
-		<Pane fx:id="test" prefHeight="6400.0" prefWidth="6400.0">
+		<Pane fx:id="vision" prefHeight="6400.0" prefWidth="6400.0">
 			<Pane fx:id="coucheJoueur" prefHeight="1920.0"
 				prefWidth="1080.0">
 				<children>

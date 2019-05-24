@@ -57,9 +57,13 @@ public class GameController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.game = new Monde();
+        System.out.println("Coucou");
         this.tc = new TerrainController(this.terrain, this.game);
+        System.out.println("Coucou2");
         this.jc = new JoueurController(this.coucheJoueur, this.game);
+        System.out.println("Coucou3");
         this.vc = new VisionController(this.vision, this.coucheJoueur, this.game);
+        System.out.println(coucheJoueur.getHeight());
         initAnimation();
 	}
     

@@ -15,7 +15,9 @@ public class VisionController {
 	
 	public VisionController(Pane vision, Pane coucheJoueur, Monde game) {
 		this.vision = vision;
-		
+		this.coucheJoueur = coucheJoueur;
+		this.game = game;
+		creerVision();
 	}
 	
 	public void creerVision() {
