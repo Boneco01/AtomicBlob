@@ -4,9 +4,6 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import modele.Blocks.Air;
 import modele.Blocks.Block;
 import modele.Blocks.Terre;
 import modele.Items.Item;
@@ -67,7 +64,7 @@ public class Inventaire {
 		}
 		
 		for(Item i : this.inventaire) {
-			if(i.equals(item)) {
+			if(i.getId()==item.getId()) {
 				System.out.println("Ajout de block");
 				if(i.getQuantitee() < i.getQuantiteeMax()) {
 					i.setQuantitee(i.getQuantitee()+1);
@@ -76,16 +73,15 @@ public class Inventaire {
 			}
 		}
 		
-		for(Item i : this.inventaire) {
-			System.out.print(i.getId() + " ");
-		}
-		System.out.println();
-		
 		if(this.nbItems < this.limiteInventaire) {
 			System.out.println("Je veux ramasser l'item : " + item.getId());
 			this.inventaire.remove(0);
 			this.inventaire.add(item);
 			this.nbItems++;
+			for(Item i : this.inventaire) {
+				System.out.print(i.getId() + " ");
+			}
+			System.out.println();
 			return true;
 		}
 		

@@ -7,7 +7,7 @@ public abstract class Item {
 	private int quantiteeMax;
 	
 	public Item(int id, int quantiteeMax) {
-		this.quantitee = 0;
+		this.quantitee = 1;
 		this.quantiteeMax = quantiteeMax;
 		this.id = id;
 	}

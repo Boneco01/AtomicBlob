@@ -25,19 +25,23 @@ public class InventaireController {
 		 ObservableList<Item> invJoueur = this.game.getJoueur().getInventaire().getInventaire();
 		 
 		 for(int i=0;i<invJoueur.size(); i++) {
-			 changerImageItem(i);
+     		changerImageItem(i);
 		 }
+		 
+		 ecouterInventaire(invJoueur);
 		 
 	 }
 	 
-	 public void ecouterInventaire() {
+	 public void ecouterInventaire(ObservableList<Item> invJoueur) {
 		 this.game.getJoueur().getInventaire().getInventaire().addListener(new ListChangeListener<Item>() {
 
 			@Override
 			public void onChanged(Change<? extends Item> c) {
 				while (c.next()) {
-                    if (c.wasReplaced()) {
-                    	changerImageItem(c.getFrom());
+                    if (c.wasAdded()) {
+                    	for(int i=0;i<invJoueur.size(); i++) {
+                    		changerImageItem(i);
+               		 	}
                     }
                 }
 			}

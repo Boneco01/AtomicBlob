@@ -4,7 +4,6 @@ import modele.Blocks.Air;
 import modele.Blocks.Block;
 import modele.Blocks.Terre;
 import modele.Items.Item;
-import modele.Items.ItemBlock;
 
 public class Joueur extends Personnage{
 	
