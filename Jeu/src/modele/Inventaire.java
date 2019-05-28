@@ -49,10 +49,8 @@ public class Inventaire {
 	
 	private Item blockToItem(Block b) {
 		if (b instanceof Terre) {
-			System.out.println("C'est de la terre");
             return new ItemTerre();
 		} else {
-        	System.out.println("C'est PAS de la terre");
             return new ItemVide();
 		}
 	}
@@ -65,7 +63,6 @@ public class Inventaire {
 		
 		for(Item i : this.inventaire) {
 			if(i.getId()==item.getId()) {
-				System.out.println("Ajout de block");
 				if(i.getQuantitee() < i.getQuantiteeMax()) {
 					i.setQuantitee(i.getQuantitee()+1);
 					return true;
@@ -74,14 +71,9 @@ public class Inventaire {
 		}
 		
 		if(this.nbItems < this.limiteInventaire) {
-			System.out.println("Je veux ramasser l'item : " + item.getId());
 			this.inventaire.remove(0);
 			this.inventaire.add(item);
 			this.nbItems++;
-			for(Item i : this.inventaire) {
-				System.out.print(i.getId() + " ");
-			}
-			System.out.println();
 			return true;
 		}
 		

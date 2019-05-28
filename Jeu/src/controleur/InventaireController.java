@@ -2,6 +2,7 @@ package controleur;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -14,26 +15,27 @@ public class InventaireController {
 
 	 private HBox inventaire;
 	 private Monde game;
+	 private ObservableList<Item> invJoueur;
 	 
 	 public InventaireController(HBox inventaire, Monde game) {
 		 this.inventaire = inventaire;
 		 this.game = game;
+		 this.invJoueur = this.game.getJoueur().getInventaire().getInventaire();
 		 creerInventaire();
 	 }
 	 
 	 public void creerInventaire() {
-		 ObservableList<Item> invJoueur = this.game.getJoueur().getInventaire().getInventaire();
 		 
-		 for(int i=0;i<invJoueur.size(); i++) {
+		 for(int i=0;i<this.invJoueur.size(); i++) {
      		changerImageItem(i);
 		 }
 		 
-		 ecouterInventaire(invJoueur);
+		 ecouterInventaire();
 		 
 	 }
 	 
-	 public void ecouterInventaire(ObservableList<Item> invJoueur) {
-		 this.game.getJoueur().getInventaire().getInventaire().addListener(new ListChangeListener<Item>() {
+	 public void ecouterInventaire() {
+		 this.invJoueur.addListener(new ListChangeListener<Item>() {
 
 			@Override
 			public void onChanged(Change<? extends Item> c) {
@@ -51,7 +53,9 @@ public class InventaireController {
 	 public void changerImageItem(int index) {
 		 Pane p = (Pane)this.inventaire.getChildren().get(index);
 		 ImageView v = (ImageView)p.getChildren().get(0);
+		 Label nbItem = (Label)p.getChildren().get(1);
 		 Image png = imageDe(this.game.getJoueur().getInventaire().getItem(index));
+		 nbItem.textProperty().bind(this.invJoueur.get(index).quantiteeProperty().asString());
 		 v.setImage(png);
 	 }
 	 

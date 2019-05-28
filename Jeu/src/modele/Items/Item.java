@@ -1,23 +1,30 @@
 package modele.Items;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public abstract class Item {
 
 	private int id;
-	private int quantitee;
+	private IntegerProperty quantitee;
 	private int quantiteeMax;
 	
 	public Item(int id, int quantiteeMax) {
-		this.quantitee = 1;
+		this.quantitee = new SimpleIntegerProperty(1	);
 		this.quantiteeMax = quantiteeMax;
 		this.id = id;
 	}
 	
 	public int getQuantitee() {
+		return this.quantitee.getValue();
+	}
+	
+	public IntegerProperty quantiteeProperty() {
 		return this.quantitee;
 	}
 	
 	public void setQuantitee(int quantitee) {
-		this.quantitee = quantitee;
+		this.quantitee.setValue(quantitee);;
 	}
 	
 	public int getQuantiteeMax() {
