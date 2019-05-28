@@ -20,10 +20,10 @@ public class Joueur extends Personnage{
 	private int xBlocAModifier;
 	private int yBlocAModifier;
 	
-	
 	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
 		super(vie, vitesse, largeur, hauteur, nom, x, y,monde);
 		this.monde = monde;
+		this.inventaire = new Inventaire();
 		this.hauteurSaut = 0;
 		this.vSaut = 3;
 		this.construire=false;
@@ -81,6 +81,10 @@ public class Joueur extends Personnage{
 	
 	public Monde getMonde() {
 		return this.monde;
+	}
+	
+	public Inventaire getInventaire() {
+		return this.inventaire;
 	}
 
 	@Override
@@ -163,14 +167,13 @@ public class Joueur extends Personnage{
 	public void creuse() {
 		if(this.creuse) {
 			Air blockAir=new Air();
-			//this.ramasseBlock(this.monde.getMap().blockParCord(xBlocAModifier, yBlocAModifier));
+			this.ramasseBlock(this.monde.getMap().blockParCord(this.xBlocAModifier, this.yBlocAModifier));
 			this.monde.getMap().remplacerBlock(blockAir, this.xBlocAModifier, this.yBlocAModifier);
 		}
 	}
 	
 	public void ramasseBlock(Block b) {
-		Item item = new ItemBlock(b);
-		this.inventaire.addItem(item);
+		this.inventaire.addItemBlock(b);
 	}
 	
 	public void equipeGauche(Item item) {

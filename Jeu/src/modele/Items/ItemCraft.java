@@ -5,8 +5,7 @@ public class ItemCraft extends Item {
 	private int id;
 	
 	public ItemCraft(int id) {
-		super(1);
-		this.id = id;
+		super(id, 1);
 	}
 	
 }

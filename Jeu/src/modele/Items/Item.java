@@ -2,12 +2,14 @@ package modele.Items;
 
 public abstract class Item {
 
+	private int id;
 	private int quantitee;
 	private int quantiteeMax;
 	
-	public Item(int quantiteeMax) {
+	public Item(int id, int quantiteeMax) {
 		this.quantitee = 0;
 		this.quantiteeMax = quantiteeMax;
+		this.id = id;
 	}
 	
 	public int getQuantitee() {
@@ -22,6 +24,9 @@ public abstract class Item {
 		return this.quantiteeMax;
 	}
 	
+	public int getId() {
+		return this.id;
+	}
 	
 	
 }

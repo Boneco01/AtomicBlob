@@ -7,19 +7,22 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 import modele.Monde;
-
-
 
 public class GameController implements Initializable{
 
 	private TerrainController tc;
 	private JoueurController jc;
 	private VisionController vc;
+	private InventaireController iv;
 	private Monde game;
+	
+	@FXML
+    private HBox inventaire;
 	
     @FXML
     private Pane coucheJoueur;
@@ -60,6 +63,7 @@ public class GameController implements Initializable{
         this.tc = new TerrainController(this.terrain, this.game);
         this.jc = new JoueurController(this.coucheJoueur, this.game);
         this.vc = new VisionController(this.vision, this.coucheJoueur, this.game);
+        this.iv= new InventaireController(this.inventaire, this.game);
         initAnimation();
 	}
     
