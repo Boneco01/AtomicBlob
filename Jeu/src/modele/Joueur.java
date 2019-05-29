@@ -29,7 +29,7 @@ public class Joueur extends Personnage{
 	}
 	
 	public void utiliserItem() {
-		this.itemEquipe.utiliser();
+		this.itemEquipe.utiliser(this.monde);
 	}
 	
 	public void setGauche(boolean estPresse) {

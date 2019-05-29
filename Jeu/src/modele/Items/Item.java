@@ -1,8 +1,6 @@
 package modele.Items;
 
-import modele.Joueur;
 import modele.Monde;
-import modele.Personnage;
 import modele.Portee;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -50,6 +48,6 @@ public abstract class Item {
 		return this.monde;
 	}
 	
-	public abstract void utiliser();
+	public abstract void utiliser(Monde monde);
 	
 }

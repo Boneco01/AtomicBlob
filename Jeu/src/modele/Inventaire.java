@@ -49,7 +49,7 @@ public class Inventaire {
 	
 	private void initInventaire() {
 		for(int i=0; i<this.limiteInventaire;i++) {
-			this.inventaire.add(new ItemVide(this.monde));
+			this.inventaire.add(new ItemVide());
 		}
 	}
 	

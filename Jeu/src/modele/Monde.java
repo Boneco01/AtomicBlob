@@ -1,6 +1,5 @@
 package modele;
 
-import modele.Items.ItemTerre;
 import modele.Items.ItemVide;
 
 public class Monde {
@@ -11,7 +10,7 @@ public class Monde {
 	
 	public Monde() {
 		this.map = new Terrain(this.cheminMap);
-		this.joueur = new Joueur(10, 3, 44, 26, "Joueur", 300, 100, this, new ItemVide(this));
+		this.joueur = new Joueur(10, 3, 44, 26, "Joueur", 300, 100, this, new ItemVide());
 		
 	}
 	
