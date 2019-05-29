@@ -70,17 +70,6 @@ public class GameController implements Initializable{
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	//Test TC
-    	TableCraft a=new TableCraft();
-    	a.add(new ItemLingotMetal());
-		a.add(new ItemLingotMetal());
-		a.add(new ItemLingotMetal());
-		a.add(new ItemVide());
-		a.add(new ItemBois());
-		a.add(new ItemVide());
-		a.add(new ItemBois());
-		a.add(new ItemVide());
-		System.out.println(a.aCraft());
         this.game = new Monde();
         this.tc = new TerrainController(this.terrain, this.game);
         this.jc = new JoueurController(this.coucheJoueur, this.game);

@@ -11,6 +11,7 @@ public class HUDController {
 	private Pane hud;
 	private Monde game;
 	private InventaireController iv;
+	private TableCraftController tc;
 	
 	public HUDController(Pane hud, Monde game, HBox inventaire) {
 		iv = new InventaireController(inventaire, game);
