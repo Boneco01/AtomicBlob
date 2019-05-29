@@ -20,8 +20,9 @@ public class Inventaire {
 	private int limiteInventaire;
 	private Item equipementDroite;
 	private Item equipementGauche;
+	private Monde monde;
 	
-	public Inventaire() {
+	public Inventaire(Joueur joueur) {
 		this.inventaire = FXCollections.observableList(new ArrayList<Item>());
 		this.nbItems = 0;
 		this.limiteInventaire = 10;
@@ -40,7 +41,7 @@ public class Inventaire {
 	
 	private void initInventaire() {
 		for(int i=0; i<this.limiteInventaire;i++) {
-			this.inventaire.add(new ItemVide());
+			this.inventaire.add(new ItemVide(this.monde));
 		}
 	}
 	
@@ -52,11 +53,9 @@ public class Inventaire {
 	
 	private Item blockToItem(Block b) {
 		if (b instanceof Terre) {
-			System.out.println("C'est de la terre");
-            return new ItemTerre();
+            return new ItemTerre(this.monde);
 		} else {
-        	System.out.println("C'est PAS de la terre");
-            return new ItemVide();
+            return new ItemVide(this.monde);
 		}
 	}
 	
@@ -68,7 +67,6 @@ public class Inventaire {
 		
 		for(Item i : this.inventaire) {
 			if(i.equals(item)) {
-				System.out.println("Ajout de block");
 				if(i.getQuantitee() < i.getQuantiteeMax()) {
 					i.setQuantitee(i.getQuantitee()+1);
 					return true;
@@ -76,13 +74,7 @@ public class Inventaire {
 			}
 		}
 		
-		for(Item i : this.inventaire) {
-			System.out.print(i.getId() + " ");
-		}
-		System.out.println();
-		
 		if(this.nbItems < this.limiteInventaire) {
-			System.out.println("Je veux ramasser l'item : " + item.getId());
 			this.inventaire.remove(0);
 			this.inventaire.add(item);
 			this.nbItems++;

@@ -1,10 +1,7 @@
 package modele;
 
-import modele.Blocks.Air;
 import modele.Blocks.Block;
-import modele.Blocks.Terre;
 import modele.Items.Item;
-import modele.Items.ItemBlock;
 
 public class Joueur extends Personnage{
 	
@@ -15,20 +12,24 @@ public class Joueur extends Personnage{
 	private boolean haut;
 	private int hauteurSaut;
 	private int vSaut;
-	private boolean construire;
-	private boolean creuse;
-	private int xBlocAModifier;
-	private int yBlocAModifier;
+	private boolean utiliser;
+	private int xCible;
+	private int yCible;
+	private Item itemEquipe;
 	
-	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
+	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde, Item item) {
 		super(vie, vitesse, largeur, hauteur, nom, x, y,monde);
 		this.monde = monde;
-		this.inventaire = new Inventaire();
+		this.inventaire = new Inventaire(this);
 		this.hauteurSaut = 0;
 		this.vSaut = 3;
-		this.construire=false;
-		this.creuse=false;
+		this.utiliser=false;
+		this.itemEquipe=item;
 		
+	}
+	
+	public void utiliserItem() {
+		this.itemEquipe.utiliser();
 	}
 	
 	public void setGauche(boolean estPresse) {
@@ -43,20 +44,20 @@ public class Joueur extends Personnage{
 		this.haut=estPresse;
 	}
 	
-	public void setXBlocAModifier(int x) {
-		this.xBlocAModifier=x;
+	public void setXCible(int x) {
+		this.xCible=x;
 	}
 	
-	public void setYBlocAModifier(int y) {
-		this.yBlocAModifier=y;
+	public void setYCible(int y) {
+		this.yCible=y;
 	}
 	
-	public void setConstruire(boolean a) {
-		this.construire=a;
+	public void setUtiliser(boolean a) {
+		this.utiliser=a;
 	}
 	
-	public void setCreuse(boolean a) {
-		this.creuse=a;
+	public boolean getUtiliser() {
+		return this.utiliser;
 	}
 	
 	public boolean getGauche() {
@@ -71,12 +72,16 @@ public class Joueur extends Personnage{
 		return this.haut;
 	}
 	
-	public int getXBlocAModifier() {
-		return this.xBlocAModifier;
+	public int getXCible() {
+		return this.xCible;
 	}
 	
-	public int getYBlocAModifier() {
-		return this.yBlocAModifier;
+	public int getYCible() {
+		return this.yCible;
+	}
+	
+	public Item getItem() {
+		return this.itemEquipe;
 	}
 	
 	public Monde getMonde() {
@@ -91,8 +96,7 @@ public class Joueur extends Personnage{
 	public void agir() {
 		
 		seDeplace();
-		creuse();
-		construit();
+		utiliserItem();
 		
 	}
 	
@@ -128,48 +132,6 @@ public class Joueur extends Personnage{
         }
         
         
-	}
-	
-	public boolean verificationPointBlock(String point) {
-		int largeur=0;
-		int hauteur=0;
-		switch (point) {
-		 case "hd" : largeur=this.getLargeur(); break;
-		 case "bg" : hauteur=this.getHauteur(); break;
-		 case "bd" : largeur=this.getLargeur(); hauteur=this.getHauteur(); break;
-		}
-		if (this.getXBlocAModifier()!=(this.getXProperty().getValue()+largeur)/64 ||
-				this.getYBlocAModifier()!=(this.getYProperty().getValue()+hauteur)/64) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
-	public boolean peutConstruire() {
-		if (verificationPointBlock("") && verificationPointBlock ("hd") && verificationPointBlock("bg") && verificationPointBlock("bd")) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
-	public void construit() {
-		if (this.construire && peutConstruire())
-			{		
-			Terre blockTerre=new Terre(); //ici le block sera determine en fonction du block tenu par le joueur
-			this.monde.getMap().remplacerBlock(blockTerre, this.xBlocAModifier, this.yBlocAModifier);
-		}
-	}
-
-	public void creuse() {
-		if(this.creuse) {
-			Air blockAir=new Air();
-			this.ramasseBlock(this.monde.getMap().blockParCord(this.xBlocAModifier, this.yBlocAModifier));
-			this.monde.getMap().remplacerBlock(blockAir, this.xBlocAModifier, this.yBlocAModifier);
-		}
 	}
 	
 	public void ramasseBlock(Block b) {

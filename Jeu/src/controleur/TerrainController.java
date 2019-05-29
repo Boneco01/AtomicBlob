@@ -59,8 +59,8 @@ public class TerrainController {
     }
 	
 	public void changerImageBlock() {
-    	int xSouris=this.game.getJoueur().getXBlocAModifier();
-    	int ySouris=this.game.getJoueur().getYBlocAModifier();
+    	int xSouris=this.game.getJoueur().getXCible();
+    	int ySouris=this.game.getJoueur().getYCible();
     	int index=(this.game.getMap().largeurMap()*ySouris)+xSouris;
     	
     	ImageView png = imageDe(this.game.getMap().getListMap().get(index));

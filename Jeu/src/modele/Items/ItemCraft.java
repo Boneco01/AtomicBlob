@@ -1,11 +1,17 @@
 package modele.Items;
 
-public class ItemCraft extends Item {
+import modele.Monde;
 
-	private int id;
+public class ItemCraft extends Item {
 	
-	public ItemCraft(int id) {
-		super(id, 1);
+	public ItemCraft(int id, Monde monde) {
+		super(id, 1, monde, 3);
+	}
+
+	@Override
+	public void utiliser() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
