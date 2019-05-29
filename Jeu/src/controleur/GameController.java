@@ -18,6 +18,7 @@ public class GameController implements Initializable{
 	private TerrainController tc;
 	private JoueurController jc;
 	private VisionController vc;
+	private HUDController hudc;
 	private InventaireController iv;
 	private Monde game;
 	
@@ -53,6 +54,7 @@ public class GameController implements Initializable{
                     this.game.getJoueur().agir();
                     this.jc.getSpriteJoueur().changerSprite();
                     this.vc.suiviVision();
+                    this.hudc.suiviHud();
                     
                 })
         );
@@ -66,7 +68,7 @@ public class GameController implements Initializable{
         this.tc = new TerrainController(this.terrain, this.game);
         this.jc = new JoueurController(this.coucheJoueur, this.game);
         this.vc = new VisionController(this.hud, this.vision, this.coucheJoueur, this.game);
-        this.iv= new InventaireController(this.inventaire, this.game);
+        this.hudc = new HUDController(this.hud, this.game, this.inventaire);
         initAnimation();
 	}
     

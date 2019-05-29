@@ -1,6 +1,5 @@
 package controleur;
 
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import modele.Monde;
