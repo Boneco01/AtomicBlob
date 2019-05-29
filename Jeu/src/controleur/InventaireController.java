@@ -10,11 +10,6 @@ import javafx.scene.layout.Pane;
 import modele.Monde;
 import modele.Items.Item;
 import modele.Items.Block.*;
-import modele.Items.ItemBois;
-import modele.Items.ItemMineraiFer;
-import modele.Items.ItemMineraiRadium;
-import modele.Items.ItemPierre;
-import modele.Items.ItemSable;
 
 
 public class InventaireController {

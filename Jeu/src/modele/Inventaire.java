@@ -14,11 +14,6 @@ import modele.Blocks.Sable;
 import modele.Blocks.Terre;
 import modele.Items.Item;
 import modele.Items.Block.*;
-import modele.Items.ItemBois;
-import modele.Items.ItemMineraiFer;
-import modele.Items.ItemMineraiRadium;
-import modele.Items.ItemPierre;
-import modele.Items.ItemSable;
 import modele.Items.ItemVide;
 
 public class Inventaire {
