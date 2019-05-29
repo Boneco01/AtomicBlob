@@ -1,26 +1,35 @@
 package modele.Craft;
 
 import java.util.ArrayList;
-import java.util.Collection;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import modele.Blocks.Block;
 import modele.Items.Item;
 import modele.Items.ItemCraft;
 
 public abstract class Craft {
 
-	private ObservableList<Item> craft;
+	private ArrayList<Item> shema;
 	private ItemCraft cree;
 	
-	public Craft(ItemCraft item,ArrayList<Item> craft) {
+	public Craft(ItemCraft item) {
 		cree=item;
-		this.craft= FXCollections.observableList(craft);
+		this.shema= definirCraft();
 	}
-	public ObservableList<Item> getCraft(){
-		return craft;
+	public ArrayList<Item> getShema(){
+		return shema;
 	}
 	public abstract ArrayList<Item> definirCraft();
+	
+	public ItemCraft getItem() {
+		return cree;	
+	}
+	public boolean egale(ObservableList<Item> table) {
+		for(int i=0;i<shema.size();i++)
+			if((table.get(i).getClass()!=shema.get(i).getClass()))
+			return false;
+		return true;
+
+	}
+	
 
 }

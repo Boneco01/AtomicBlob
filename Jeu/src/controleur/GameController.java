@@ -1,6 +1,7 @@
 package controleur;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
@@ -12,6 +13,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 import modele.Monde;
+import modele.TableCraft;
+import modele.Items.Item;
+import modele.Items.ItemVide;
+import modele.Items.Block.ItemBois;
+import modele.Items.Craft.ItemLingotMetal;
 
 public class GameController implements Initializable{
 
@@ -64,6 +70,17 @@ public class GameController implements Initializable{
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	//Test TC
+    	TableCraft a=new TableCraft();
+    	a.add(new ItemLingotMetal());
+		a.add(new ItemLingotMetal());
+		a.add(new ItemLingotMetal());
+		a.add(new ItemVide());
+		a.add(new ItemBois());
+		a.add(new ItemVide());
+		a.add(new ItemBois());
+		a.add(new ItemVide());
+		System.out.println(a.aCraft());
         this.game = new Monde();
         this.tc = new TerrainController(this.terrain, this.game);
         this.jc = new JoueurController(this.coucheJoueur, this.game);
