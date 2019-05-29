@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import modele.Monde;
 import modele.Items.Item;
-import modele.Items.ItemTerre;
+import modele.Items.Block.*;
 
 public class InventaireController {
 

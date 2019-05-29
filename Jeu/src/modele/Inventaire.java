@@ -4,13 +4,11 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import modele.Blocks.Air;
 import modele.Blocks.Block;
 import modele.Blocks.Terre;
 import modele.Items.Item;
-import modele.Items.ItemTerre;
+import modele.Items.Block.*;
 import modele.Items.ItemVide;
 
 public class Inventaire {
