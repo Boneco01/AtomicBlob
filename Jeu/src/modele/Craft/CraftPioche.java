@@ -1,18 +1,17 @@
 package modele.Craft;
 
 import java.util.ArrayList;
-
-import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import modele.Items.*;
 import modele.Items.Block.ItemBois;
 import modele.Items.Craft.ItemLingotMetal;
 import modele.Items.Craft.ItemPioche;
 
 public class CraftPioche extends Craft {
-	private ArrayList<Item> craft;
+	private ObservableList<Item> craft;
 	
 	public CraftPioche () {
-		super(new ItemPioche(),definirCraft());
+		super(new ItemPioche());
 		
 	}
 	public ArrayList<Item> definirCraft(){
