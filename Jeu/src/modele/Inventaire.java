@@ -28,8 +28,9 @@ public class Inventaire {
 	private int limiteInventaire;
 	private Item equipementDroite;
 	private Item equipementGauche;
+	private Monde monde;
 	
-	public Inventaire() {
+	public Inventaire(Joueur joueur) {
 		this.inventaire = FXCollections.observableList(new ArrayList<Item>());
 		this.nbItems = 0;
 		this.limiteInventaire = 10;

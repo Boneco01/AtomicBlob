@@ -4,7 +4,6 @@ import java.awt.Dimension;
 
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import modele.Monde;
 
@@ -57,14 +56,11 @@ public class VisionController {
 	public void gererClicAppuye(MouseEvent e) {
 		int xSouris=(int)e.getX()/64;
 		int ySouris=(int)e.getY()/64;
-		this.game.getJoueur().setXBlocAModifier(xSouris);
-		this.game.getJoueur().setYBlocAModifier(ySouris);
+		this.game.getJoueur().setXCible(xSouris);
+		this.game.getJoueur().setYCible(ySouris);
 		
 		if (e.getButton() == MouseButton.PRIMARY) {
-			this.game.getJoueur().setCreuse(true);
-		}
-		else if(e.getButton() == MouseButton.SECONDARY) {
-			this.game.getJoueur().setConstruire(true);
+			this.game.getJoueur().setUtiliser(true);
 		}
 		
 		
@@ -72,10 +68,7 @@ public class VisionController {
     
     public void gererClicRelache(MouseEvent e) {
     	if (e.getButton() == MouseButton.PRIMARY) {
-			this.game.getJoueur().setCreuse(false);
-		}
-		else if(e.getButton() == MouseButton.SECONDARY) {
-			this.game.getJoueur().setConstruire(false);
+			this.game.getJoueur().setUtiliser(false);
 		}
     }
 	

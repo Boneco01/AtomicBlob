@@ -1,5 +1,7 @@
 package modele;
 
+import modele.Items.ItemVide;
+
 public class Monde {
 
 	private Joueur joueur;
@@ -8,7 +10,8 @@ public class Monde {
 	
 	public Monde() {
 		this.map = new Terrain(this.cheminMap);
-		this.joueur = new Joueur(10, 3, 44, 26, "Joueur", 300, 100, this);
+		this.joueur = new Joueur(10, 3, 44, 26, "Joueur", 300, 100, this, new ItemVide());
+		
 	}
 	
 	public boolean gererCollision(Terrain terrain, int boxLargeur, int boxHauteur) {

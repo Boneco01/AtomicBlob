@@ -1,11 +1,14 @@
 package modele.Items;
+import modele.Monde;
 
 public abstract class ItemCraft extends Item {
-
-	private int id;
 	
-	public ItemCraft(int id,int quantiteMax) {
-		super(id, quantiteMax);
+	public ItemCraft(int id , int quantiteMax) {
+		super(id, quantiteMax, 3);
+	}
+
+	@Override
+	public void utiliser(Monde monde) {
 	}
 	
 }

@@ -1,5 +1,7 @@
 package modele.Items;
 
+import modele.Monde;
+import modele.Portee;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -8,13 +10,16 @@ public abstract class Item {
 	private int id;
 	private IntegerProperty quantitee;
 	private int quantiteeMax;
+	private Portee portee;
+	protected Monde monde;
 	
-	public Item(int id, int quantiteeMax) {
-		this.quantitee = new SimpleIntegerProperty(1	);
+	public Item(int id, int quantiteeMax, int distance) {
+		this.quantitee = new SimpleIntegerProperty(1);
 		this.quantiteeMax = quantiteeMax;
 		this.id = id;
+		this.monde=monde;
+		this.portee=new Portee(distance);
 	}
-	
 	public int getQuantitee() {
 		return this.quantitee.getValue();
 	}
@@ -35,5 +40,14 @@ public abstract class Item {
 		return this.id;
 	}
 	
+	public Portee getPortee() {
+		return this.portee;
+	}
+	
+	public Monde getMonde() {
+		return this.monde;
+	}
+	
+	public abstract void utiliser(Monde monde);
 	
 }
