@@ -24,6 +24,9 @@ public class GameController implements Initializable{
 	@FXML
     private HBox inventaire;
 	
+	@FXML
+    private Pane hud;
+	
     @FXML
     private Pane coucheJoueur;
     
@@ -62,7 +65,7 @@ public class GameController implements Initializable{
         this.game = new Monde();
         this.tc = new TerrainController(this.terrain, this.game);
         this.jc = new JoueurController(this.coucheJoueur, this.game);
-        this.vc = new VisionController(this.vision, this.coucheJoueur, this.game, this.inventaire);
+        this.vc = new VisionController(this.hud, this.vision, this.coucheJoueur, this.game);
         this.iv= new InventaireController(this.inventaire, this.game);
         initAnimation();
 	}
