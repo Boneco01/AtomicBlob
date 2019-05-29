@@ -5,8 +5,19 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import modele.Blocks.Block;
+import modele.Blocks.Bois;
+import modele.Blocks.Herbe;
+import modele.Blocks.MineraiFer;
+import modele.Blocks.MineraiRadium;
+import modele.Blocks.Pierre;
+import modele.Blocks.Sable;
 import modele.Blocks.Terre;
 import modele.Items.Item;
+import modele.Items.ItemBois;
+import modele.Items.ItemMineraiFer;
+import modele.Items.ItemMineraiRadium;
+import modele.Items.ItemPierre;
+import modele.Items.ItemSable;
 import modele.Items.ItemTerre;
 import modele.Items.ItemVide;
 
@@ -50,7 +61,19 @@ public class Inventaire {
 	private Item blockToItem(Block b) {
 		if (b instanceof Terre) {
             return new ItemTerre();
-		} else {
+		} else if (b instanceof Bois) {
+        	return new ItemBois();
+		} else if (b instanceof Herbe) {
+        	return new ItemTerre();
+        } else if (b instanceof MineraiFer) {
+        	return new ItemMineraiFer();
+        } else if (b instanceof MineraiRadium) {
+        	return new ItemMineraiRadium();
+        } else if (b instanceof Pierre) {
+        	return new ItemPierre();
+        } else if (b instanceof Sable) {
+        	return new ItemSable();
+        } else {
             return new ItemVide();
 		}
 	}
