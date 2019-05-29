@@ -8,6 +8,12 @@ import javafx.scene.layout.TilePane;
 import modele.Monde;
 import modele.Blocks.Air;
 import modele.Blocks.Block;
+import modele.Blocks.Bois;
+import modele.Blocks.Herbe;
+import modele.Blocks.MineraiFer;
+import modele.Blocks.MineraiRadium;
+import modele.Blocks.Pierre;
+import modele.Blocks.Sable;
 import modele.Blocks.Terre;
 
 public class TerrainController {
@@ -38,8 +44,20 @@ public class TerrainController {
             return new ImageView(new Image("file:../Sprites/Block/Terre.png"));
         else if (b instanceof Air)
             return new ImageView(new Image("file:../Sprites/Block/Air.png"));
+        else if (b instanceof Herbe)
+        	return new ImageView(new Image("file:../Sprites/Block/Herbe.png"));
+        else if (b instanceof Pierre)
+        	return new ImageView(new Image("file:../Sprites/Block/Pierre.png"));
+        else if (b instanceof Sable)
+        	return new ImageView(new Image("file:../Sprites/Block/Sable.png"));
+        else if (b instanceof MineraiFer)
+        	return new ImageView(new Image("file:../Sprites/Block/MineraiFer.png"));
+        else if (b instanceof MineraiRadium)
+        	return new ImageView(new Image("file:../Sprites/Block/MineraiRadium.png"));
+        else if (b instanceof Bois)
+        	return new ImageView(new Image("file:../Sprites/Block/Bois.png"));
         else
-            return new ImageView(new Image("file:../Sprites/Block/Air.png"));
+            return new ImageView(new Image("file:../Sprites/Block/Pierre.png"));
     }
 	
 	public void ecouterMap() {

@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import modele.Blocks.Air;
 import modele.Blocks.Block;
 import modele.Blocks.Bois;
+import modele.Blocks.Herbe;
 import modele.Blocks.MineraiFer;
 import modele.Blocks.MineraiRadium;
 import modele.Blocks.Pierre;
@@ -109,6 +110,8 @@ public class Terrain {
 		switch (a) {
 		case 'T':
 			return new Terre();
+		case 'H':
+			return new Herbe();
 		case 'P':
 			return new Pierre();
 		case 'A':
@@ -122,7 +125,7 @@ public class Terrain {
 		case 'R':
 			return new MineraiRadium();
 		default:
-			return new Air();
+			return new Pierre();
 		}
 	}
 }
