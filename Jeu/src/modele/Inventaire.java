@@ -34,8 +34,9 @@ public class Inventaire {
 		this.inventaire = FXCollections.observableList(new ArrayList<Item>());
 		this.nbItems = 0;
 		this.limiteInventaire = 10;
-		this.equipementDroite = null;
-		this.equipementGauche = null;
+		this.monde=joueur.getMonde();
+		this.equipementDroite = new ItemTerre(this.monde);
+		this.equipementGauche = new ItemVide(this.monde);
 		initInventaire();
 	}
 	
@@ -47,9 +48,17 @@ public class Inventaire {
 		return this.inventaire.get(index);
 	}
 	
+	public Item getEquipementGauche() {
+		return this.equipementGauche;
+	}
+	
+	public Item getEquipementDroite() {
+		return this.equipementDroite;
+	}
+	
 	private void initInventaire() {
 		for(int i=0; i<this.limiteInventaire;i++) {
-			this.inventaire.add(new ItemVide());
+			this.inventaire.add(new ItemVide(this.monde));
 		}
 	}
 	
@@ -61,21 +70,21 @@ public class Inventaire {
 	
 	private Item blockToItem(Block b) {
 		if (b instanceof Terre) {
-            return new ItemTerre();
+            return new ItemTerre(this.monde);
 		} else if (b instanceof Bois) {
-        	return new ItemBois();
+        	return new ItemBois(this.monde);
 		} else if (b instanceof Herbe) {
-        	return new ItemTerre();
+        	return new ItemTerre(this.monde);
         } else if (b instanceof MineraiFer) {
-        	return new ItemMineraiFer();
+        	return new ItemMineraiFer(this.monde);
         } else if (b instanceof MineraiRadium) {
-        	return new ItemMineraiRadium();
+        	return new ItemMineraiRadium(this.monde);
         } else if (b instanceof Pierre) {
-        	return new ItemPierre();
+        	return new ItemPierre(this.monde);
         } else if (b instanceof Sable) {
-        	return new ItemSable();
+        	return new ItemSable(this.monde);
         } else {
-            return new ItemVide();
+            return new ItemVide(this.monde);
 		}
 	}
 	

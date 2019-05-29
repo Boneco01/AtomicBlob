@@ -7,8 +7,8 @@ public abstract class ItemBlock extends Item {
 
 	private Block blockCorrespondant;
 	
-	public ItemBlock(int id, Block blockCorrespondant) {
-		super(id, 64, 2);
+	public ItemBlock(int id, Block blockCorrespondant, Monde monde) {
+		super(id, 64, 2, monde);
 		this.blockCorrespondant = blockCorrespondant;
 	}
 	
@@ -38,10 +38,10 @@ public abstract class ItemBlock extends Item {
 	}
 	
 	public void utiliser(Monde monde) {
-		if (monde.getJoueur().getUtiliser() && this.pasSurLeJoueur() && 
+		if(this.pasSurLeJoueur() && 
 				this.getPortee().estAPortee(monde.getJoueur().getXProperty().getValue(), 
-						monde.getJoueur().getYProperty().getValue(), monde.getJoueur().getXCible(),
-						monde.getJoueur().getYCible())) {		
+				monde.getJoueur().getYProperty().getValue(), monde.getJoueur().getXCible(),
+				monde.getJoueur().getYCible())) {		
 			monde.getJoueur().getMonde().getMap().remplacerBlock(this.blockCorrespondant, monde.getJoueur().getXCible(), monde.getJoueur().getYCible());
 		}
 		

@@ -13,12 +13,12 @@ public abstract class Item {
 	private Portee portee;
 	protected Monde monde;
 	
-	public Item(int id, int quantiteeMax, int distance) {
+	public Item(int id, int quantiteeMax, int distance, Monde monde) {
 		this.quantitee = new SimpleIntegerProperty(1);
 		this.quantiteeMax = quantiteeMax;
 		this.id = id;
-		this.monde=monde;
 		this.portee=new Portee(distance);
+		this.monde=monde;
 	}
 	public int getQuantitee() {
 		return this.quantitee.getValue();

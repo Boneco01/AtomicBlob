@@ -60,7 +60,10 @@ public class VisionController {
 		this.game.getJoueur().setYCible(ySouris);
 		
 		if (e.getButton() == MouseButton.PRIMARY) {
-			this.game.getJoueur().setUtiliser(true);
+			this.game.getJoueur().setUtiliserMainGauche(true);
+		}
+		else if (e.getButton() == MouseButton.SECONDARY) {
+			this.game.getJoueur().setUtiliserMainDroite(true);
 		}
 		
 		
@@ -68,7 +71,10 @@ public class VisionController {
     
     public void gererClicRelache(MouseEvent e) {
     	if (e.getButton() == MouseButton.PRIMARY) {
-			this.game.getJoueur().setUtiliser(false);
+			this.game.getJoueur().setUtiliserMainGauche(false);
+		}
+    	else if (e.getButton() == MouseButton.SECONDARY) {
+			this.game.getJoueur().setUtiliserMainDroite(false);
 		}
     }
 	

@@ -4,8 +4,8 @@ import modele.Monde;
 
 public class ItemCraft extends Item {
 	
-	public ItemCraft(int id) {
-		super(id, 1, 3);
+	public ItemCraft(int id, Monde monde) {
+		super(id, 1, 3, monde);
 	}
 
 	@Override

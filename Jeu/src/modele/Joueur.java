@@ -12,24 +12,32 @@ public class Joueur extends Personnage{
 	private boolean haut;
 	private int hauteurSaut;
 	private int vSaut;
-	private boolean utiliser;
+	private boolean utiliserMainGauche;
+	private boolean utiliserMainDroite;
 	private int xCible;
 	private int yCible;
-	private Item itemEquipe;
 	
-	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde, Item item) {
+	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
 		super(vie, vitesse, largeur, hauteur, nom, x, y,monde);
 		this.monde = monde;
 		this.inventaire = new Inventaire(this);
 		this.hauteurSaut = 0;
 		this.vSaut = 3;
-		this.utiliser=false;
-		this.itemEquipe=item;
+		this.utiliserMainGauche=false;
+		this.utiliserMainDroite=false;
 		
 	}
 	
-	public void utiliserItem() {
-		this.itemEquipe.utiliser(this.monde);
+	public void utiliserItemGauche() {
+		if (this.utiliserMainGauche) {
+			this.inventaire.getEquipementGauche().utiliser(monde);
+		}
+	}
+	
+	public void utiliserItemDroite() {
+		if (this.utiliserMainDroite) {
+			this.inventaire.getEquipementDroite().utiliser(monde);
+		}
 	}
 	
 	public void setGauche(boolean estPresse) {
@@ -52,12 +60,20 @@ public class Joueur extends Personnage{
 		this.yCible=y;
 	}
 	
-	public void setUtiliser(boolean a) {
-		this.utiliser=a;
+	public void setUtiliserMainGauche(boolean a) {
+		this.utiliserMainGauche=a;
 	}
 	
-	public boolean getUtiliser() {
-		return this.utiliser;
+	public void setUtiliserMainDroite(boolean a) {
+		this.utiliserMainDroite=a;
+	}
+	
+	public boolean getUtiliserMainGauche() {
+		return this.utiliserMainGauche;
+	}
+	
+	public boolean getUtiliserMainDroite() {
+		return this.utiliserMainDroite;
 	}
 	
 	public boolean getGauche() {
@@ -80,10 +96,6 @@ public class Joueur extends Personnage{
 		return this.yCible;
 	}
 	
-	public Item getItem() {
-		return this.itemEquipe;
-	}
-	
 	public Monde getMonde() {
 		return this.monde;
 	}
@@ -96,7 +108,8 @@ public class Joueur extends Personnage{
 	public void agir() {
 		
 		seDeplace();
-		utiliserItem();
+		utiliserItemGauche();
+		utiliserItemDroite();
 		
 	}
 	
