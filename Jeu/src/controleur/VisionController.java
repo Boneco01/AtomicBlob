@@ -2,7 +2,6 @@ package controleur;
 
 import java.awt.Dimension;
 
-import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -11,16 +10,16 @@ import modele.Monde;
 
 public class VisionController {
 	
-	private HBox inventaire;
+	private Pane hud;
 	private Pane vision;
 	private Pane coucheJoueur;
 	private Monde game;
 	
-	public VisionController(Pane vision, Pane coucheJoueur, Monde game, HBox inventaire) {
+	public VisionController(Pane hud, Pane vision, Pane coucheJoueur, Monde game) {
 		this.vision = vision;
 		this.coucheJoueur = coucheJoueur;
 		this.game = game;
-		this.inventaire=inventaire;
+		this.hud=hud;
 		creerVision();
 	}
 	
@@ -54,26 +53,26 @@ public class VisionController {
        		vision.setTranslateY(-game.getMap().hauteurMap()*64+height);
        	else
        		vision.setTranslateY(-this.game.getJoueur().getYProperty().get()+(height-10)/2);
-    	suiviInventaire();
+    	suiviHud();
        	
     }
-	private void suiviInventaire() {
+	private void suiviHud() {
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     	int height = (int)dimension.getHeight();
     	int width  = (int)dimension.getWidth();
     	if(-this.game.getJoueur().getXProperty().get()+width/2>=0)
-    		inventaire.setTranslateX(0);
+    		this.hud.setTranslateX(0);
     	else if(this.game.getJoueur().getXProperty().get()+width/2>=game.getMap().largeurMap()*64)
-    		inventaire.setTranslateX(game.getMap().largeurMap()*64-width);
+    		hud.setTranslateX(game.getMap().largeurMap()*64-width);
     	else
-    		inventaire.setTranslateX(this.game.getJoueur().getXProperty().get()-width/2);
+    		hud.setTranslateX(this.game.getJoueur().getXProperty().get()-width/2);
     	
     	if(-this.game.getJoueur().getYProperty().get()+height/2>=0)
-       		inventaire.setTranslateY(0);
+       		hud.setTranslateY(0);
     	else if(this.game.getJoueur().getYProperty().get()+height/2>=game.getMap().hauteurMap()*64)
-       		inventaire.setTranslateY(game.getMap().hauteurMap()*64-height);
+       		hud.setTranslateY(game.getMap().hauteurMap()*64-height);
     	else
-        	inventaire.setTranslateY(this.game.getJoueur().getYProperty().get()-(height-10)/2);
+        	hud.setTranslateY(this.game.getJoueur().getYProperty().get()-(height-10)/2);
 
 	}
 	

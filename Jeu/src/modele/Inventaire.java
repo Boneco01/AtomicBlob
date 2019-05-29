@@ -4,9 +4,6 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import modele.Blocks.Air;
 import modele.Blocks.Block;
 import modele.Blocks.Terre;
 import modele.Items.Item;
@@ -53,9 +50,9 @@ public class Inventaire {
 	
 	private Item blockToItem(Block b) {
 		if (b instanceof Terre) {
-            return new ItemTerre(this.monde);
+            return new ItemTerre();
 		} else {
-            return new ItemVide(this.monde);
+            return new ItemVide();
 		}
 	}
 	
@@ -66,7 +63,7 @@ public class Inventaire {
 		}
 		
 		for(Item i : this.inventaire) {
-			if(i.equals(item)) {
+			if(i.getId()==item.getId()) {
 				if(i.getQuantitee() < i.getQuantiteeMax()) {
 					i.setQuantitee(i.getQuantitee()+1);
 					return true;
