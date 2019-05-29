@@ -10,6 +10,12 @@ import javafx.scene.layout.Pane;
 import modele.Monde;
 import modele.Items.Item;
 import modele.Items.Block.*;
+import modele.Items.ItemBois;
+import modele.Items.ItemMineraiFer;
+import modele.Items.ItemMineraiRadium;
+import modele.Items.ItemPierre;
+import modele.Items.ItemSable;
+
 
 public class InventaireController {
 
@@ -62,6 +68,16 @@ public class InventaireController {
 	 public Image imageDe(Item item) {
 	        if (item instanceof ItemTerre)
 	            return new Image("file:../Sprites/Item/ItemBlock/Terre.png");
+	        if (item instanceof ItemBois)
+	            return new Image("file:../Sprites/Item/ItemBlock/Bois.png");
+	        if (item instanceof ItemMineraiFer)
+	            return new Image("file:../Sprites/Item/ItemBlock/MineraiFer.png");
+	        if (item instanceof ItemMineraiRadium)
+	            return new Image("file:../Sprites/Item/ItemBlock/MineraiRadium.png");
+	        if (item instanceof ItemPierre)
+	            return new Image("file:../Sprites/Item/ItemBlock/Pierre.png");
+	        if (item instanceof ItemSable)
+	            return new Image("file:../Sprites/Item/ItemBlock/Sable.png");
 	        else
 	            return new Image("file:../Sprites/Item/ItemVide.png");
 	    }

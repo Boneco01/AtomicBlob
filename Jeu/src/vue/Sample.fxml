@@ -124,6 +124,30 @@
                      </Pane>
                   </children>
                </HBox>
+               <HBox fx:id="inventaire1" layoutX="1019.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;">
+                  <children>
+                     <Pane prefHeight="100.0" prefWidth="100.0">
+                        <children>
+                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="g">
+                              <font>
+                                 <Font size="18.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                     <Pane prefHeight="100.0" prefWidth="100.0">
+                        <children>
+                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="d">
+                              <font>
+                                 <Font size="18.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                  </children>
+               </HBox>
             </children>
          </Pane>
 		</Pane>
