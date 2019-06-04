@@ -1,155 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.GameController">
-	<center>
-		<Pane fx:id="vision" prefHeight="6400.0" prefWidth="6400.0">
-			<Pane fx:id="coucheJoueur" prefHeight="1080.0" prefWidth="1920.0">
-				<children>
-					<TilePane fx:id="terrain" prefHeight="6400.0" prefWidth="6400.0" />
-				</children>
-			</Pane>
-         <Pane fx:id="hud" prefHeight="1080.0" prefWidth="1920.0">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controleur.GameController">
+  <center>
+    <Pane fx:id="vision" prefHeight="6400.0" prefWidth="6400.0">
+      <Pane fx:id="coucheJoueur" prefHeight="1080.0" prefWidth="1920.0">
+        <children>
+          <TilePane fx:id="terrain" prefHeight="6400.0" prefWidth="6400.0" />
+        </children>
+      </Pane>
+      <Pane fx:id="hud" prefHeight="1080.0" prefWidth="1920.0">
+        <children>
+          <HBox fx:id="inventaire" prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: grey;">
             <children>
-               <HBox fx:id="inventaire" prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: grey;">
-                  <children>
-                     <Pane prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </Pane>
-                     <Pane prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </Pane>
-                     <Pane prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </Pane>
-                     <Pane prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </Pane>
-                     <Pane prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </Pane>
-                     <Pane prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </Pane>
-                     <Pane prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </Pane>
-                     <Pane prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </Pane>
-                     <Pane prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </Pane>
-                     <Pane prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </Pane>
-                  </children>
-               </HBox>
-               <HBox fx:id="inventaire1" layoutX="1019.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;">
-                  <children>
-                     <Pane prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="g">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </Pane>
-                     <Pane prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                           <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="d">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </Pane>
-                  </children>
-               </HBox>
+              <Pane prefHeight="100.0" prefWidth="100.0">
+                <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
+                    <font>
+                      <Font size="15.0" fx:id="x2" />
+                    </font>
+                  </Label>
+                </children>
+              </Pane>
+              <Pane prefHeight="100.0" prefWidth="100.0">
+                <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" font="$x2" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0" />
+                </children>
+              </Pane>
+              <Pane prefHeight="100.0" prefWidth="100.0">
+                <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" font="$x2" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0" />
+                </children>
+              </Pane>
+              <Pane prefHeight="100.0" prefWidth="100.0">
+                <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" font="$x2" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0" />
+                </children>
+              </Pane>
+              <Pane prefHeight="100.0" prefWidth="100.0">
+                <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" font="$x2" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0" />
+                </children>
+              </Pane>
+              <Pane prefHeight="100.0" prefWidth="100.0">
+                <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" font="$x2" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0" />
+                </children>
+              </Pane>
+              <Pane prefHeight="100.0" prefWidth="100.0">
+                <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" font="$x2" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0" />
+                </children>
+              </Pane>
+              <Pane prefHeight="100.0" prefWidth="100.0">
+                <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" font="$x2" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0" />
+                </children>
+              </Pane>
+              <Pane prefHeight="100.0" prefWidth="100.0">
+                <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" font="$x2" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0" />
+                </children>
+              </Pane>
+              <Pane prefHeight="100.0" prefWidth="100.0">
+                <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" font="$x2" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0" />
+                </children>
+              </Pane>
             </children>
-         </Pane>
-		</Pane>
-	</center>
+          </HBox>
+          <HBox id="inventaire1" fx:id="equipements" layoutX="1019.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;">
+            <children>
+              <Pane prefHeight="100.0" prefWidth="100.0">
+                <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" font="$x2" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="g" />
+                </children>
+              </Pane>
+              <Pane prefHeight="100.0" prefWidth="100.0">
+                <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" font="$x2" layoutX="67.0" layoutY="67.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="d" />
+                </children>
+              </Pane>
+            </children>
+          </HBox>
+        </children>
+      </Pane>
+    </Pane>
+  </center>
 </BorderPane>
