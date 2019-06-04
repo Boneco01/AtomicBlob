@@ -1,10 +1,5 @@
 package controleur;
 
-import java.util.ArrayList;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
@@ -133,6 +128,15 @@ public class InventaireController {
 	    	
 	    }
 	 
+	 public void miseAJourCouleurs() {
+		 for(int i=0;i<this.invJoueur.size(); i++) {
+			Pane p = (Pane)this.inventaire.getChildren().get(i);
+	     	if(this.invJoueur.get(i) instanceof ItemVide) {
+	     		p.setStyle("-fx-background-color: grey;");
+	     	}
+		 }
+	 }
+	 
 	 public void ecouterInventaire() {
 		 this.invJoueur.addListener(new ListChangeListener<Item>() {
 
@@ -141,8 +145,12 @@ public class InventaireController {
 				while (c.next()) {
                     if (c.wasAdded()) {
                     	for(int i=0;i<invJoueur.size(); i++) {
+                    		System.out.println("--CHANGEMENT--");
                     		changerImageInventaire(i);
                		 	}
+                    	miseAJourCouleurs();
+                    	changerImageEquipement('g');
+                		changerImageEquipement('d');
                     }
                 }
 			}
@@ -150,6 +158,7 @@ public class InventaireController {
 	 }
 	 
 	 public void changerImageEquipement(char emplacement) {
+		 System.out.println("Changement image equipement !");
 		 if(emplacement=='g') {
 			 Pane p = (Pane)this.equipements.getChildren().get(0);
 			 ImageView v = (ImageView)p.getChildren().get(0);
@@ -164,6 +173,7 @@ public class InventaireController {
 	 }
 	 
 	 public void changerImageInventaire(int index) {
+		 System.out.println("Changement image inventaire !");
 		 Pane p = (Pane)this.inventaire.getChildren().get(index);
 		 ImageView v = (ImageView)p.getChildren().get(0);
 		 Label nbItem = (Label)p.getChildren().get(1);

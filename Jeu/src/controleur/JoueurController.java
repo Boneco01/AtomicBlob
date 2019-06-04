@@ -29,13 +29,13 @@ public class JoueurController {
 
 	public void gererFlechesAppuyees(KeyEvent e) {
 		switch (e.getCode()) {
-		case UP:
+		case Z:
 			this.game.getJoueur().setHaut(true);
 			break;
-		case LEFT:
+		case Q:
 			this.game.getJoueur().setGauche(true);
 			break;
-		case RIGHT:
+		case D:
 			this.game.getJoueur().setDroite(true);
 			break;
 		case ENTER:
@@ -51,13 +51,13 @@ public class JoueurController {
 
 	public void gererFlechesRelachees(KeyEvent e) {
 		switch (e.getCode()) {
-		case UP:
+		case Z:
 			this.game.getJoueur().setHaut(false);
 			break;
-		case LEFT:
+		case Q:
 			this.game.getJoueur().setGauche(false);
 			break;
-		case RIGHT:
+		case D:
 			this.game.getJoueur().setDroite(false);
 			break;
 		default:

@@ -45,6 +45,7 @@ public abstract class ItemBlock extends Item {
 				monde.getJoueur().getYCible())) {		
 			
 			monde.getMap().remplacerBlock(this.blockCorrespondant, monde.getJoueur().getXCible(), monde.getJoueur().getYCible());
+			this.setQuantitee(this.getQuantitee()-1);
 		}
 		
 	}

@@ -97,13 +97,25 @@ public class Inventaire {
 		}
 		
 		if(this.nbItems < this.limiteInventaire) {
-			this.inventaire.remove(9);
 			for(int i=0;i<this.limiteInventaire;i++) {
 				if(this.inventaire.get(i).getId()==0) {
+					this.inventaire.remove(i);
 					this.inventaire.add(i, item);
 					this.nbItems++;
 					return true;
 				}
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean removeItem(Item item) {
+		
+		for(int i=0;i<this.limiteInventaire;i++) {
+			if(this.inventaire.get(i).getId() == item.getId()) {
+				this.inventaire.remove(i);
+				this.inventaire.add(i, new ItemVide());
 			}
 		}
 		
@@ -120,9 +132,9 @@ public class Inventaire {
 	
 	public void desequiper(char emplacement) {
 		if(emplacement == 'g') {
-			this.equipementGauche = null;
+			this.equipementGauche = new ItemVide();
 		} else {
-			this.equipementDroite = null;
+			this.equipementDroite = new ItemVide();
 		}
 	}
 	
