@@ -5,34 +5,114 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import modele.Monde;
 import modele.Items.Item;
+import modele.Items.ItemVide;
 import modele.Items.Block.*;
 
 
 public class InventaireController {
 
 	 private HBox inventaire;
+	 private HBox equipements;
 	 private Monde game;
 	 private ObservableList<Item> invJoueur;
 	 
-	 public InventaireController(HBox inventaire, Monde game) {
+	 public InventaireController(HBox inventaire, HBox equipements, Monde game) {
 		 this.inventaire = inventaire;
+		 this.equipements = equipements;
 		 this.game = game;
 		 this.invJoueur = this.game.getJoueur().getInventaire().getInventaire();
 		 creerInventaire();
+		 creerEquipements();
 	 }
 	 
 	 public void creerInventaire() {
 		 
 		 for(int i=0;i<this.invJoueur.size(); i++) {
-     		changerImageItem(i);
+			int index = i;
+			Pane p = (Pane)this.inventaire.getChildren().get(i);
+			ImageView v = (ImageView)p.getChildren().get(0);
+			//v.setOnDragDetected(event->gererDragOn(event, p, v)); // DRAG'N'DROP Pour le craft
+			v.setOnMousePressed(event->gererClic(event, p, index));
+    		changerImageInventaire(i);
 		 }
 		 
 		 ecouterInventaire();
 		 
+	 }
+	 
+	 public void creerEquipements() {
+		 
+		 Pane p1 = (Pane)this.equipements.getChildren().get(0);
+		 p1.setStyle("-fx-background-color: blue;");
+		 Pane p2 = (Pane)this.equipements.getChildren().get(1);
+		 p2.setStyle("-fx-background-color: red;");
+		 changerImageEquipement('g');
+		 changerImageEquipement('d');
+	 }
+	    
+	 public void gererClic(MouseEvent e, Pane p, int index) {
+		 
+	    	if (e.getButton() == MouseButton.PRIMARY) {
+	    		
+	    		for(int i=0;i<this.invJoueur.size();i++) {
+	    			Pane paneColor = (Pane)this.inventaire.getChildren().get(i);
+	    			if(paneColor.getStyle().equals("-fx-background-color: blue;") && paneColor!=p) {
+	    				paneColor.setStyle("-fx-background-color: grey;");
+	    			}
+	    		}
+	    		
+	    		if(p.getStyle().equals("-fx-background-color: blue;")) {
+	    			p.setStyle("-fx-background-color: grey;");
+	    			this.game.getJoueur().equipeGauche(new ItemVide());
+	    			changerImageEquipement('g');
+	    		} else {
+	    			if(p.getStyle().equals("-fx-background-color: red;")) {
+	    				this.game.getJoueur().equipeDroit(new ItemVide());
+		    			changerImageEquipement('d');
+	    			}
+	    			p.setStyle("-fx-background-color: blue;");
+	    			this.game.getJoueur().equipeGauche(itemDe(index));
+	    			changerImageEquipement('g');
+	    		}
+			} else {
+				
+				for(int i=0;i<this.invJoueur.size();i++) {
+	    			Pane paneColor = (Pane)this.inventaire.getChildren().get(i);
+	    			if(paneColor.getStyle().equals("-fx-background-color: red;") && paneColor!=p) {
+	    				paneColor.setStyle("-fx-background-color: grey;");
+	    			}
+	    		}
+				
+				if(p.getStyle().equals("-fx-background-color: red;")) {
+	    			p.setStyle("-fx-background-color: grey;");
+	    			this.game.getJoueur().equipeDroit(new ItemVide());
+	    			changerImageEquipement('d');
+	    		} else {
+	    			if(p.getStyle().equals("-fx-background-color: blue;")) {
+	    				this.game.getJoueur().equipeGauche(new ItemVide());
+		    			changerImageEquipement('g');
+	    			}
+	    			p.setStyle("-fx-background-color: red;");
+	    			this.game.getJoueur().equipeDroit(itemDe(index));
+	    			changerImageEquipement('d');
+	    		}
+			}
+	    	
+	    }
+	 
+	 public void miseAJourCouleurs() {
+		 for(int i=0;i<this.invJoueur.size(); i++) {
+			Pane p = (Pane)this.inventaire.getChildren().get(i);
+	     	if(this.invJoueur.get(i) instanceof ItemVide) {
+	     		p.setStyle("-fx-background-color: grey;");
+	     	}
+		 }
 	 }
 	 
 	 public void ecouterInventaire() {
@@ -41,23 +121,47 @@ public class InventaireController {
 			@Override
 			public void onChanged(Change<? extends Item> c) {
 				while (c.next()) {
-                    if (c.wasAdded()) {
-                    	for(int i=0;i<invJoueur.size(); i++) {
-                    		changerImageItem(i);
-               		 	}
-                    }
-                }
+                   if (c.wasAdded()) {
+                   	for(int i=0;i<invJoueur.size(); i++) {
+                   		System.out.println("--CHANGEMENT--");
+                   		changerImageInventaire(i);
+              		 	}
+                   	miseAJourCouleurs();
+                   	changerImageEquipement('g');
+               		changerImageEquipement('d');
+                   }
+               }
 			}
 	    });
 	 }
 	 
-	 public void changerImageItem(int index) {
+	 public void changerImageEquipement(char emplacement) {
+		 System.out.println("Changement image equipement !");
+		 if(emplacement=='g') {
+			 Pane p = (Pane)this.equipements.getChildren().get(0);
+			 ImageView v = (ImageView)p.getChildren().get(0);
+			 Image png = imageDe(this.game.getJoueur().getInventaire().getEquipementGauche());
+			 v.setImage(png);
+		 } else {
+			 Pane p = (Pane)this.equipements.getChildren().get(1);
+			 ImageView v = (ImageView)p.getChildren().get(0);
+			 Image png = imageDe(this.game.getJoueur().getInventaire().getEquipementDroite());
+			 v.setImage(png);
+		 }
+	 }
+	 
+	 public void changerImageInventaire(int index) {
+		 System.out.println("Changement image inventaire !");
 		 Pane p = (Pane)this.inventaire.getChildren().get(index);
 		 ImageView v = (ImageView)p.getChildren().get(0);
 		 Label nbItem = (Label)p.getChildren().get(1);
 		 Image png = imageDe(this.game.getJoueur().getInventaire().getItem(index));
 		 nbItem.textProperty().bind(this.invJoueur.get(index).quantiteeProperty().asString());
 		 v.setImage(png);
+	 }
+	 
+	 public Item itemDe(int index) {
+		 return this.invJoueur.get(index);
 	 }
 	 
 	 public Image imageDe(Item item) {

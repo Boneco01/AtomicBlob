@@ -3,8 +3,6 @@ package modele.Items;
 import modele.Monde;
 import modele.Portee;
 import modele.Blocks.Block;
-import modele.Blocks.Herbe;
-import modele.Blocks.Terre;
 import modele.Blocks.Air;
 
 public abstract class ItemBlock extends Item {
@@ -60,6 +58,7 @@ public abstract class ItemBlock extends Item {
 		if(this.pasSurLeJoueur(monde) && Portee.estAPortee(2,xJoueur, yJoueur, xCible,yCible) && pasSurUnAutreBlock(monde)) {		
 			Block block = monde.getMap().blockDe(blockCorrespondant);
 			monde.getMap().remplacerBlock(block, xCible, yCible);
+			this.setQuantitee(this.getQuantitee()-1);
 		}
 	}
 	

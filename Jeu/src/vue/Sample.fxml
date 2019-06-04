@@ -124,7 +124,7 @@
                      </Pane>
                   </children>
                </HBox>
-               <HBox fx:id="inventaire1" layoutX="1019.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;">
+               <HBox fx:id="equipements" layoutX="1019.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;">
                   <children>
                      <Pane prefHeight="100.0" prefWidth="100.0">
                         <children>
