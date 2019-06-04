@@ -5,6 +5,6 @@ import modele.Items.ItemBlock;
 
 public class ItemSable extends ItemBlock {
 	public ItemSable() {
-		super(5, new Sable());
+		super(5, 'S');
 	}
 }

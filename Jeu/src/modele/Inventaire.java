@@ -28,7 +28,7 @@ public class Inventaire {
 		this.inventaire = FXCollections.observableList(new ArrayList<Item>());
 		this.nbItems = 0;
 		this.limiteInventaire = 10;
-		this.equipementDroite = new ItemVide();
+		this.equipementDroite = new ItemTerre();
 		this.equipementGauche = new ItemVide();
 		initInventaire();
 	}
@@ -97,14 +97,10 @@ public class Inventaire {
 		}
 		
 		if(this.nbItems < this.limiteInventaire) {
-			this.inventaire.remove(9);
-			for(int i=0;i<this.limiteInventaire;i++) {
-				if(this.inventaire.get(i).getId()==0) {
-					this.inventaire.add(i, item);
-					this.nbItems++;
-					return true;
-				}
-			}
+			this.inventaire.remove(0);
+			this.inventaire.add(item);
+			this.nbItems++;
+			return true;
 		}
 		
 		return false;

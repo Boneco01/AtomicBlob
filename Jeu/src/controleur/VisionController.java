@@ -2,6 +2,8 @@ package controleur;
 
 import java.awt.Dimension;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -30,6 +32,7 @@ public class VisionController {
         vision.setMaxSize(width,height-10); 
         vision.setOnMousePressed(event->gererClicAppuye(event));
         vision.setOnMouseReleased(event->gererClicRelache(event));
+        vision.setOnMouseDragged(event->bindSourisJoueur(event));
 	}
 	
 	public void suiviVision() { 
@@ -54,13 +57,10 @@ public class VisionController {
     }
 	
 	public void gererClicAppuye(MouseEvent e) {
-		int xSouris=(int)e.getX()/64;
-		int ySouris=(int)e.getY()/64;
-		this.game.getJoueur().setXCible(xSouris);
-		this.game.getJoueur().setYCible(ySouris);
-		
+		bindSourisJoueur(e);
 		if (e.getButton() == MouseButton.PRIMARY) {
 			this.game.getJoueur().setUtiliserMainGauche(true);
+			
 		}
 		else if (e.getButton() == MouseButton.SECONDARY) {
 			this.game.getJoueur().setUtiliserMainDroite(true);
@@ -77,5 +77,11 @@ public class VisionController {
 			this.game.getJoueur().setUtiliserMainDroite(false);
 		}
     }
-	
+    
+    public void bindSourisJoueur(MouseEvent e) {
+    	IntegerProperty xSouris=new SimpleIntegerProperty((int)e.getX()/64);
+    	IntegerProperty ySouris=new SimpleIntegerProperty((int)e.getY()/64);;
+		this.game.getJoueur().getXCible().bind(xSouris);
+		this.game.getJoueur().getYCible().bind(ySouris);
+    }
 }

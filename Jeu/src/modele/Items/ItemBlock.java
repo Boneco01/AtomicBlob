@@ -3,13 +3,16 @@ package modele.Items;
 import modele.Monde;
 import modele.Portee;
 import modele.Blocks.Block;
+import modele.Blocks.Herbe;
+import modele.Blocks.Terre;
+import modele.Blocks.Air;
 
 public abstract class ItemBlock extends Item {
 
-	private Block blockCorrespondant;
+	private char blockCorrespondant;
 	
-	public ItemBlock(int id, Block blockCorrespondant) {
-		super(id, 64, 2);
+	public ItemBlock(int id, char blockCorrespondant) {
+		super(id, 64, 2, 0);
 		this.blockCorrespondant = blockCorrespondant;
 	}
 	
@@ -22,8 +25,8 @@ public abstract class ItemBlock extends Item {
 		 case "bg" : hauteur=monde.getJoueur().getHauteur(); break;
 		 case "bd" : largeur=monde.getJoueur().getLargeur(); hauteur=monde.getJoueur().getHauteur(); break;
 		}
-		if (monde.getJoueur().getXCible()!=(monde.getJoueur().getXProperty().getValue()+largeur)/64 ||
-				monde.getJoueur().getYCible()!=(monde.getJoueur().getYProperty().getValue()+hauteur)/64) {
+		if (monde.getJoueur().getXCible().getValue()!=(monde.getJoueur().getXProperty().getValue()+largeur)/64 ||
+				monde.getJoueur().getYCible().getValue()!=(monde.getJoueur().getYProperty().getValue()+hauteur)/64) {
 			return true;
 		}
 		else {
@@ -38,15 +41,26 @@ public abstract class ItemBlock extends Item {
 		return false;
 	}
 	
-	public void utiliser(Monde monde) {
-		if(this.pasSurLeJoueur(monde) && 
-				Portee.estAPortee(2,monde.getJoueur().getXProperty().getValue(), 
-				monde.getJoueur().getYProperty().getValue(), monde.getJoueur().getXCible(),
-				monde.getJoueur().getYCible())) {		
-			
-			monde.getMap().remplacerBlock(this.blockCorrespondant, monde.getJoueur().getXCible(), monde.getJoueur().getYCible());
+	public boolean pasSurUnAutreBlock(Monde monde) {
+		int xCible=monde.getJoueur().getXCible().getValue();
+		int yCible=monde.getJoueur().getYCible().getValue();
+		if (monde.getMap().blockParCord(xCible, yCible) instanceof Air) {
+			return true;
 		}
-		
+		return false;
+	}
+	
+	
+	
+	public void utiliser(Monde monde) {
+		int xCible=monde.getJoueur().getXCible().getValue();
+		int yCible=monde.getJoueur().getYCible().getValue();
+		int xJoueur=monde.getJoueur().getXProperty().getValue();
+		int yJoueur=monde.getJoueur().getYProperty().getValue();
+		if(this.pasSurLeJoueur(monde) && Portee.estAPortee(2,xJoueur, yJoueur, xCible,yCible) && pasSurUnAutreBlock(monde)) {		
+			Block block = monde.getMap().blockDe(blockCorrespondant);
+			monde.getMap().remplacerBlock(block, xCible, yCible);
+		}
 	}
 	
 }

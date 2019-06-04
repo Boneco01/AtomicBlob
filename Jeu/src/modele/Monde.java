@@ -8,8 +8,8 @@ public class Monde {
 	private String cheminMap = "../Map/MapTestModeleV4.csv";
 	
 	public Monde() {
-		this.map = new Terrain(this.cheminMap);
 		this.joueur = new Joueur(10, 3, 44, 26, "Joueur", 300, 100, this);
+		this.map = new Terrain(this.cheminMap);
 		
 	}
 	

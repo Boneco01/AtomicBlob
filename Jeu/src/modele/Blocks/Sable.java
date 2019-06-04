@@ -2,6 +2,6 @@ package modele.Blocks;
 
 public class Sable extends Block{
 	public Sable() {
-		super('S',true);
+		super('S',true, 250);
 	}
 }

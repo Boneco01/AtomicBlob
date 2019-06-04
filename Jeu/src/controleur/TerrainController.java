@@ -67,18 +67,15 @@ public class TerrainController {
 			public void onChanged(Change<? extends Block> c) {
 				while (c.next()) {
                     if (c.wasReplaced()) {
-                    	changerImageBlock();
+                    	int index=c.getFrom();
+                    	changerImageBlock(index);
                     }
                 }
 			}
     	});
     }
 	
-	public void changerImageBlock() {
-    	int xSouris=this.game.getJoueur().getXCible();
-    	int ySouris=this.game.getJoueur().getYCible();
-    	int index=(this.game.getMap().largeurMap()*ySouris)+xSouris;
-    	
+	public void changerImageBlock(int index) {
     	ImageView png = imageDe(this.game.getMap().getListMap().get(index));
     	this.terrain.getChildren().set(index, png);
     }

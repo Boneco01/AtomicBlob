@@ -6,7 +6,7 @@ import modele.Items.ItemBlock;
 public class ItemTerre extends ItemBlock {
 	
 	public ItemTerre() {
-		super(1, new Terre());
+		super(1, 'T');
 	}
 	
 }

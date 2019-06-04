@@ -12,8 +12,8 @@ public class HUDController {
 	private Monde game;
 	private InventaireController iv;
 	
-	public HUDController(Pane hud, Monde game, HBox inventaire, HBox equipements) {
-		iv = new InventaireController(inventaire, equipements, game);
+	public HUDController(Pane hud, Monde game, HBox inventaire) {
+		iv = new InventaireController(inventaire, game);
 		this.game = game;
 		this.hud = hud;
 	}

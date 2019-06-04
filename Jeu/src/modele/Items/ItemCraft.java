@@ -4,8 +4,8 @@ import modele.Monde;
 public abstract class ItemCraft extends Item {
 	
 
-	public ItemCraft(int id , int quantiteMax) {
-		super(id, quantiteMax, 3);
+	public ItemCraft(int id , int quantiteMax, int degatsBlocks) {
+		super(id, quantiteMax, 3, degatsBlocks);
 
 	}
 

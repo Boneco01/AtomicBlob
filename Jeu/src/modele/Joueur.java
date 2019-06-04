@@ -1,5 +1,7 @@
 package modele;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import modele.Blocks.Block;
 import modele.Items.Item;
 
@@ -14,8 +16,8 @@ public class Joueur extends Personnage{
 	private int vSaut;
 	private boolean utiliserMainGauche;
 	private boolean utiliserMainDroite;
-	private int xCible;
-	private int yCible;
+	private IntegerProperty xCible;
+	private IntegerProperty yCible;
 	
 	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
 		super(vie, vitesse, largeur, hauteur, nom, x, y,monde);
@@ -24,8 +26,9 @@ public class Joueur extends Personnage{
 		this.hauteurSaut = 0;
 		this.vSaut = 3;
 		this.utiliserMainGauche=false;
-		this.utiliserMainDroite=false;
-		
+		this.utiliserMainDroite=false;	
+		this.xCible=new SimpleIntegerProperty(0);
+		this.yCible=new SimpleIntegerProperty(0);
 	}
 	
 	public void utiliserItemGauche() {
@@ -50,14 +53,6 @@ public class Joueur extends Personnage{
 	
 	public void setHaut(boolean estPresse) {
 		this.haut=estPresse;
-	}
-	
-	public void setXCible(int x) {
-		this.xCible=x;
-	}
-	
-	public void setYCible(int y) {
-		this.yCible=y;
 	}
 	
 	public void setUtiliserMainGauche(boolean a) {
@@ -88,11 +83,11 @@ public class Joueur extends Personnage{
 		return this.haut;
 	}
 	
-	public int getXCible() {
+	public IntegerProperty getXCible() {
 		return this.xCible;
 	}
 	
-	public int getYCible() {
+	public IntegerProperty getYCible() {
 		return this.yCible;
 	}
 	
@@ -110,7 +105,7 @@ public class Joueur extends Personnage{
 		seDeplace();
 		utiliserItemGauche();
 		utiliserItemDroite();
-		
+		//annulationDestruction();
 	}
 	
 	public void seDeplace() {
