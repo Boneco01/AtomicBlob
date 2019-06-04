@@ -1,23 +1,18 @@
 package controleur;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 import modele.Monde;
-import modele.TableCraft;
-import modele.Items.Item;
-import modele.Items.ItemVide;
-import modele.Items.Block.ItemBois;
-import modele.Items.Craft.ItemLingotMetal;
 
 public class GameController implements Initializable{
 
@@ -27,6 +22,9 @@ public class GameController implements Initializable{
 	private HUDController hudc;
 	private InventaireController iv;
 	private Monde game;
+	
+	@FXML
+	private GridPane tableCraft;
 	
 	@FXML
     private HBox inventaire;
@@ -58,7 +56,7 @@ public class GameController implements Initializable{
                     }
                     
                     this.game.getJoueur().agir();
-                    this.jc.getSpriteJoueur().changerSprite();
+                    this.jc.getSpriteJoueur().changerSprite(); //TODO faire avec un écouteur
                     this.vc.suiviVision();
                     this.hudc.suiviHud();
                     
@@ -74,7 +72,7 @@ public class GameController implements Initializable{
         this.tc = new TerrainController(this.terrain, this.game);
         this.jc = new JoueurController(this.coucheJoueur, this.game);
         this.vc = new VisionController(this.hud, this.vision, this.coucheJoueur, this.game);
-        this.hudc = new HUDController(this.hud, this.game, this.inventaire);
+        this.hudc = new HUDController(this.hud, this.game, this.inventaire, this.tableCraft);
         initAnimation();
 	}
     
