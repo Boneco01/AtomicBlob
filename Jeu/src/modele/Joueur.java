@@ -32,21 +32,23 @@ public class Joueur extends Personnage{
 	}
 	
 	public void utiliserItemGauche() {
+		
 		if (this.utiliserMainGauche) {
 			this.inventaire.getEquipementGauche().utiliser(monde);
 			if(this.inventaire.getEquipementGauche().getQuantitee()<=0) {
 				this.desequipeGauche();
-				this.inventaire.removeItem(this.inventaire.getEquipementGauche());
+				this.inventaire.removeItem();
 			}
 		}
 	}
 	
 	public void utiliserItemDroite() {
+		
 		if (this.utiliserMainDroite) {
 			this.inventaire.getEquipementDroite().utiliser(monde);
 			if(this.inventaire.getEquipementDroite().getQuantitee()<=0) {
 				this.desequipeDroite();
-				this.inventaire.removeItem(this.inventaire.getEquipementDroite());
+				this.inventaire.removeItem();
 			}
 		}
 	}
@@ -166,7 +168,7 @@ public class Joueur extends Personnage{
 	}
 	
 	public void desequipeDroite() {
-		this.inventaire.desequiper('g');
+		this.inventaire.desequiper('d');
 	}
 	
 }

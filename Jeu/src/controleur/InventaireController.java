@@ -109,7 +109,7 @@ public class InventaireController {
 	 public void miseAJourCouleurs() {
 		 for(int i=0;i<this.invJoueur.size(); i++) {
 			Pane p = (Pane)this.inventaire.getChildren().get(i);
-	     	if(this.invJoueur.get(i) instanceof ItemVide) {
+	     	if(this.invJoueur.get(i).getId() == 0) {
 	     		p.setStyle("-fx-background-color: grey;");
 	     	}
 		 }
@@ -121,11 +121,8 @@ public class InventaireController {
 			@Override
 			public void onChanged(Change<? extends Item> c) {
 				while (c.next()) {
-                   if (c.wasAdded()) {
-                   	for(int i=0;i<invJoueur.size(); i++) {
-                   		System.out.println("--CHANGEMENT--");
-                   		changerImageInventaire(i);
-              		 	}
+                   if (c.wasReplaced()) {
+                	changerImageInventaire(c.getFrom());
                    	miseAJourCouleurs();
                    	changerImageEquipement('g');
                		changerImageEquipement('d');
@@ -136,7 +133,6 @@ public class InventaireController {
 	 }
 	 
 	 public void changerImageEquipement(char emplacement) {
-		 System.out.println("Changement image equipement !");
 		 if(emplacement=='g') {
 			 Pane p = (Pane)this.equipements.getChildren().get(0);
 			 ImageView v = (ImageView)p.getChildren().get(0);
@@ -151,7 +147,6 @@ public class InventaireController {
 	 }
 	 
 	 public void changerImageInventaire(int index) {
-		 System.out.println("Changement image inventaire !");
 		 Pane p = (Pane)this.inventaire.getChildren().get(index);
 		 ImageView v = (ImageView)p.getChildren().get(0);
 		 Label nbItem = (Label)p.getChildren().get(1);

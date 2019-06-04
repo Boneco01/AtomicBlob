@@ -10,7 +10,7 @@ import modele.Blocks.Air;
 public class ItemVide extends Item {
 	
 	public ItemVide() {
-		super(0, 1, 1, 5);
+		super(0, 0, 0, 5);
 	}
 
 	@Override

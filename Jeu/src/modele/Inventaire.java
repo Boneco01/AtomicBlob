@@ -99,8 +99,7 @@ public class Inventaire {
 		if(this.nbItems < this.limiteInventaire) {
 			for(int i=0;i<this.limiteInventaire;i++) {
 				if(this.inventaire.get(i).getId()==0) {
-					this.inventaire.remove(i);
-					this.inventaire.add(i, item);
+					this.inventaire.set(i, item);
 					this.nbItems++;
 					return true;
 				}
@@ -110,12 +109,12 @@ public class Inventaire {
 		return false;
 	}
 	
-	public boolean removeItem(Item item) {
+	public boolean removeItem() {
 		
-		for(int i=0;i<this.limiteInventaire;i++) {
-			if(this.inventaire.get(i).getId() == item.getId()) {
-				this.inventaire.remove(i);
-				this.inventaire.add(i, new ItemVide());
+		for(int i=0;i<this.inventaire.size();i++) {
+			if(this.inventaire.get(i).getQuantitee()<=0) {
+				this.inventaire.set(i, new ItemVide());
+				return true;
 			}
 		}
 		
