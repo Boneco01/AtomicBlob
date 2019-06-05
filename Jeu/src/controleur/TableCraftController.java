@@ -64,9 +64,7 @@ public class TableCraftController {
 		 Pane p = (Pane)this.tcv.getChildren().get(index);
 		 ImageView v = (ImageView)p.getChildren().get(0);
 		 tcm.getTc().get(index).setQuantitee(1);
-		 Label nbItem = (Label)p.getChildren().get(1);
 		 Image png = inv.imageDe(tcm.getTc().get(index));
-		 nbItem.textProperty().bind(this.tcm.getTc().get(index).quantiteeProperty().asString());
 		 v.setImage(png);
 	 }
  	 

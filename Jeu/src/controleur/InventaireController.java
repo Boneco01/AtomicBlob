@@ -220,18 +220,18 @@ public class InventaireController {
 			return new ItemVide();
 		else if(i.getId()==10)
 			return new ItemLingotFer();
-		//else if(i.getId()==11)
-		//	return new ItemLancePierre();
+		else if(i.getId()==11)
+			return new ItemLancePierre();
 		else if(i.getId()==12)
 			return new ItemPioche();
-		//else if(i.getId()==13)
-		//	return new ItemHache();
+		else if(i.getId()==13)
+			return new ItemHache();
 		//else if(i.getId()==14)
 		//	return new ItemCoffre();
-		//else if(i.getId()==15)
-		//	return new ItemFil();
-		//else if(i.getId()==16)
-		//	return new ItemFil();
+		else if(i.getId()==15)
+			return new ItemFil();
+		else if(i.getId()==16)
+			return new ItemBarreMetal();
 		return new ItemVide();
 		
 		
