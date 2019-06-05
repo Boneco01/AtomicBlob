@@ -13,6 +13,7 @@ import modele.Monde;
 import modele.Items.Item;
 import modele.Items.ItemVide;
 import modele.Items.Block.*;
+import modele.Items.Craft.*;
 
 
 public class InventaireController {
@@ -172,6 +173,18 @@ public class InventaireController {
 	            return new Image("file:../Sprites/Item/ItemBlock/Pierre.png");
 	        if (item instanceof ItemSable)
 	            return new Image("file:../Sprites/Item/ItemBlock/Sable.png");
+	        if (item instanceof ItemBarreMetal)
+	            return new Image("file:../Sprites/Item/ItemCraft/BarreMetal.png");
+	        if (item instanceof ItemFil)
+	            return new Image("file:../Sprites/Item/ItemCraft/Fil.png");
+	        if (item instanceof ItemHache)
+	            return new Image("file:../Sprites/Item/ItemCraft/Hache.png");
+	        if (item instanceof ItemLancePierre)
+	            return new Image("file:../Sprites/Item/ItemCraft/LancePierre.png");
+	        if (item instanceof ItemLingotFer)
+	            return new Image("file:../Sprites/Item/ItemCraft/LingotFer.png");
+	        if (item instanceof ItemPioche)
+	            return new Image("file:../Sprites/Item/ItemCraft/Pioche.png");
 	        else
 	            return new Image("file:../Sprites/Item/ItemVide.png");
 	    }
