@@ -6,6 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import modele.Monde;
+import modele.TableCraft;
 
 public class HUDController {
 	
@@ -14,9 +15,11 @@ public class HUDController {
 	private InventaireController iv;
 	private TableCraftController tc;
 	
-	public HUDController(Pane hud, Monde game, HBox inventaire,GridPane tableCraft) {
-		iv = new InventaireController(inventaire, game);
-		tc = new TableCraftController(tableCraft);
+
+	public HUDController(Pane hud, Monde game, HBox inventaire, HBox equipements,GridPane tableCraftV) {
+		TableCraft tableCraftM= new TableCraft();
+		iv = new InventaireController(inventaire, equipements, game,tableCraftM);
+		tc = new TableCraftController(iv,tableCraftV,tableCraftM);
 		this.game = game;
 		this.hud = hud;
 	}
@@ -40,6 +43,7 @@ public class HUDController {
         	hud.setTranslateY(this.game.getJoueur().getYProperty().get()-(height-10)/2);
 
 	}
+	
 	
 	
 	

@@ -4,7 +4,7 @@ import modele.Monde;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public abstract class Item {
+public abstract class Item  {
 
 	private int id;
 	private IntegerProperty quantitee;
@@ -36,5 +36,6 @@ public abstract class Item {
 	}
 	
 	public abstract void utiliser(Monde monde);
+	
 	
 }
