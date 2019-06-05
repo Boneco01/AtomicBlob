@@ -29,6 +29,7 @@ public class Terrain {
 		this.cheminMap = cheminMap;
 		this.map = FXCollections.observableList(new ArrayList<Block>());
 		this.hauteurMap = remplirMap();
+		
 	}
 
 	private int remplirMap() {
@@ -45,6 +46,7 @@ public class Terrain {
 					this.map.add(blockDe(tableauChaine[i].charAt(0)));
 				}
 				hauteur++;
+				
 			}
 
 			fr.close();
@@ -96,6 +98,16 @@ public class Terrain {
 
 	public void remplacerBlock(Block blockQuiRemplace, int x, int y) {
 		this.map.set((largeurMap() * y) + x, blockQuiRemplace);
+		if (y>0 && blockQuiRemplace instanceof Terre && blockParCord(x, y-1) instanceof Air) {
+			this.map.set((largeurMap() * y) + x, new Herbe());
+		}
+		if (y<this.hauteurMap && estAir(blockQuiRemplace) && blockParCord(x, y+1) instanceof Terre) {
+			this.map.set((largeurMap() * y) + x+largeurMap(), new Herbe());
+		}
+		
+		if (y<this.hauteurMap && !estAir(blockQuiRemplace) && blockParCord(x, y+1) instanceof Herbe) {
+			this.map.set((largeurMap() * y) + x+largeurMap(), new Terre());
+		}
 	}
 
 	public int hauteurMap() {
@@ -106,7 +118,7 @@ public class Terrain {
 		return this.map;
 	}
 
-	private Block blockDe(char a) {
+	public Block blockDe(char a) {
 		switch (a) {
 		case 'T':
 			return new Terre();
@@ -127,5 +139,12 @@ public class Terrain {
 		default:
 			return new Pierre();
 		}
+	}
+	
+	public boolean estAir(Block block) {
+		if (block instanceof Air) {
+			return true;
+		}
+		return false;
 	}
 }

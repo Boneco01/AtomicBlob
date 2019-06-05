@@ -1,10 +1,5 @@
 package controleur;
 
-import java.util.ArrayList;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -27,8 +22,7 @@ import modele.TableCraft;
 import modele.Items.Item;
 import modele.Items.ItemVide;
 import modele.Items.Block.*;
-import modele.Items.Craft.ItemLingotMetal;
-import modele.Items.Craft.ItemPioche;
+import modele.Items.Craft.*;
 
 public class InventaireController {
 
@@ -53,7 +47,6 @@ public class InventaireController {
 		for (int i = 0; i < this.invJoueur.size(); i++) {
 			int index = i;
 			Pane p = (Pane) this.inventaire.getChildren().get(i);
-
 			p.setOnDragDetected(event -> gererDragOn(event, p)); // DRAG'N'DROP Pour le craft
 			p.setOnDragOver(event -> gererDragUp(event, p));
 			p.setOnDragDropped(event -> gererRecup(event, p));
@@ -159,26 +152,35 @@ public class InventaireController {
 					paneColor.setStyle("-fx-background-color: grey;");
 				}
 			}
-
 			if (p.getStyle().equals("-fx-background-color: red;")) {
 				p.setStyle("-fx-background-color: grey;");
 				this.game.getJoueur().equipeDroit(new ItemVide());
 				changerImageEquipement('d');
-			} else {
-				if (p.getStyle().equals("-fx-background-color: blue;")) {
-					this.game.getJoueur().equipeGauche(new ItemVide());
-					changerImageEquipement('g');
-				}
-				p.setStyle("-fx-background-color: red;");
-				this.game.getJoueur().equipeDroit(itemDe(index));
-				changerImageEquipement('d');
+			}
+			else {
+			if (p.getStyle().equals("-fx-background-color: blue;")) {
+				this.game.getJoueur().equipeGauche(new ItemVide());
+				changerImageEquipement('g');
+			}
+			
+			p.setStyle("-fx-background-color: red;");
+			this.game.getJoueur().equipeDroit(itemDe(index));
+			changerImageEquipement('d');
+		}
+		}
+	}
+
+	public void miseAJourCouleurs() {
+		for (int i = 0; i < this.invJoueur.size(); i++) {
+			Pane p = (Pane) this.inventaire.getChildren().get(i);
+			if (this.invJoueur.get(i).getId() == 0) {
+				p.setStyle("-fx-background-color: grey;");
 			}
 		}
-
 	}
 
 	public void ecouterInventaire() {
-		this.invJoueur.addListener(new ListChangeListener<Item>() {
+		 this.invJoueur.addListener(new ListChangeListener<Item>() {
 
 			@Override
 			public void onChanged(Change<? extends Item> c) {
@@ -191,6 +193,49 @@ public class InventaireController {
 				}
 			}
 		});
+	}
+
+	public Item copy(Item i) {
+		if(i.getId()==0) 
+			return new ItemVide();	
+		else if(i.getId()==1)
+			return new ItemTerre();
+		else if(i.getId()==2)
+			return new ItemMineraiFer();
+		else if(i.getId()==3)
+			return new ItemVide();
+		else if(i.getId()==4)
+			return new ItemBois();
+		else if(i.getId()==5)
+			return new ItemPierre();
+		else if(i.getId()==6)
+			return new ItemMineraiRadium();
+		else if(i.getId()==7)
+			return new ItemSable();
+		else if(i.getId()==8)
+			return new ItemVide();
+		else if(i.getId()==9)
+			return new ItemVide();
+		else if(i.getId()==10)
+			return new ItemLingotFer();
+		//else if(i.getId()==11)
+		//	return new ItemLancePierre();
+		else if(i.getId()==12)
+			return new ItemPioche();
+		//else if(i.getId()==13)
+		//	return new ItemHache();
+		//else if(i.getId()==14)
+		//	return new ItemCoffre();
+		//else if(i.getId()==15)
+		//	return new ItemFil();
+		//else if(i.getId()==16)
+		//	return new ItemFil();
+		return new ItemVide();
+		
+		
+		
+		
+		
 	}
 
 	public void changerImageEquipement(char emplacement) {
@@ -221,63 +266,32 @@ public class InventaireController {
 	}
 
 	public Image imageDe(Item item) {
-		if (item instanceof ItemTerre)
-			return new Image("file:../Sprites/Item/ItemBlock/Terre.png");
-		if (item instanceof ItemBois)
-			return new Image("file:../Sprites/Item/ItemBlock/Bois.png");
-		if (item instanceof ItemMineraiFer)
-			return new Image("file:../Sprites/Item/ItemBlock/MineraiFer.png");
-		if (item instanceof ItemMineraiRadium)
-			return new Image("file:../Sprites/Item/ItemBlock/MineraiRadium.png");
-		if (item instanceof ItemPierre)
-			return new Image("file:../Sprites/Item/ItemBlock/Pierre.png");
-		if (item instanceof ItemSable)
-			return new Image("file:../Sprites/Item/ItemBlock/Sable.png");
-		else
-			return new Image("file:../Sprites/Item/ItemVide.png");
-	}
-
-	public Item copy(Item i) {
-		if(i.getId()==0) 
-			return new ItemVide();	
-		else if(i.getId()==1)
-			return new ItemTerre();
-		else if(i.getId()==2)
-			return new ItemMineraiFer();
-		else if(i.getId()==3)
-			return new ItemVide();
-		else if(i.getId()==4)
-			return new ItemBois();
-		else if(i.getId()==5)
-			return new ItemPierre();
-		else if(i.getId()==6)
-			return new ItemMineraiRadium();
-		else if(i.getId()==7)
-			return new ItemSable();
-		else if(i.getId()==8)
-			return new ItemVide();
-		else if(i.getId()==9)
-			return new ItemVide();
-		else if(i.getId()==10)
-			return new ItemLingotMetal();
-		//else if(i.getId()==11)
-		//	return new ItemLancePierre();
-		else if(i.getId()==12)
-			return new ItemPioche();
-		//else if(i.getId()==13)
-		//	return new ItemHache();
-		//else if(i.getId()==14)
-		//	return new ItemCoffre();
-		//else if(i.getId()==15)
-		//	return new ItemFil();
-		//else if(i.getId()==16)
-		//	return new ItemFil();
-		return new ItemVide();
-		
-		
-		
-		
-		
-	}
+	        if (item instanceof ItemTerre)
+	            return new Image("file:../Sprites/Item/ItemBlock/Terre.png");
+	        if (item instanceof ItemBois)
+	            return new Image("file:../Sprites/Item/ItemBlock/Bois.png");
+	        if (item instanceof ItemMineraiFer)
+	            return new Image("file:../Sprites/Item/ItemBlock/MineraiFer.png");
+	        if (item instanceof ItemMineraiRadium)
+	            return new Image("file:../Sprites/Item/ItemBlock/MineraiRadium.png");
+	        if (item instanceof ItemPierre)
+	            return new Image("file:../Sprites/Item/ItemBlock/Pierre.png");
+	        if (item instanceof ItemSable)
+	            return new Image("file:../Sprites/Item/ItemBlock/Sable.png");
+	        if (item instanceof ItemBarreMetal)
+	            return new Image("file:../Sprites/Item/ItemCraft/BarreMetal.png");
+	        if (item instanceof ItemFil)
+	            return new Image("file:../Sprites/Item/ItemCraft/Fil.png");
+	        if (item instanceof ItemHache)
+	            return new Image("file:../Sprites/Item/ItemCraft/Hache.png");
+	        if (item instanceof ItemLancePierre)
+	            return new Image("file:../Sprites/Item/ItemCraft/LancePierre.png");
+	        if (item instanceof ItemLingotFer)
+	            return new Image("file:../Sprites/Item/ItemCraft/LingotFer.png");
+	        if (item instanceof ItemPioche)
+	            return new Image("file:../Sprites/Item/ItemCraft/Pioche.png");
+	        else
+	            return new Image("file:../Sprites/Item/ItemVide.png");
+	    }
 
 }
