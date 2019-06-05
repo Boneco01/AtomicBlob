@@ -167,7 +167,7 @@
                            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
                            <Label alignment="CENTER" layoutX="57.0" layoutY="55.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
                               <font>
-                                 <Font size="15.0" fx:id="x21" />
+                                 <Font size="15.0"/>
                               </font>
                            </Label>
                         </children>
@@ -177,7 +177,7 @@
                            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
                            <Label alignment="CENTER" layoutX="55.0" layoutY="54.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
                               <font>
-                                 <Font size="15.0" fx:id="x2111111" />
+                                 <Font size="15.0" />
                               </font>
                            </Label>
                         </children>
@@ -187,7 +187,7 @@
                            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
                            <Label alignment="CENTER" layoutX="55.0" layoutY="54.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
                               <font>
-                                 <Font size="15.0" fx:id="x2111112" />
+                                 <Font size="15.0" />
                               </font>
                            </Label>
                         </children>
@@ -197,7 +197,7 @@
                            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
                            <Label alignment="CENTER" layoutX="55.0" layoutY="55.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
                               <font>
-                                 <Font size="15.0" fx:id="x211" />
+                                 <Font size="15.0" />
                               </font>
                            </Label>
                         </children>
@@ -207,7 +207,7 @@
                            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
                            <Label alignment="CENTER" layoutX="55.0" layoutY="55.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
                               <font>
-                                 <Font size="15.0" fx:id="x21111" />
+                                 <Font size="15.0" />
                               </font>
                            </Label>
                         </children>
@@ -217,7 +217,7 @@
                            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
                            <Label alignment="CENTER" layoutX="55.0" layoutY="55.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
                               <font>
-                                 <Font size="15.0" fx:id="x2111113" />
+                                 <Font size="15.0" />
                               </font>
                            </Label>
                         </children>
@@ -227,7 +227,7 @@
                            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
                            <Label alignment="CENTER" layoutX="55.0" layoutY="54.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
                               <font>
-                                 <Font size="15.0" fx:id="x2111" />
+                                 <Font size="15.0" />
                               </font>
                            </Label>
                         </children>
@@ -237,7 +237,7 @@
                            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
                            <Label alignment="CENTER" layoutX="55.0" layoutY="54.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
                               <font>
-                                 <Font size="15.0" fx:id="x211111" />
+                                 <Font size="15.0" />
                               </font>
                            </Label>
                         </children>
@@ -247,7 +247,7 @@
                            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
                            <Label alignment="CENTER" layoutX="55.0" layoutY="55.0" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: white;" text="0">
                               <font>
-                                 <Font size="15.0" fx:id="x2111114" />
+                                 <Font size="15.0" />
                               </font>
                            </Label>
                         </children>

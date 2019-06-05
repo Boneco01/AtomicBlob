@@ -38,7 +38,7 @@ public class TableCraftController {
 			v.setOnDragDetected(event->inv.gererDragOn(event, p)); // DRAG'N'DROP Pour le craft
 			p.setOnDragOver(event->inv.gererDragUp(event, p));
 			v.setOnDragDropped(event->inv.gererRecup(event, p));
-			v.setOnMousePressed(event->inv.gererClic(event, p, index));
+			
      		changerImageTableCraft(i);
 		 }
 		 //tcv.setOnMousePressed(event->gererClic(event, tcv));
