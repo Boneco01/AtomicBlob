@@ -2,13 +2,11 @@ package controleur;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseButton;
@@ -16,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Paint;
 import modele.Monde;
 import modele.TableCraft;
 import modele.Items.Item;
@@ -69,7 +66,6 @@ public class InventaireController {
 	}
 
 	public void gererDragUp(DragEvent e, Pane p) {
-		Dragboard db = e.getDragboard();
 		if (e.getTarget() != null)
 			e.acceptTransferModes(TransferMode.COPY);
 		e.consume();
@@ -221,23 +217,19 @@ public class InventaireController {
 			return new ItemVide();
 		else if(i.getId()==10)
 			return new ItemLingotFer();
-		//else if(i.getId()==11)
-		//	return new ItemLancePierre();
+		else if(i.getId()==11)
+			return new ItemLancePierre();
 		else if(i.getId()==12)
 			return new ItemPioche();
-		//else if(i.getId()==13)
-		//	return new ItemHache();
+		else if(i.getId()==13)
+			return new ItemHache();
 		//else if(i.getId()==14)
 		//	return new ItemCoffre();
-		//else if(i.getId()==15)
-		//	return new ItemFil();
-		//else if(i.getId()==16)
-		//	return new ItemFil();
+		else if(i.getId()==15)
+			return new ItemFil();
+		else if(i.getId()==16)
+			return new ItemFil();
 		return new ItemVide();
-		
-		
-		
-		
 		
 	}
 
