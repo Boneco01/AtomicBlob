@@ -185,15 +185,16 @@ public class InventaireController {
 			@Override
 			public void onChanged(Change<? extends Item> c) {
 				while (c.next()) {
-					if (c.wasAdded()) {
-						for (int i = 0; i < invJoueur.size(); i++) {
-							changerImageInventaire(i);
-						}
-					}
-				}
+                  if (c.wasReplaced()) {
+               	changerImageInventaire(c.getFrom());
+                  	miseAJourCouleurs();
+                  	changerImageEquipement('g');
+              		changerImageEquipement('d');
+                  }
+              }
 			}
-		});
-	}
+	    });
+	 }
 
 	public Item copy(Item i) {
 		if(i.getId()==0) 
@@ -293,5 +294,5 @@ public class InventaireController {
 	        else
 	            return new Image("file:../Sprites/Item/ItemVide.png");
 	    }
-
+	
 }
