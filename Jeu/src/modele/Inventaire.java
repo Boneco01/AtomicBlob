@@ -126,6 +126,7 @@ public class Inventaire {
 		for(int i=0;i<this.inventaire.size();i++) {
 			if(this.inventaire.get(i).getQuantitee()<=0) {
 				this.inventaire.set(i, new ItemVide());
+				this.nbItems--;
 				return true;
 			}
 		}

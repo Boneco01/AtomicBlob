@@ -22,7 +22,7 @@
 			</Pane>
 			<Pane fx:id="hud" prefHeight="1080.0" prefWidth="1920.0">
 				<children>
-					<HBox fx:id="inventaire" prefHeight="66.0" prefWidth="666.0" style="-fx-background-color: grey;">
+					<HBox fx:id="inventaire" prefHeight="66.0" prefWidth="659.0" style="-fx-background-color: grey;">
 						<children>
 							<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
 								<children>
@@ -128,7 +128,7 @@
                      </Pane>
 						</children>
 					</HBox>
-					<HBox fx:id="equipements" layoutX="696.0" prefHeight="66.0" prefWidth="130.0" style="-fx-background-color: grey;">
+					<HBox fx:id="equipements" layoutX="690.0" prefHeight="66.0" prefWidth="130.0" style="-fx-background-color: grey;">
                   <children>
                      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
                         <children>
