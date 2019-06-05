@@ -17,8 +17,8 @@ public class ItemVide extends Item {
 	public void utiliser(Monde monde) {
 		int xPositionJoueur=monde.getJoueur().getXProperty().getValue();
 		int yPositionJoueur=monde.getJoueur().getYProperty().getValue();
-		int xCible=monde.getJoueur().getXCible().getValue();
-		int yCible=monde.getJoueur().getYCible().getValue();
+		int xCible=monde.getJoueur().getXCible();
+		int yCible=monde.getJoueur().getYCible();
 		if(Portee.estAPortee(1,xPositionJoueur,yPositionJoueur, xCible, yCible)) {
 			monde.getMap().blockParCord(xCible, yCible).seDetruire(this.getDegatsBlocks());
 			if (monde.getMap().blockParCord(xCible, yCible).getResistanceRestante()<=0) {
