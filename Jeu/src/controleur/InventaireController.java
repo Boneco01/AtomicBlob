@@ -2,13 +2,11 @@ package controleur;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseButton;
@@ -16,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Paint;
 import modele.Monde;
 import modele.TableCraft;
 import modele.Items.Item;
@@ -69,7 +66,6 @@ public class InventaireController {
 	}
 
 	public void gererDragUp(DragEvent e, Pane p) {
-		Dragboard db = e.getDragboard();
 		if (e.getTarget() != null)
 			e.acceptTransferModes(TransferMode.COPY);
 		e.consume();
@@ -187,15 +183,16 @@ public class InventaireController {
 			@Override
 			public void onChanged(Change<? extends Item> c) {
 				while (c.next()) {
-					if (c.wasAdded()) {
-						for (int i = 0; i < invJoueur.size(); i++) {
-							changerImageInventaire(i);
-						}
-					}
-				}
+                  if (c.wasReplaced()) {
+               	changerImageInventaire(c.getFrom());
+                  	miseAJourCouleurs();
+                  	changerImageEquipement('g');
+              		changerImageEquipement('d');
+                  }
+              }
 			}
-		});
-	}
+	    });
+	 }
 
 	public Item copy(Item i) {
 		if(i.getId()==0) 
@@ -233,10 +230,6 @@ public class InventaireController {
 		else if(i.getId()==16)
 			return new ItemBarreMetal();
 		return new ItemVide();
-		
-		
-		
-		
 		
 	}
 
@@ -295,5 +288,5 @@ public class InventaireController {
 	        else
 	            return new Image("file:../Sprites/Item/ItemVide.png");
 	    }
-
+	
 }
