@@ -11,7 +11,7 @@ public abstract class ItemBlock extends Item {
 	private char blockCorrespondant;
 	
 	public ItemBlock(int id, char blockCorrespondant) {
-		super(id, 64, 2, 0);
+		super(id, 64, 2);
 		this.blockCorrespondant = blockCorrespondant;
 	}
 	

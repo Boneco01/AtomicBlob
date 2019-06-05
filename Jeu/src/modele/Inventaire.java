@@ -14,6 +14,12 @@ import modele.Blocks.Sable;
 import modele.Blocks.Terre;
 import modele.Items.Item;
 import modele.Items.Block.*;
+import modele.Items.Craft.ItemBarreMetal;
+import modele.Items.Craft.ItemFil;
+import modele.Items.Craft.ItemHache;
+import modele.Items.Craft.ItemLancePierre;
+import modele.Items.Craft.ItemLingotFer;
+import modele.Items.Craft.ItemPioche;
 import modele.Items.ItemVide;
 
 public class Inventaire {
@@ -53,6 +59,12 @@ public class Inventaire {
 		for(int i=0; i<this.limiteInventaire;i++) {
 			this.inventaire.add(new ItemVide());
 		}
+		this.addItem(new ItemBarreMetal());
+		this.addItem(new ItemFil());
+		this.addItem(new ItemHache());
+		this.addItem(new ItemLancePierre());
+		this.addItem(new ItemLingotFer());
+		this.addItem(new ItemPioche());
 	}
 	
 	public boolean addItemBlock(Block b) {
@@ -114,6 +126,7 @@ public class Inventaire {
 		for(int i=0;i<this.inventaire.size();i++) {
 			if(this.inventaire.get(i).getQuantitee()<=0) {
 				this.inventaire.set(i, new ItemVide());
+				this.nbItems--;
 				return true;
 			}
 		}

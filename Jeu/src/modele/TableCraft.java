@@ -43,7 +43,7 @@ public class TableCraft {
 
 	public ArrayList<Item> tableVide() {
 		ArrayList<Item> table = new ArrayList<Item>();
-	/*	table.add(new ItemVide());// 1
+		table.add(new ItemVide());// 1
 		table.add(new ItemVide());// 2
 		table.add(new ItemVide());// 3
 		table.add(new ItemVide());// 4
@@ -51,7 +51,7 @@ public class TableCraft {
 		table.add(new ItemVide());// 6
 		table.add(new ItemVide());// 7
 		table.add(new ItemVide());// 8
-		table.add(new ItemVide());// 9*/
+		table.add(new ItemVide());// 9
 		return table;
 	}
 
