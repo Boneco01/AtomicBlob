@@ -140,9 +140,11 @@ public class InventaireController {
 					this.game.getJoueur().equipeDroit(new ItemVide());
 					changerImageEquipement('d');
 				}
+				
 				p.setStyle("-fx-background-color: blue;");
 				this.game.getJoueur().equipeGauche(itemDe(index));
 				changerImageEquipement('g');
+				
 			}
 		} else {
 
