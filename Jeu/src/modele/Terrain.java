@@ -9,15 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import modele.Blocks.Air;
-import modele.Blocks.Block;
-import modele.Blocks.Bois;
-import modele.Blocks.Herbe;
-import modele.Blocks.MineraiFer;
-import modele.Blocks.MineraiRadium;
-import modele.Blocks.Pierre;
-import modele.Blocks.Sable;
-import modele.Blocks.Terre;
+import modele.Blocks.*;
 
 public class Terrain {
 
@@ -136,6 +128,8 @@ public class Terrain {
 			return new MineraiFer();
 		case 'R':
 			return new MineraiRadium();
+		case 'D':
+			return new BlockDeDechets();
 		default:
 			return new Pierre();
 		}

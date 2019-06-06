@@ -4,27 +4,15 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import modele.Blocks.Block;
-import modele.Blocks.Bois;
-import modele.Blocks.Herbe;
-import modele.Blocks.MineraiFer;
-import modele.Blocks.MineraiRadium;
-import modele.Blocks.Pierre;
-import modele.Blocks.Sable;
-import modele.Blocks.Terre;
-import modele.Items.Item;
+import modele.Blocks.*;
+import modele.Items.*;
 import modele.Items.Block.*;
-import modele.Items.Craft.ItemBarreMetal;
-import modele.Items.Craft.ItemFil;
-import modele.Items.Craft.ItemHache;
-import modele.Items.Craft.ItemLancePierre;
-import modele.Items.Craft.ItemLingotFer;
-import modele.Items.Craft.ItemPioche;
-import modele.Items.ItemVide;
+import modele.Items.Craft.*;
 
 public class Inventaire {
 
 	private ObservableList<Item> inventaire;
+	private Joueur joueur;
 	private int nbItems;
 	private int limiteInventaire;
 	private Item equipementDroite;
@@ -32,6 +20,7 @@ public class Inventaire {
 	
 	public Inventaire(Joueur joueur) {
 		this.inventaire = FXCollections.observableList(new ArrayList<Item>());
+		this.joueur = joueur;
 		this.nbItems = 0;
 		this.limiteInventaire = 10;
 		this.equipementDroite = new ItemVide();
@@ -88,6 +77,18 @@ public class Inventaire {
         	return new ItemPierre();
         } else if (b instanceof Sable) {
         	return new ItemSable();
+        } else if (b instanceof BlockDeDechets) {
+        	int random = (int)(Math.random()*10);
+    		if(random < 7) {
+    			return new ItemFil();
+    		} else if (random < 9) {
+    			return new ItemLingotFer();
+    		} else {
+    			return new ItemBarreMetal();
+    		}
+        } else if (b instanceof BidonRadioactif) {
+        	//Donner de la vie
+            return new ItemVide();
         } else {
             return new ItemVide();
 		}

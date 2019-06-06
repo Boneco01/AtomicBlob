@@ -8,6 +8,7 @@ import javafx.scene.layout.TilePane;
 import modele.Monde;
 import modele.Blocks.Air;
 import modele.Blocks.Block;
+import modele.Blocks.BlockDeDechets;
 import modele.Blocks.Bois;
 import modele.Blocks.Herbe;
 import modele.Blocks.MineraiFer;
@@ -56,6 +57,8 @@ public class TerrainController {
         	return new ImageView(new Image("file:../Sprites/Block/MineraiRadium.png"));
         else if (b instanceof Bois)
         	return new ImageView(new Image("file:../Sprites/Block/Bois.png"));
+        else if (b instanceof BlockDeDechets)
+        	return new ImageView(new Image("file:../Sprites/Block/BlockDeDechets.png"));
         else
             return new ImageView(new Image("file:../Sprites/Block/Pierre.png"));
     }
