@@ -7,6 +7,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -23,6 +24,9 @@ public class GameController implements Initializable{
 	private HUDController hudc;
 	private InventaireController iv;
 	private Monde game;
+	
+	@FXML
+	private Button fabriquer;
 	
 	@FXML
 	private GridPane tableCraft;
@@ -82,7 +86,7 @@ public class GameController implements Initializable{
         this.jc = new JoueurController(this.coucheJoueur, this.game);
         this.ec = new EnnemisController(this.coucheJoueur, this.game); 
         this.vc = new VisionController(this.hud, this.vision, this.coucheJoueur, this.game);
-        this.hudc = new HUDController(this.hud, this.game, this.inventaire, this.equipements, this.vie, this.tableCraft);
+        this.hudc = new HUDController(this.hud, this.game, this.inventaire, this.equipements, this.vie, this.tableCraft, this.fabriquer);
         initAnimation();
 	}
     

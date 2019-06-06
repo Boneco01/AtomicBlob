@@ -5,20 +5,19 @@ import javafx.collections.ObservableList;
 import modele.Items.*;
 import modele.Items.Block.ItemBois;
 import modele.Items.Block.ItemPierre;
-import modele.Items.Craft.ItemBarreMetal;
+import modele.Items.Craft.ItemHache;
 import modele.Items.Craft.ItemLingotFer;
 import modele.Items.Craft.ItemPioche;
 
-public class CraftPioche extends Craft {
+public class CraftHache extends Craft {
 	private ObservableList<Item> craft;
-	
 	@Override
 	public ArrayList<Item> definirComsomation(){
 		ArrayList<Item> a=new ArrayList<>();
 		a.add(new ItemPierre());
 		a.add(new ItemPierre());
-		a.add(new ItemPierre());
 		a.add(new ItemVide());
+		a.add(new ItemPierre());
 		a.add(new ItemBois());
 		a.add(new ItemVide());
 		a.add(new ItemVide());
@@ -29,6 +28,6 @@ public class CraftPioche extends Craft {
 	@Override
 	public ItemCraft creeItem() {
 		
-		return new ItemPioche();
+		return new ItemHache();
 	}
 }

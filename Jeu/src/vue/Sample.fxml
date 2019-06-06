@@ -22,6 +22,7 @@
 			</Pane>
 			<Pane fx:id="hud" prefHeight="1080.0" prefWidth="1920.0">
 				<children>
+               <Button fx:id="fabriquer" focusTraversable="false" layoutX="850.0" layoutY="162.0" mnemonicParsing="false" pickOnBounds="false" prefHeight="26.0" prefWidth="158.0" text="Fabriquer" />
 					<HBox fx:id="inventaire" prefHeight="66.0" prefWidth="659.0" style="-fx-background-color: grey;">
 						<children>
 							<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
