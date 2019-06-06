@@ -159,7 +159,7 @@ public class Inventaire {
 	public boolean removeItemCraft(Item item) {
 		if(item.getClass()==new ItemVide().getClass())
 			return true;
-		for (int i = this.inventaire.size()-1; i > 0; i--) {
+		for (int i = this.inventaire.size()-1; i >= 0; i--) {
 			if (this.inventaire.get(i).getClass() == item.getClass()) {
 				this.inventaire.get(i).setQuantitee(this.inventaire.get(i).getQuantitee() - 1);
 			if (this.inventaire.get(i).getQuantitee()==0)
