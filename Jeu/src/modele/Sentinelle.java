@@ -1,6 +1,6 @@
 package modele;
 
-public class Sentinelle extends Personnage{
+public class Sentinelle extends Personnage {
 	
 	private int hauteurSaut;
 	private int vSaut;
@@ -63,7 +63,7 @@ public class Sentinelle extends Personnage{
         else if (!estAGaucheJoueur() && !estADroiteJoueur() ){
         	setGauche(false);
         	setDroite(false);
-        	//this.attaque(joueur);
+        	this.attaque(this.getMonde().getJoueur());
         }
 	}
 	

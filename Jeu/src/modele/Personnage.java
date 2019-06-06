@@ -35,6 +35,10 @@ public abstract class Personnage {
 		this.yCibleProperty=new SimpleIntegerProperty(0);
 	}
 	
+	public void attaque(Personnage cible) {
+		cible.setVie(cible.getVie()-1);
+	}
+	
 	public void goDroite() {
 		this.xProperty.setValue(this.xProperty.getValue()+this.vitesse.getValue());
 	}
