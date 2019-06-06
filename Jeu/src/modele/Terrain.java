@@ -130,6 +130,10 @@ public class Terrain {
 			return new MineraiRadium();
 		case 'D':
 			return new BlockDeDechets();
+		case 'C':
+			return new Coffre();
+		case 'I':
+			return new BidonRadioactif();
 		default:
 			return new Pierre();
 		}

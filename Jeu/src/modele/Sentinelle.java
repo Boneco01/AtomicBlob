@@ -63,6 +63,7 @@ public class Sentinelle extends Personnage{
         else if (!estAGaucheJoueur() && !estADroiteJoueur() ){
         	setGauche(false);
         	setDroite(false);
+        	//this.attaque(joueur);
         }
 	}
 	

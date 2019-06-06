@@ -34,6 +34,9 @@ public class GameController implements Initializable{
 	private HBox equipements;
 	
 	@FXML
+	private HBox vie;
+	
+	@FXML
     private Pane hud;
 	
     @FXML
@@ -79,7 +82,7 @@ public class GameController implements Initializable{
         this.jc = new JoueurController(this.coucheJoueur, this.game);
         this.ec = new EnnemisController(this.coucheJoueur, this.game); 
         this.vc = new VisionController(this.hud, this.vision, this.coucheJoueur, this.game);
-        this.hudc = new HUDController(this.hud, this.game, this.inventaire, this.equipements, this.tableCraft);
+        this.hudc = new HUDController(this.hud, this.game, this.inventaire, this.equipements, this.vie, this.tableCraft);
         initAnimation();
 	}
     

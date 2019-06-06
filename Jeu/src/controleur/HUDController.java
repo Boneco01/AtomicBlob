@@ -14,12 +14,14 @@ public class HUDController {
 	private Monde game;
 	private InventaireController iv;
 	private TableCraftController tc;
+	private VieController vc;
 	
 
-	public HUDController(Pane hud, Monde game, HBox inventaire, HBox equipements,GridPane tableCraftV) {
+	public HUDController(Pane hud, Monde game, HBox inventaire, HBox equipements, HBox vie, GridPane tableCraftV) {
 		TableCraft tableCraftM= new TableCraft();
 		iv = new InventaireController(inventaire, equipements, game,tableCraftM);
 		tc = new TableCraftController(iv,tableCraftV,tableCraftM);
+		this.vc = new VieController(game, vie);
 		this.game = game;
 		this.hud = hud;
 	}

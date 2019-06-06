@@ -184,7 +184,7 @@ public class InventaireController {
 			public void onChanged(Change<? extends Item> c) {
 				while (c.next()) {
                   if (c.wasReplaced()) {
-               	changerImageInventaire(c.getFrom());
+                	changerImageInventaire(c.getFrom());
                   	miseAJourCouleurs();
                   	changerImageEquipement('g');
               		changerImageEquipement('d');

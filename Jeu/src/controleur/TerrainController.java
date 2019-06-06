@@ -6,16 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import modele.Monde;
-import modele.Blocks.Air;
-import modele.Blocks.Block;
-import modele.Blocks.BlockDeDechets;
-import modele.Blocks.Bois;
-import modele.Blocks.Herbe;
-import modele.Blocks.MineraiFer;
-import modele.Blocks.MineraiRadium;
-import modele.Blocks.Pierre;
-import modele.Blocks.Sable;
-import modele.Blocks.Terre;
+import modele.Blocks.*;
 
 public class TerrainController {
 	
@@ -59,6 +50,10 @@ public class TerrainController {
         	return new ImageView(new Image("file:../Sprites/Block/Bois.png"));
         else if (b instanceof BlockDeDechets)
         	return new ImageView(new Image("file:../Sprites/Block/BlockDeDechets.png"));
+        else if (b instanceof Coffre)
+        	return new ImageView(new Image("file:../Sprites/Block/Coffre.png"));
+        else if (b instanceof BidonRadioactif)
+        	return new ImageView(new Image("file:../Sprites/Block/BidonRadioactif.png"));
         else
             return new ImageView(new Image("file:../Sprites/Block/Pierre.png"));
     }

@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class Personnage {
 	private String nom;
-	private int vie;
+	private IntegerProperty vie;
 	private DoubleProperty vitesse; //nb de pixels parcourus en un d�placement ( un tour de jeu ) A utiliser plus tard.
 	private int largeur; //sert � la hitbox du personnage, � choisir en fonction de la largeur du sprite
 	private int hauteur; //sert � la hitbox du personnage, � choisir en fonction du la hauteur du sprite
@@ -22,7 +22,7 @@ public abstract class Personnage {
 	
 	
 	public Personnage (int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
-		this.vie=vie;
+		this.vie = new SimpleIntegerProperty(vie);
 		this.vitesse=new SimpleDoubleProperty(vitesse);
 		this.largeur = largeur;
 		this.hauteur = hauteur;
@@ -56,7 +56,15 @@ public abstract class Personnage {
 	}
 	
 	public int getVie() {
+		return this.vie.getValue();
+	}
+	
+	public IntegerProperty getVieProperty() {
 		return this.vie;
+	}
+	
+	public void setVie(int vie) {
+		this.vie.setValue(vie);
 	}
 	
 	public int getLargeur() {
