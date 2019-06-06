@@ -14,6 +14,10 @@ public abstract class Personnage {
 	private IntegerProperty xProperty;
 	private IntegerProperty yProperty;
 	private Monde monde;
+	private IntegerProperty xCibleProperty;
+	private IntegerProperty yCibleProperty;
+	private boolean droite;
+	private boolean gauche;
 	private BoiteCollision boite;
 	
 	
@@ -27,6 +31,8 @@ public abstract class Personnage {
 		this.yProperty=new SimpleIntegerProperty(y);
 		this.monde=monde;
 		this.boite=new BoiteCollision(this);
+		this.xCibleProperty=new SimpleIntegerProperty(0);
+		this.yCibleProperty=new SimpleIntegerProperty(0);
 	}
 	
 	public void goDroite() {
@@ -87,6 +93,38 @@ public abstract class Personnage {
 	
 	public DoubleProperty getVitesse() {
 		return this.vitesse;
+	}
+	
+	public boolean getGauche() {
+		return this.gauche;
+	}
+	
+	public boolean getDroite() {
+		return this.droite;
+	}
+	
+	public void setGauche(boolean a) {
+		this.gauche=a;
+	}
+	
+	public void setDroite(boolean a) {
+		this.droite=a;
+	}
+	
+	public IntegerProperty getXCibleProperty() {
+		return this.xCibleProperty;
+	}
+	
+	public IntegerProperty getYCibleProperty() {
+		return this.yCibleProperty;
+	}
+	
+	public int getXCible() {
+		return this.xCibleProperty.getValue();
+	}
+	
+	public int getYCible() {
+		return this.yCibleProperty.getValue();
 	}
 	
 	public abstract void agir();

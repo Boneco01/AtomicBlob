@@ -19,6 +19,7 @@ public class GameController implements Initializable{
 
 	private TerrainController tc;
 	private JoueurController jc;
+	private EnnemisController ec;
 	private VisionController vc;
 	private HUDController hudc;
 	private InventaireController iv;
@@ -63,7 +64,9 @@ public class GameController implements Initializable{
                     }
                     
                     this.game.getJoueur().agir();
+                    this.game.getSentinelle().agir();
                     this.jc.getSpriteJoueur().changerSprite(); //TODO faire avec un écouteur
+                    this.ec.getSpriteSentinelle().changerSprite();
                     this.vc.suiviVision();
                     this.hudc.suiviHud();
                     
@@ -78,6 +81,7 @@ public class GameController implements Initializable{
         this.game = new Monde();
         this.tc = new TerrainController(this.terrain, this.game);
         this.jc = new JoueurController(this.coucheJoueur, this.game);
+        this.ec = new EnnemisController(this.coucheJoueur, this.game); 
         this.vc = new VisionController(this.hud, this.vision, this.coucheJoueur, this.game);
         this.hudc = new HUDController(this.hud, this.game, this.inventaire, this.equipements, this.tableCraft, this.fabriquer);
         initAnimation();

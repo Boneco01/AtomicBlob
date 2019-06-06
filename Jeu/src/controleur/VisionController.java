@@ -81,7 +81,7 @@ public class VisionController {
     public void bindSourisJoueur(MouseEvent e) {
     	IntegerProperty xSouris=new SimpleIntegerProperty((int)e.getX()/64);
     	IntegerProperty ySouris=new SimpleIntegerProperty((int)e.getY()/64);;
-		this.game.getJoueur().getXCible().bind(xSouris);
-		this.game.getJoueur().getYCible().bind(ySouris);
+		this.game.getJoueur().getXCibleProperty().bind(xSouris);
+		this.game.getJoueur().getYCibleProperty().bind(ySouris);
     }
 }

@@ -1,7 +1,5 @@
 package modele;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import modele.Blocks.Block;
 import modele.Items.Item;
 
@@ -9,15 +7,11 @@ public class Joueur extends Personnage{
 	
 	private Monde monde;
 	private Inventaire inventaire;
-	private boolean droite;
-	private boolean gauche;
 	private boolean haut;
 	private int hauteurSaut;
 	private int vSaut;
 	private boolean utiliserMainGauche;
 	private boolean utiliserMainDroite;
-	private IntegerProperty xCible;
-	private IntegerProperty yCible;
 	
 	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
 		super(vie, vitesse, largeur, hauteur, nom, x, y,monde);
@@ -27,8 +21,6 @@ public class Joueur extends Personnage{
 		this.vSaut = 3;
 		this.utiliserMainGauche=false;
 		this.utiliserMainDroite=false;	
-		this.xCible=new SimpleIntegerProperty(0);
-		this.yCible=new SimpleIntegerProperty(0);
 	}
 	
 	public void utiliserItemGauche() {
@@ -53,16 +45,8 @@ public class Joueur extends Personnage{
 		}
 	}
 	
-	public void setGauche(boolean estPresse) {
-		this.gauche=estPresse;
-	}
-	
-	public void setDroite(boolean estPresse) {
-		this.droite=estPresse;
-	}
-	
-	public void setHaut(boolean estPresse) {
-		this.haut=estPresse;
+	public void setHaut(boolean a) {
+		this.haut=a;
 	}
 	
 	public void setUtiliserMainGauche(boolean a) {
@@ -81,24 +65,8 @@ public class Joueur extends Personnage{
 		return this.utiliserMainDroite;
 	}
 	
-	public boolean getGauche() {
-		return this.gauche;
-	}
-	
-	public boolean getDroite() {
-		return this.droite;
-	}
-	
 	public boolean getHaut() {
 		return this.haut;
-	}
-	
-	public IntegerProperty getXCible() {
-		return this.xCible;
-	}
-	
-	public IntegerProperty getYCible() {
-		return this.yCible;
 	}
 	
 	public Monde getMonde() {
@@ -119,19 +87,19 @@ public class Joueur extends Personnage{
 	}
 	
 	public void seDeplace() {
-        if (gauche && !this.getBoite().collisionGauche()){
+        if (getGauche() && !this.getBoite().collision(-3,6,-3,getHauteur()-6)){
         	this.goGauche();
         }
           
-        if (droite && !this.getBoite().collisionDroite()){
+        if (getDroite() && !this.getBoite().collision(getLargeur()+3,6,getLargeur()+3,-6)){
         	this.goDroite();
         }
         
-        if (haut && this.getBoite().collisionBas()) {
+        if (haut && this.getBoite().collision(0, getHauteur(), getLargeur(), getHauteur())) {
         	this.hauteurSaut = 12;
         }
         
-        if(this.getBoite().collisionHaut()) {
+        if(this.getBoite().collision(0,-3,getLargeur(),-3)) {
         	this.hauteurSaut = 0;
         }
         
@@ -145,7 +113,7 @@ public class Joueur extends Personnage{
         	this.hauteurSaut--;
         }
         
-        else if (!this.getBoite().collisionBas()) {
+        else if (!this.getBoite().collision(0, getHauteur(), getLargeur(), getHauteur())) {
         	this.tombe();
         }
         
