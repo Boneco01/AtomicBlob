@@ -59,17 +59,37 @@ public class Inventaire {
 		for (int i = 0; i < this.limiteInventaire; i++) {
 			this.inventaire.add(new ItemVide());
 		}
-		this.addItem(new ItemBarreMetal());
-		this.addItem(new ItemFil());
-		this.addItem(new ItemHache());
-		this.addItem(new ItemLancePierre());
-		ItemPierre lf = new ItemPierre();
-		lf.setQuantitee(3);
-		this.addItem(lf);
-		this.addItem(new ItemPioche());
 		ItemBois b = new ItemBois();
-		b.setQuantitee(2);
+		b.setQuantitee(8);
+		ItemFil f = new ItemFil();
+		f.setQuantitee(2);
+		this.addItem(f);
+		ItemPierre p = new ItemPierre();
+		p.setQuantitee(7);
+		this.addItem(p);
+		ItemMineraiFer mf= new ItemMineraiFer();
+		mf.setQuantitee(3);
+		this.addItem(mf);
+		ItemMineraiRadium mr =new ItemMineraiRadium();
+		mr.setQuantitee(3);
+		this.addItem(mr);
+		
+		
+		
+		
 		this.addItem(b);
+	}
+	
+	public void videInventaire(TableCraft tc) {
+		for (int i = 0; i < tc.getTc().size(); i++)
+			this.removeItemCraft(tc.getTc().get(i));
+	}
+	
+	public Inventaire copyInv(Joueur joueur) {
+		Inventaire inv = new Inventaire(joueur);
+		for (int i = 0; i < inventaire.size(); i++)
+			inv.getInventaire().add(this.copy(inventaire.get(i)));
+		return inv;
 	}
 
 	public boolean addItemBlock(Block b) {
@@ -147,7 +167,7 @@ public class Inventaire {
 				this.inventaire.get(i).setQuantitee(this.inventaire.get(i).getQuantitee() - 1);
 			if (this.inventaire.get(i).getQuantitee()==0)
 				this.removeItem();
-				return true;
+			return true;
 			}
 		}
 
@@ -177,6 +197,44 @@ public class Inventaire {
 
 	public int getLimiteInventaire() {
 		return limiteInventaire;
+	}
+	public Item copy(Item i) {
+		if(i.getId()==0) 
+			return new ItemVide();	
+		else if(i.getId()==1)
+			return new ItemTerre();
+		else if(i.getId()==2)
+			return new ItemMineraiFer();
+		else if(i.getId()==3)
+			return new ItemVide();
+		else if(i.getId()==4)
+			return new ItemBois();
+		else if(i.getId()==5)
+			return new ItemPierre();
+		else if(i.getId()==6)
+			return new ItemMineraiRadium();
+		else if(i.getId()==7)
+			return new ItemSable();
+		else if(i.getId()==8)
+			return new ItemVide();
+		else if(i.getId()==9)
+			return new ItemVide();
+		else if(i.getId()==10)
+			return new ItemLingotFer();
+		else if(i.getId()==11)
+			return new ItemLancePierre();
+		else if(i.getId()==12)
+			return new ItemPioche();
+		else if(i.getId()==13)
+			return new ItemHache();
+		//else if(i.getId()==14)
+		//	return new ItemCoffre();
+		else if(i.getId()==15)
+			return new ItemFil();
+		else if(i.getId()==16)
+			return new ItemBarreMetal();
+		return new ItemVide();
+		
 	}
 
 }

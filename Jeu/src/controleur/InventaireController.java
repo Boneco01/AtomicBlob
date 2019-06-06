@@ -79,7 +79,7 @@ public class InventaireController {
 			int indexS = (int) (((Pane) e.getGestureSource()).getLayoutX() / 66);
 			if (quantiteItem(invJoueur.get(indexS).getId(), invJoueur) > quantiteItem(invJoueur.get(indexS).getId(),
 					tc.getTc()))
-				tc.addMateriaux(this.copy(invJoueur.get(indexS)), indexT);
+				tc.addMateriaux(game.getJoueur().getInventaire().copy(invJoueur.get(indexS)), indexT);
 			/*System.out.println("item 1:" + tc.getTc().get(0));
 			System.out.println("item 2:" + tc.getTc().get(1));
 			System.out.println("item 3:" + tc.getTc().get(2));
@@ -190,44 +190,7 @@ public class InventaireController {
 	    });
 	 }
 
-	public Item copy(Item i) {
-		if(i.getId()==0) 
-			return new ItemVide();	
-		else if(i.getId()==1)
-			return new ItemTerre();
-		else if(i.getId()==2)
-			return new ItemMineraiFer();
-		else if(i.getId()==3)
-			return new ItemVide();
-		else if(i.getId()==4)
-			return new ItemBois();
-		else if(i.getId()==5)
-			return new ItemPierre();
-		else if(i.getId()==6)
-			return new ItemMineraiRadium();
-		else if(i.getId()==7)
-			return new ItemSable();
-		else if(i.getId()==8)
-			return new ItemVide();
-		else if(i.getId()==9)
-			return new ItemVide();
-		else if(i.getId()==10)
-			return new ItemLingotFer();
-		else if(i.getId()==11)
-			return new ItemLancePierre();
-		else if(i.getId()==12)
-			return new ItemPioche();
-		else if(i.getId()==13)
-			return new ItemHache();
-		//else if(i.getId()==14)
-		//	return new ItemCoffre();
-		else if(i.getId()==15)
-			return new ItemFil();
-		else if(i.getId()==16)
-			return new ItemBarreMetal();
-		return new ItemVide();
-		
-	}
+	
 
 	public void changerImageEquipement(char emplacement) {
 		if (emplacement == 'g') {

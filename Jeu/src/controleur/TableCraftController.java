@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import modele.Inventaire;
 import modele.TableCraft;
 import modele.Items.Item;
 import modele.Items.ItemVide;
@@ -26,7 +27,7 @@ public class TableCraftController {
 	}
 
 	public void creerTableCraft() {
-		
+
 		for (int i = 0; i < this.tcm.getTc().size(); i++) {
 
 			Pane p = (Pane) this.tcv.getChildren().get(i);
@@ -44,21 +45,19 @@ public class TableCraftController {
 
 	public void lanceFabrique() {
 		
-		if (inv.getGame().getJoueur().getInventaire().getNbItems() < inv.getGame().getJoueur().getInventaire()
-				.getLimiteInventaire())			
-		{
-			if (tcm.aCraft().getClass() != new ItemVide().getClass()) {
+		if (tcm.aCraft().getClass() != new ItemVide().getClass()) {
+			Inventaire i = inv.getGame().getJoueur().getInventaire().copyInv(inv.getGame().getJoueur());
+			i.videInventaire(tcm);
+			if (i.getNbItems() < i.getLimiteInventaire()) {
+				inv.getGame().getJoueur().getInventaire().videInventaire(tcm);
 				inv.getGame().getJoueur().getInventaire().addItem(tcm.aCraft());
-				this.videTableCraft();
 				tcm.setTableVide();
 			}
+
 		}
 	}
 
-	public void videTableCraft() {
-		for (int i = 0; i < tcm.getTc().size(); i++)
-			inv.getGame().getJoueur().getInventaire().removeItemCraft(tcm.getTc().get(i));
-	}
+	
 
 	public void gererClic(MouseEvent e) {
 		int index = ((int) ((e.getSceneX() - 852) / 52)) + (((int) (e.getSceneY() / 52)) * 3);

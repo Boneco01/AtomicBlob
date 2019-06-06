@@ -3,6 +3,7 @@ package modele;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import modele.Combustion.FondableLingotFer;
 import modele.Craft.*;
 import modele.Items.Item;
 import modele.Items.ItemVide;
@@ -10,7 +11,7 @@ import modele.Items.ItemVide;
 public class TableCraft {
 
 	private ObservableList<Item> tc;
-	private ArrayList<Craft> craftable;
+	private ArrayList<Fabrication> craftable;
 
 	public TableCraft() {
 		tc = FXCollections.observableList(tableVide());
@@ -20,6 +21,10 @@ public class TableCraft {
 
 	private void rempliCraft() {
 		craftable.add(new CraftPioche());
+		craftable.add(new CraftHache());
+		craftable.add(new CraftBarreMetal());
+		craftable.add(new CraftLancePierre());
+		craftable.add(new FondableLingotFer());
 	}
 
 	public Item aCraft() {
@@ -40,8 +45,9 @@ public class TableCraft {
 		tc.remove(i);
 		tc.add(i, m);
 	}
+
 	public void setTableVide() {
-		for(int index =0; index<tc.size();)
+		for (int index = 0; index < tc.size();)
 			tc.remove(index);
 		System.out.println(tc.size());
 		tc.add(new ItemVide());// 1
@@ -54,6 +60,7 @@ public class TableCraft {
 		tc.add(new ItemVide());// 8
 		tc.add(new ItemVide());// 9
 	}
+
 	public ArrayList<Item> tableVide() {
 		ArrayList<Item> table = new ArrayList<Item>();
 		table.add(new ItemVide());// 1
@@ -68,13 +75,12 @@ public class TableCraft {
 		return table;
 	}
 
-
-	public ArrayList<Craft> getCraftable() {
+	public ArrayList<Fabrication> getCraftable() {
 		return craftable;
 	}
 
 	public ObservableList<Item> getTc() {
 		return tc;
 	}
-	
+
 }

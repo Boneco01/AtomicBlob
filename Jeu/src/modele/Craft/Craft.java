@@ -2,29 +2,16 @@ package modele.Craft;
 
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
+import modele.Fabrication;
 import modele.Items.Item;
 import modele.Items.ItemCraft;
 
-public abstract class Craft {
-
-	private ArrayList<Item> schema;
-
-	public Craft() {
-		this.schema = definirCraft();
-	}
-
-	public ArrayList<Item> getShema() {
-		return schema;
-	}
-
-	public abstract ArrayList<Item> definirCraft();
-
-	public abstract ItemCraft creeItem();
+public abstract class Craft extends Fabrication{
 
 	public boolean egale(ObservableList<Item> table) {
-		for (int index = 0; index < schema.size(); index++) {
-			if ((table.get(index).getClass() != schema.get(index).getClass())) {
-				System.out.println(table.get(index).getClass() + "=" + schema.get(index).getClass());
+	for (int index = 0; index < super.comsomation.size(); index++) {
+			if ((table.get(index).getClass() != comsomation.get(index).getClass())) {
+				System.out.println(table.get(index).getClass() + "=" + comsomation.get(index).getClass()+"a l'indice "+ index);
 				return false;
 			}
 		}
