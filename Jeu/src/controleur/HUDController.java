@@ -2,6 +2,7 @@ package controleur;
 
 import java.awt.Dimension;
 
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -16,10 +17,10 @@ public class HUDController {
 	private TableCraftController tc;
 	
 
-	public HUDController(Pane hud, Monde game, HBox inventaire, HBox equipements,GridPane tableCraftV) {
+	public HUDController(Pane hud, Monde game, HBox inventaire, HBox equipements,GridPane tableCraftV,Button fabriquer) {
 		TableCraft tableCraftM= new TableCraft();
 		iv = new InventaireController(inventaire, equipements, game,tableCraftM);
-		tc = new TableCraftController(iv,tableCraftV,tableCraftM);
+		tc = new TableCraftController(iv,tableCraftV,tableCraftM, fabriquer);
 		this.game = game;
 		this.hud = hud;
 	}

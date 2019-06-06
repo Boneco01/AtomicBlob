@@ -25,7 +25,7 @@ public class TableCraft {
 	public Item aCraft() {
 		for (int i = 0; i < craftable.size(); i++) {
 			if (craftable.get(i).egale(tc))
-				return craftable.get(i).getItem();
+				return craftable.get(i).creeItem();
 		}
 
 		return new ItemVide();
@@ -40,7 +40,20 @@ public class TableCraft {
 		tc.remove(i);
 		tc.add(i, m);
 	}
-
+	public void setTableVide() {
+		for(int index =0; index<tc.size();)
+			tc.remove(index);
+		System.out.println(tc.size());
+		tc.add(new ItemVide());// 1
+		tc.add(new ItemVide());// 2
+		tc.add(new ItemVide());// 3
+		tc.add(new ItemVide());// 4
+		tc.add(new ItemVide());// 5
+		tc.add(new ItemVide());// 6
+		tc.add(new ItemVide());// 7
+		tc.add(new ItemVide());// 8
+		tc.add(new ItemVide());// 9
+	}
 	public ArrayList<Item> tableVide() {
 		ArrayList<Item> table = new ArrayList<Item>();
 		table.add(new ItemVide());// 1
@@ -63,4 +76,5 @@ public class TableCraft {
 	public ObservableList<Item> getTc() {
 		return tc;
 	}
+	
 }

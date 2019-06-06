@@ -28,7 +28,7 @@ public class InventaireController {
 	private Monde game;
 	private ObservableList<Item> invJoueur;
 	private TableCraft tc;
-
+	
 	public InventaireController(HBox inventaire, HBox equipements, Monde game, TableCraft tc) {
 		this.inventaire = inventaire;
 		this.equipements = equipements;
@@ -75,14 +75,12 @@ public class InventaireController {
 	public void gererRecup(DragEvent e, Pane p) {
 		if (((Pane) e.getGestureSource()).getParent() == inventaire
 				&& ((Pane) e.getGestureTarget()).getParent() != inventaire) {
-			int indexT = ((int) (e.getSceneX() - 1242) / 80) + (((int) (e.getSceneY() / 80)) * 3);
-			int indexS = (int) (((Pane) e.getGestureSource()).getLayoutX() / 100);
+			int indexT = ((int) ((e.getSceneX() - 852) / 52)) + (((int) (e.getSceneY() / 52)) * 3);
+			int indexS = (int) (((Pane) e.getGestureSource()).getLayoutX() / 66);
 			if (quantiteItem(invJoueur.get(indexS).getId(), invJoueur) > quantiteItem(invJoueur.get(indexS).getId(),
 					tc.getTc()))
 				tc.addMateriaux(this.copy(invJoueur.get(indexS)), indexT);
-			System.out.println(quantiteItem(invJoueur.get(indexS).getId(), invJoueur));
-			System.out.println(quantiteItem(invJoueur.get(indexS).getId(), tc.getTc()));
-			System.out.println("item 1:" + tc.getTc().get(0));
+			/*System.out.println("item 1:" + tc.getTc().get(0));
 			System.out.println("item 2:" + tc.getTc().get(1));
 			System.out.println("item 3:" + tc.getTc().get(2));
 			System.out.println("item 4:" + tc.getTc().get(3));
@@ -90,11 +88,9 @@ public class InventaireController {
 			System.out.println("item 6:" + tc.getTc().get(5));
 			System.out.println("item 7:" + tc.getTc().get(6));
 			System.out.println("item 8:" + tc.getTc().get(7));
-			System.out.println("item 9:" + tc.getTc().get(8));
+			System.out.println("item 9:" + tc.getTc().get(8));*/
 
-		} // TODO faire une methode pour trouvé quelle pane c'est et un if gridPane Ou
-			// HBOX
-
+		} 
 	}
 
 	public int quantiteItem(int id, ObservableList<Item> list) {
@@ -288,5 +284,7 @@ public class InventaireController {
 	        else
 	            return new Image("file:../Sprites/Item/ItemVide.png");
 	    }
-	
+	public Monde getGame() {
+		return game;
+	}
 }

@@ -8,27 +8,28 @@ import modele.Items.ItemCraft;
 public abstract class Craft {
 
 	private ArrayList<Item> schema;
-	private ItemCraft cree;
-	
-	public Craft(ItemCraft item) {
-		cree=item;
-		this.schema= definirCraft();
+
+	public Craft() {
+		this.schema = definirCraft();
 	}
-	public ArrayList<Item> getShema(){
+
+	public ArrayList<Item> getShema() {
 		return schema;
 	}
+
 	public abstract ArrayList<Item> definirCraft();
-	
-	public ItemCraft getItem() {
-		return cree;	
-	}
+
+	public abstract ItemCraft creeItem();
+
 	public boolean egale(ObservableList<Item> table) {
-		for(int i=0;i<schema.size();i++)
-			if((table.get(i).getClass()!=schema.get(i).getClass()))
-			return false;
+		for (int index = 0; index < schema.size(); index++) {
+			if ((table.get(index).getClass() != schema.get(index).getClass())) {
+				System.out.println(table.get(index).getClass() + "=" + schema.get(index).getClass());
+				return false;
+			}
+		}
 		return true;
 
 	}
-	
 
 }
