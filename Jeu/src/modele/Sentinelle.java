@@ -12,7 +12,7 @@ public class Sentinelle extends Personnage{
 		
 	}
 	
-	public void bindCibleAuJoueur() {
+	public void bindCibleAuJoueur() { // ici une partie du modele ecoute une autre partie du modele, le bind n'est pas tres plaisant ici, mais vous me l'aviez autorise !
 		this.getXCibleProperty().bind(this.getMonde().getJoueur().getXProperty());
 		this.getYCibleProperty().bind(this.getMonde().getJoueur().getYProperty());
 	}

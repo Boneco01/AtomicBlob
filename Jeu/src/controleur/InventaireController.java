@@ -28,8 +28,10 @@ public class InventaireController {
 	private Monde game;
 	private ObservableList<Item> invJoueur;
 	private TableCraft tc;
+	private HUDController hud;
 	
-	public InventaireController(HBox inventaire, HBox equipements, Monde game, TableCraft tc) {
+	public InventaireController(HUDController HUD,HBox inventaire, HBox equipements, Monde game, TableCraft tc) {
+		hud=HUD;
 		this.inventaire = inventaire;
 		this.equipements = equipements;
 		this.game = game;
@@ -44,61 +46,14 @@ public class InventaireController {
 		for (int i = 0; i < this.invJoueur.size(); i++) {
 			int index = i;
 			Pane p = (Pane) this.inventaire.getChildren().get(i);
-			p.setOnDragDetected(event -> gererDragOn(event, p)); // DRAG'N'DROP Pour le craft
-			p.setOnDragOver(event -> gererDragUp(event, p));
-			p.setOnDragDropped(event -> gererRecup(event, p));
+			p.setOnDragDetected(event -> hud.gererDragOn(event, p)); // DRAG'N'DROP Pour le craft
+			p.setOnDragOver(event -> hud.gererDragUp(event, p));
+			p.setOnDragDropped(event -> hud.gererRecup(event, p));
 			p.setOnMousePressed(event -> gererClic(event, p, index));
 			changerImageInventaire(i);
 		}
 
 		ecouterInventaire();
-
-	}
-
-	public void gererDragOn(MouseEvent e, Pane p) {
-		Dragboard dragBroard = p.startDragAndDrop(TransferMode.ANY);
-		ClipboardContent content = new ClipboardContent();
-		WritableImage capture = p.getChildren().get(0).snapshot(null, null);
-		content.putImage(capture);
-		dragBroard.setContent(content);
-		e.consume();
-
-	}
-
-	public void gererDragUp(DragEvent e, Pane p) {
-		if (e.getTarget() != null)
-			e.acceptTransferModes(TransferMode.COPY);
-		e.consume();
-
-	}
-
-	public void gererRecup(DragEvent e, Pane p) {
-		if (((Pane) e.getGestureSource()).getParent() == inventaire
-				&& ((Pane) e.getGestureTarget()).getParent() != inventaire) {
-			int indexT = ((int) ((e.getSceneX() - 852) / 52)) + (((int) (e.getSceneY() / 52)) * 3);
-			int indexS = (int) (((Pane) e.getGestureSource()).getLayoutX() / 66);
-			if (quantiteItem(invJoueur.get(indexS).getId(), invJoueur) > quantiteItem(invJoueur.get(indexS).getId(),
-					tc.getTc()))
-				tc.addMateriaux(game.getJoueur().getInventaire().copy(invJoueur.get(indexS)), indexT);
-			/*System.out.println("item 1:" + tc.getTc().get(0));
-			System.out.println("item 2:" + tc.getTc().get(1));
-			System.out.println("item 3:" + tc.getTc().get(2));
-			System.out.println("item 4:" + tc.getTc().get(3));
-			System.out.println("item 5:" + tc.getTc().get(4));
-			System.out.println("item 6:" + tc.getTc().get(5));
-			System.out.println("item 7:" + tc.getTc().get(6));
-			System.out.println("item 8:" + tc.getTc().get(7));
-			System.out.println("item 9:" + tc.getTc().get(8));*/
-
-		} 
-	}
-
-	public int quantiteItem(int id, ObservableList<Item> list) {
-		int quantite = 0;
-		for (int i = 0; i < list.size(); i++)
-			if (list.get(i).getId() == id)
-				quantite += list.get(i).getQuantitee();
-		return quantite;
 
 	}
 
@@ -247,7 +202,11 @@ public class InventaireController {
 	        else
 	            return new Image("file:../Sprites/Item/ItemVide.png");
 	    }
-	public Monde getGame() {
-		return game;
+	
+	public ObservableList<Item> getInvJoueur() {
+		return invJoueur;
+	}
+	public HBox getInventaire() {
+		return inventaire;
 	}
 }

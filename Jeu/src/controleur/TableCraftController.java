@@ -15,13 +15,13 @@ import modele.Items.ItemVide;
 public class TableCraftController {
 	private TableCraft tcm;
 	private GridPane tcv;
-	private InventaireController inv;
+	private HUDController hud;
 	private Button fabriquer;
 
-	public TableCraftController(InventaireController inventaire, GridPane tableCraft, TableCraft tc, Button fabriquer) {
+	public TableCraftController(HUDController HUD, GridPane tableCraft, TableCraft tc, Button fabriquer) {
 		tcv = tableCraft;
 		tcm = tc;
-		inv = inventaire;
+		hud = HUD;
 		this.fabriquer = fabriquer;
 		creerTableCraft();
 	}
@@ -32,9 +32,9 @@ public class TableCraftController {
 
 			Pane p = (Pane) this.tcv.getChildren().get(i);
 			ImageView v = (ImageView) p.getChildren().get(0);
-			v.setOnDragDetected(event -> inv.gererDragOn(event, p)); // DRAG'N'DROP Pour le craft
-			p.setOnDragOver(event -> inv.gererDragUp(event, p));
-			v.setOnDragDropped(event -> inv.gererRecup(event, p));
+			v.setOnDragDetected(event -> hud.gererDragOn(event, p)); // DRAG'N'DROP Pour le craft
+			p.setOnDragOver(event -> hud.gererDragUp(event, p));
+			v.setOnDragDropped(event -> hud.gererRecup(event, p));
 			p.setOnMousePressed(event -> gererClic(event));
 			fabriquer.setOnAction(event -> lanceFabrique());
 			changerImageTableCraft(i);
@@ -46,11 +46,11 @@ public class TableCraftController {
 	public void lanceFabrique() {
 		
 		if (tcm.aCraft().getClass() != new ItemVide().getClass()) {
-			Inventaire i = inv.getGame().getJoueur().getInventaire().copyInv(inv.getGame().getJoueur());
+			Inventaire i = hud.getGame().getJoueur().getInventaire().copyInv(hud.getGame().getJoueur());
 			i.videInventaire(tcm);
 			if (i.getNbItems() < i.getLimiteInventaire()) {
-				inv.getGame().getJoueur().getInventaire().videInventaire(tcm);
-				inv.getGame().getJoueur().getInventaire().addItem(tcm.aCraft());
+				hud.getGame().getJoueur().getInventaire().videInventaire(tcm);
+				hud.getGame().getJoueur().getInventaire().addItem(tcm.aCraft());
 				tcm.setTableVide();
 			}
 
@@ -84,8 +84,14 @@ public class TableCraftController {
 		Pane p = (Pane) this.tcv.getChildren().get(index);
 		ImageView v = (ImageView) p.getChildren().get(0);
 		tcm.getTc().get(index).setQuantitee(1);
-		Image png = inv.imageDe(tcm.getTc().get(index));
+		Image png = hud.getIv().imageDe(tcm.getTc().get(index));
 		v.setImage(png);
+	}
+	public TableCraft getTcm() {
+		return tcm;
+	}
+	public GridPane getTcv() {
+		return tcv;
 	}
 
 }

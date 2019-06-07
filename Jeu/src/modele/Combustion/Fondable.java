@@ -15,13 +15,17 @@ public abstract class Fondable extends Fabrication {
 		ArrayList<Integer> listI = new ArrayList<>();
 		while (index < super.comsomation.size() && estPresent) {
 			estPresent = false;
-			for (int y = 0; y < table.size(); y++)
+			int y = 0;
+			while( y < table.size()&& !estPresent) {
 				if ((table.get(y).getClass() == comsomation.get(index).getClass())) {
 					estPresent = true;
 					listI.add(y);
 				}
+			 y++;
+			}
 			index++;
 		}
+		
 		for (int i = 0; i < table.size(); i++) {
 			if (estDansTableau(listI, i))
 				System.out.print("");
