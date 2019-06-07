@@ -93,5 +93,4 @@ public class TableCraftController {
 	public GridPane getTcv() {
 		return tcv;
 	}
-
 }
