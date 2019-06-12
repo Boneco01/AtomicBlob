@@ -169,39 +169,38 @@ public class InventaireController {
 		nbItem.textProperty().bind(this.invJoueur.get(index).quantiteeProperty().asString());
 		v.setImage(png);
 	}
+	public Image imageDe(Item item) {
+        if (item instanceof ItemTerre)
+            return new Image("file:../Sprites/Item/ItemBlock/Terre.png");
+        if (item instanceof ItemBois)
+            return new Image("file:../Sprites/Item/ItemBlock/Bois.png");
+        if (item instanceof ItemMineraiFer)
+            return new Image("file:../Sprites/Item/ItemBlock/MineraiFer.png");
+        if (item instanceof ItemMineraiRadium)
+            return new Image("file:../Sprites/Item/ItemBlock/MineraiRadium.png");
+        if (item instanceof ItemPierre)
+            return new Image("file:../Sprites/Item/ItemBlock/Pierre.png");
+        if (item instanceof ItemSable)
+            return new Image("file:../Sprites/Item/ItemBlock/Sable.png");
+        if (item instanceof ItemBarreMetal)
+            return new Image("file:../Sprites/Item/ItemCraft/BarreMetal.png");
+        if (item instanceof ItemFil)
+            return new Image("file:../Sprites/Item/ItemCraft/Fil.png");
+        if (item instanceof ItemHache)
+            return new Image("file:../Sprites/Item/ItemCraft/Hache.png");
+        if (item instanceof ItemLancePierre)
+            return new Image("file:../Sprites/Item/ItemCraft/LancePierre.png");
+        if (item instanceof ItemLingotFer)
+            return new Image("file:../Sprites/Item/ItemCraft/LingotFer.png");
+        if (item instanceof ItemPioche)
+            return new Image("file:../Sprites/Item/ItemCraft/Pioche.png");
+        else
+            return new Image("file:../Sprites/Item/ItemVide.png");
+    }
 
 	public Item itemDe(int index) {
 		return this.invJoueur.get(index);
 	}
-
-	public Image imageDe(Item item) {
-	        if (item instanceof ItemTerre)
-	            return new Image("file:../Sprites/Item/ItemBlock/Terre.png");
-	        if (item instanceof ItemBois)
-	            return new Image("file:../Sprites/Item/ItemBlock/Bois.png");
-	        if (item instanceof ItemMineraiFer)
-	            return new Image("file:../Sprites/Item/ItemBlock/MineraiFer.png");
-	        if (item instanceof ItemMineraiRadium)
-	            return new Image("file:../Sprites/Item/ItemBlock/MineraiRadium.png");
-	        if (item instanceof ItemPierre)
-	            return new Image("file:../Sprites/Item/ItemBlock/Pierre.png");
-	        if (item instanceof ItemSable)
-	            return new Image("file:../Sprites/Item/ItemBlock/Sable.png");
-	        if (item instanceof ItemBarreMetal)
-	            return new Image("file:../Sprites/Item/ItemCraft/BarreMetal.png");
-	        if (item instanceof ItemFil)
-	            return new Image("file:../Sprites/Item/ItemCraft/Fil.png");
-	        if (item instanceof ItemHache)
-	            return new Image("file:../Sprites/Item/ItemCraft/Hache.png");
-	        if (item instanceof ItemLancePierre)
-	            return new Image("file:../Sprites/Item/ItemCraft/LancePierre.png");
-	        if (item instanceof ItemLingotFer)
-	            return new Image("file:../Sprites/Item/ItemCraft/LingotFer.png");
-	        if (item instanceof ItemPioche)
-	            return new Image("file:../Sprites/Item/ItemCraft/Pioche.png");
-	        else
-	            return new Image("file:../Sprites/Item/ItemVide.png");
-	    }
 	
 	public ObservableList<Item> getInvJoueur() {
 		return invJoueur;

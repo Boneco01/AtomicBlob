@@ -13,28 +13,27 @@ public abstract class Fondable extends Fabrication {
 		int index = 0;
 		boolean estPresent = true;
 		ArrayList<Integer> listI = new ArrayList<>();
-		while (index < super.comsomation.size() && estPresent) {
-			estPresent = false;
-			int y = 0;
-			while( y < table.size()&& !estPresent) {
-				if ((table.get(y).getClass() == comsomation.get(index).getClass())) {
-					estPresent = true;
-					listI.add(y);
+			while (index < super.comsomation.size() && estPresent) {
+				estPresent = false;
+				int y = 0;
+				while (y < table.size() && !estPresent) {
+					if ((table.get(y).getClass() == comsomation.get(index).getClass() && !estDansTableau(listI, y))) {
+						estPresent = true;
+						listI.add(y);
+					}
+					y++;
 				}
-			 y++;
+				index++;
 			}
-			index++;
-		}
-		
-		for (int i = 0; i < table.size(); i++) {
+		for(int i = 0;i<table.size();i++){
 			if (estDansTableau(listI, i))
 				System.out.print("");
 			else if (table.get(i).getClass() != new ItemVide().getClass())
 				return false;
-		}
-		if (estPresent)
+		}		
+		if(estPresent)
 			return true;
-		else
+		else 
 			return false;
 	}
 

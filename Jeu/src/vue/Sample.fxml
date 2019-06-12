@@ -241,6 +241,41 @@
                      </Pane>
                   </children>
                </HBox>
+               <HBox fx:id="poubelle" layoutY="83.0" prefHeight="66.0" prefWidth="196.0" style="-fx-background-color: grey;">
+                  <children>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                  </children>
+               </HBox>
+               <Button fx:id="buttonJeter" focusTraversable="false" layoutX="215.0" layoutY="103.0" mnemonicParsing="false" text="&lt;--Jeter ces Items" />
 				</children>
 			</Pane>
 		</Pane>

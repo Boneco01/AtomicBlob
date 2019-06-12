@@ -35,7 +35,7 @@ public class TableCraftController {
 			v.setOnDragDetected(event -> hud.gererDragOn(event, p)); // DRAG'N'DROP Pour le craft
 			p.setOnDragOver(event -> hud.gererDragUp(event, p));
 			v.setOnDragDropped(event -> hud.gererRecup(event, p));
-			p.setOnMousePressed(event -> gererClic(event));
+			//sp.setOnMousePressed(event -> gererClic(event));
 			fabriquer.setOnAction(event -> lanceFabrique());
 			changerImageTableCraft(i);
 		}
