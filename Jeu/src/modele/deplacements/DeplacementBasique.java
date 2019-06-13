@@ -17,13 +17,13 @@ public class DeplacementBasique extends Deplacement{
 		int hauteur=personnage.getHauteur();
 		BoiteCollision boite=personnage.getBoite();
 		
-		if (personnage.estADroiteDe(this.personnageCible) && !boite.collision(-3, 6, -3, hauteur - 6)) {
+		if (personnage.estADroiteCible(this.personnageCible) && !boite.collision(-3, 6, -3, hauteur - 6)) {
 			personnage.goGauche();
 			personnage.setGauche(true);
 			personnage.setDroite(false);
 		}
 
-		if (personnage.estAGaucheDe(this.personnageCible) && !boite.collision(largeur + 3, 6, largeur + 3, hauteur - 6)) {
+		if (personnage.estAGaucheCible(this.personnageCible) && !boite.collision(largeur + 3, 6, largeur + 3, hauteur - 6)) {
 			personnage.goDroite();
 			personnage.setGauche(false);
 			personnage.setDroite(true);
@@ -53,10 +53,12 @@ public class DeplacementBasique extends Deplacement{
 			personnage.tombe();
 		}
 
-		else if (!personnage.estAGaucheDe(this.personnageCible) && !personnage.estADroiteDe(this.personnageCible)) {
+		else if (!personnage.estAGaucheCible(this.personnageCible) && !personnage.estADroiteCible(this.personnageCible)) {
 			personnage.setGauche(false);
 			personnage.setDroite(false);
-			// this.attaque(joueur);
+			if(personnage.getY()<(this.personnageCible.getY()+100) && personnage.getY()>(this.personnageCible.getY()-100)) {
+				personnage.attaque(this.personnageCible, 1);
+			}
 		}
 	}
 }

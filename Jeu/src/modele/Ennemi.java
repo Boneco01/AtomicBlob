@@ -4,8 +4,9 @@ import modele.deplacements.Deplacement;
 
 public abstract class Ennemi extends Personnage{
 
-	public Ennemi(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, int hauteurSaut, int vSaut, Deplacement deplacement, Monde monde) {
-		super(vie, vitesse, largeur, hauteur, nom, x, y, vSaut, deplacement, monde);
+	public Ennemi(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, int vSaut, Deplacement deplacement, Monde monde,int vitesseAttaque) {
+		super(vie, vitesse, largeur, hauteur, nom, x, y, vSaut, deplacement, monde,vitesseAttaque);
+
 	}
 	
 	public void bindCibleAuJoueur() {
@@ -15,6 +16,14 @@ public abstract class Ennemi extends Personnage{
 
 	public abstract void agir();
 
-	public abstract void seDeplace();
-
+	
+	public boolean estAGaucheJoueur() {
+		return this.estAGaucheCible(this.getMonde().getJoueur());
+	}
+	
+	public boolean estADroiteJoueur() {
+		return this.estADroiteCible(this.getMonde().getJoueur());
+	}
+	
+	
 }

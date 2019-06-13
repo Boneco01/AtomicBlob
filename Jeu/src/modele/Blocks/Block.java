@@ -1,4 +1,6 @@
-	package modele.Blocks;
+package modele.Blocks;
+
+import modele.Items.Item;
 
 import javafx.beans.property.IntegerProperty;
 
@@ -17,14 +19,16 @@ public abstract class Block {
 	private boolean collision;
 	private int resistanceTotale;
 	private int resistanceRestante;
+	private Item itemCorrespondant;
 	
-	public Block(char id, boolean collision, int resistanceTotale) {
+	public Block(char id, boolean collision, int resistanceTotale, Item itemCorrespondant) {
 		this.id = id;
 		this.collision = collision;
 		this.resistanceTotale=resistanceTotale;
 		this.resistanceRestante=resistanceTotale;
 		this.visitee=false;
 		this.chemin=false;
+		this.itemCorrespondant = itemCorrespondant;
 	}
 	
 	//Modif --> toString en getId
@@ -110,6 +114,10 @@ public abstract class Block {
 	
 	public Block getParent() {
 		return this.parent;
+	}
+	
+	public Item itemADrop() {
+		return this.itemCorrespondant;
 	}
 	
 }

@@ -12,7 +12,7 @@ public class Joueur extends Personnage{
 	private boolean utiliserMainDroite;
 	
 	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
-		super(vie, vitesse, largeur, hauteur, nom, x, y,3,new DeplacementJoueur(),monde);
+		super(vie, vitesse, largeur, hauteur, nom, x, y,3,new DeplacementJoueur(),monde,10);
 		this.monde = monde;
 		this.inventaire = new Inventaire(this);
 		this.utiliserMainGauche=false;
@@ -71,7 +71,6 @@ public class Joueur extends Personnage{
 		this.getDeplacement().seDeplace(this);
 		utiliserItemGauche();
 		utiliserItemDroite();
-		//annulationDestruction();
 	}
 	
 	public void ramasseBlock(Block b) {

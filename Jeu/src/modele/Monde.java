@@ -1,16 +1,21 @@
 package modele;
 
+import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Monde {
 
 	private Joueur joueur;
-	private Sentinelle sentinelle;
+	private ObservableList<Ennemi> ennemis;
 	private Terrain map;
 	private String cheminMap = "../Map/MapTestModeleV4.csv";
 	
 	public Monde() {
 		this.joueur = new Joueur(10, 3, 44, 26, "Joueur", 300, 100, this);
-		this.sentinelle=new Sentinelle(10, 1, 60, 90, "Sentinelle1", 300, 100, this);
+		this.ennemis = FXCollections.observableList(new ArrayList<Ennemi>());
+		this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 600, 100, this));
 		this.map = new Terrain(this.cheminMap);
 	}
 	
@@ -30,8 +35,16 @@ public class Monde {
 		return this.joueur;
 	}
 	
-	public Sentinelle getSentinelle() { //TODO changer par un ennemi
-		return this.sentinelle;	
+	public ObservableList<Ennemi> getEnnemis() {
+		return this.ennemis;	
+	}
+	
+	public void checkEnnemis() {
+		for(int i=0;i<this.ennemis.size();i++) {
+			if(this.ennemis.get(i).getVie()<=0) {
+				this.ennemis.remove(this.ennemis.get(i));
+			}
+		}
 	}
 	
 	public Terrain getMap() {

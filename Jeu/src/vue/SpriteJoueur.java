@@ -14,7 +14,9 @@ public class SpriteJoueur extends Sprite {
 	public void changerSprite() {
 		char ancienSpriteCode = this.getSpriteCode();
 		
-		if(this.joueur.getDroite()) {
+		if(this.joueur.getVie()==0 ) {
+			this.setSpriteCode('m');
+		} else if(this.joueur.getDroite()) {
 			this.setSpriteCode('d');
 		} else if(this.joueur.getGauche()) {
 			this.setSpriteCode('g');
@@ -23,13 +25,18 @@ public class SpriteJoueur extends Sprite {
 		if(this.getSpriteCode() != ancienSpriteCode) {
 			switch(this.getSpriteCode()) {
 				
-				case 'g' : this.setSprite("file:../Sprites/Joueur/JoueurBase/JoueurBaseLeft.gif");
-				   		   break;
+			case 'm' : this.setSprite("file:../Sprites/Joueur/JoueurDie/JoueurDie.gif");
+	   		   		   break;	
+			
+			case 'g' : this.setSprite("file:../Sprites/Joueur/JoueurBase/JoueurBaseLeft.gif");
+				   	   break;
 						   
 				default : this.setSprite("file:../Sprites/Joueur/JoueurBase/JoueurBaseRight.gif");
 				   		  break;
 			
 			}
+			
+			this.resetTempsAnime();
 		}
 		
 	}
