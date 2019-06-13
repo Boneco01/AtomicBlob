@@ -10,12 +10,14 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import modele.Blocks.*;
+import modele.deplacements.Case;
 
 public class Terrain {
 
 	private String cheminMap;
 	private ObservableList<Block> map;
 	private int hauteurMap;
+	private ArrayList<Block> chemin;
 
 	public Terrain(String cheminMap) {
 		this.cheminMap = cheminMap;
@@ -107,6 +109,40 @@ public class Terrain {
 	}
 
 	public ObservableList<Block> getListMap() {
+		return this.map;
+	}
+	
+	public ArrayList<Block> getVoisins(Block blockCible) {
+		ArrayList<Block> voisins = new ArrayList<Block>();
+
+		for (int x = -1; x <= 1; x++) {
+			for (int y = -1; y <= 1; y++) {
+				if (x == 0 && y == 0)
+					continue;
+
+				int voisinX = blockCible.getX() + x;
+				int voisinY = blockCible.getY() + y;
+
+				if (voisinX >= 0 && voisinX < largeurMap() && voisinY >= 0 && voisinY < hauteurMap()) {
+					voisins.add(blockParCord(voisinX,voisinY));
+					blockParCord(voisinX,voisinY).setVisitee(true);
+				}
+			}
+		}
+
+		return voisins;
+	}
+	
+	
+	public void setChemin(ArrayList<Block> chemin) {
+		this.chemin=chemin;
+	}
+	
+	public ArrayList<Block> getChemin() {
+		return this.chemin;
+	}
+	
+	public ObservableList<Block> getMap() {
 		return this.map;
 	}
 

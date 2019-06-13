@@ -2,23 +2,19 @@ package modele;
 
 import modele.Blocks.Block;
 import modele.Items.Item;
+import modele.deplacements.DeplacementJoueur;
 
 public class Joueur extends Personnage{
 	
 	private Monde monde;
 	private Inventaire inventaire;
-	private boolean haut;
-	private int hauteurSaut;
-	private int vSaut;
 	private boolean utiliserMainGauche;
 	private boolean utiliserMainDroite;
 	
 	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
-		super(vie, vitesse, largeur, hauteur, nom, x, y,monde);
+		super(vie, vitesse, largeur, hauteur, nom, x, y,3,new DeplacementJoueur(),monde,10);
 		this.monde = monde;
 		this.inventaire = new Inventaire(this);
-		this.hauteurSaut = 0;
-		this.vSaut = 3;
 		this.utiliserMainGauche=false;
 		this.utiliserMainDroite=false;	
 	}
@@ -45,10 +41,6 @@ public class Joueur extends Personnage{
 		}
 	}
 	
-	public void setHaut(boolean a) {
-		this.haut=a;
-	}
-	
 	public void setUtiliserMainGauche(boolean a) {
 		this.utiliserMainGauche=a;
 	}
@@ -65,10 +57,6 @@ public class Joueur extends Personnage{
 		return this.utiliserMainDroite;
 	}
 	
-	public boolean getHaut() {
-		return this.haut;
-	}
-	
 	public Monde getMonde() {
 		return this.monde;
 	}
@@ -80,44 +68,9 @@ public class Joueur extends Personnage{
 	@Override
 	public void agir() {
 		
-		seDeplace();
+		this.getDeplacement().seDeplace(this);
 		utiliserItemGauche();
 		utiliserItemDroite();
-		//annulationDestruction();
-	}
-	
-	public void seDeplace() {
-        if (getGauche() && !this.getBoite().collision(-3,6,-3,getHauteur()-6)){
-        	this.goGauche();
-        }
-          
-        if (getDroite() && !this.getBoite().collision(getLargeur()+3,6,getLargeur()+3,-6)){
-        	this.goDroite();
-        }
-        
-        if (haut && this.getBoite().collision(0, getHauteur(), getLargeur(), getHauteur())) {
-        	this.hauteurSaut = 12;
-        }
-        
-        if(this.getBoite().collision(0,-3,getLargeur(),-3)) {
-        	this.hauteurSaut = 0;
-        }
-        
-        if( this.hauteurSaut > 0 ) {
-        	this.saute(this.vSaut);
-        	if(this.hauteurSaut == this.hauteurSaut/2) {
-        		this.vSaut = 2;
-        	} else if( this.hauteurSaut == this.hauteurSaut/3) {
-        		this.vSaut = 1;
-        	}
-        	this.hauteurSaut--;
-        }
-        
-        else if (!this.getBoite().collision(0, getHauteur(), getLargeur(), getHauteur())) {
-        	this.tombe();
-        }
-        
-        
 	}
 	
 	public void ramasseBlock(Block b) {

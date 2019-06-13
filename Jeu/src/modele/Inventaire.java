@@ -12,7 +12,6 @@ import modele.Items.Craft.*;
 public class Inventaire {
 
 	private ObservableList<Item> inventaire;
-	private Joueur joueur;
 	private int nbItems;
 	private int limiteInventaire;
 	private Item equipementDroite;
@@ -20,7 +19,6 @@ public class Inventaire {
 
 	public Inventaire(Joueur joueur) {
 		this.inventaire = FXCollections.observableList(new ArrayList<Item>());
-		this.joueur = joueur;
 		this.nbItems = 0;
 		this.limiteInventaire = 10;
 		this.equipementDroite = new ItemVide();
@@ -57,10 +55,10 @@ public class Inventaire {
 		ItemPierre p = new ItemPierre();
 		p.setQuantitee(7);
 		this.addItem(p);
-		ItemMineraiFer mf= new ItemMineraiFer();
+		ItemMineraiFer mf = new ItemMineraiFer();
 		mf.setQuantitee(3);
 		this.addItem(mf);
-		ItemMineraiRadium mr =new ItemMineraiRadium();
+		ItemMineraiRadium mr = new ItemMineraiRadium();
 		mr.setQuantitee(3);
 		this.addItem(mr);
 	}
@@ -78,41 +76,8 @@ public class Inventaire {
 	}
 
 	public boolean addItemBlock(Block b) {
-
-		Item itemBlock = blockToItem(b);
+		Item itemBlock = b.itemADrop();
 		return addItem(itemBlock);
-	}
-
-	private Item blockToItem(Block b) {
-		if (b instanceof Terre) {
-			return new ItemTerre();
-		} else if (b instanceof Bois) {
-			return new ItemBois();
-		} else if (b instanceof Herbe) {
-        	return new ItemTerre();
-        } else if (b instanceof MineraiFer) {
-        	return new ItemMineraiFer();
-        } else if (b instanceof MineraiRadium) {
-        	return new ItemMineraiRadium();
-        } else if (b instanceof Pierre) {
-        	return new ItemPierre();
-        } else if (b instanceof Sable) {
-        	return new ItemSable();
-        } else if (b instanceof BlockDeDechets) {
-        	int random = (int)(Math.random()*10);
-    		if(random < 7) {
-    			return new ItemFil();
-    		} else if (random < 9) {
-    			return new ItemLingotFer();
-    		} else {
-    			return new ItemBarreMetal();
-    		}
-        } else if (b instanceof BidonRadioactif) {
-        	//Donner de la vie
-            return new ItemVide();
-        } else {
-            return new ItemVide();
-        }
 	}
 
 	public boolean addItem(Item item) {
