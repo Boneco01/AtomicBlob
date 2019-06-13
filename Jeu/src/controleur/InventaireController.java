@@ -28,8 +28,10 @@ public class InventaireController {
 	private Monde game;
 	private ObservableList<Item> invJoueur;
 	private TableCraft tc;
+	private HUDController hud;
 	
-	public InventaireController(HBox inventaire, HBox equipements, Monde game, TableCraft tc) {
+	public InventaireController(HUDController HUD,HBox inventaire, HBox equipements, Monde game, TableCraft tc) {
+		hud=HUD;
 		this.inventaire = inventaire;
 		this.equipements = equipements;
 		this.game = game;
@@ -44,44 +46,15 @@ public class InventaireController {
 		for (int i = 0; i < this.invJoueur.size(); i++) {
 			int index = i;
 			Pane p = (Pane) this.inventaire.getChildren().get(i);
-			p.setOnDragDetected(event -> gererDragOn(event, p)); // DRAG'N'DROP Pour le craft
-			p.setOnDragOver(event -> gererDragUp(event, p));
-			p.setOnDragDropped(event -> gererRecup(event, p));
+			p.setOnDragDetected(event -> hud.gererDragOn(event, p)); // DRAG'N'DROP Pour le craft
+			p.setOnDragOver(event -> hud.gererDragUp(event, p));
+			p.setOnDragDropped(event -> hud.gererRecup(event, p));
 			p.setOnMousePressed(event -> gererClic(event, p, index));
 			changerImageInventaire(i);
 		}
 
 		ecouterInventaire();
 
-	}
-
-	public void gererDragOn(MouseEvent e, Pane p) {
-		Dragboard dragBroard = p.startDragAndDrop(TransferMode.ANY);
-		ClipboardContent content = new ClipboardContent();
-		WritableImage capture = p.getChildren().get(0).snapshot(null, null);
-		content.putImage(capture);
-		dragBroard.setContent(content);
-		e.consume();
-
-	}
-
-	public void gererDragUp(DragEvent e, Pane p) {
-		if (e.getTarget() != null)
-			e.acceptTransferModes(TransferMode.COPY);
-		e.consume();
-
-	}
-
-	public void gererRecup(DragEvent e, Pane p) {
-		if (((Pane) e.getGestureSource()).getParent() == inventaire
-				&& ((Pane) e.getGestureTarget()).getParent() != inventaire) {
-			int indexT = ((int) ((e.getSceneX() - 852) / 52)) + (((int) (e.getSceneY() / 52)) * 3);
-			int indexS = (int) (((Pane) e.getGestureSource()).getLayoutX() / 66);
-			if (quantiteItem(invJoueur.get(indexS).getId(), invJoueur) > quantiteItem(invJoueur.get(indexS).getId(),
-					tc.getTc()))
-				tc.addMateriaux(game.getJoueur().getInventaire().copy(invJoueur.get(indexS)), indexT);
-
-		} 
 	}
 
 	public int quantiteItem(int id, ObservableList<Item> list) {
@@ -205,40 +178,43 @@ public class InventaireController {
 		nbItem.textProperty().bind(this.invJoueur.get(index).quantiteeProperty().asString());
 		v.setImage(png);
 	}
+	public Image imageDe(Item item) {
+        if (item instanceof ItemTerre)
+            return new Image("file:../Sprites/Item/ItemBlock/Terre.png");
+        if (item instanceof ItemBois)
+            return new Image("file:../Sprites/Item/ItemBlock/Bois.png");
+        if (item instanceof ItemMineraiFer)
+            return new Image("file:../Sprites/Item/ItemBlock/MineraiFer.png");
+        if (item instanceof ItemMineraiRadium)
+            return new Image("file:../Sprites/Item/ItemBlock/MineraiRadium.png");
+        if (item instanceof ItemPierre)
+            return new Image("file:../Sprites/Item/ItemBlock/Pierre.png");
+        if (item instanceof ItemSable)
+            return new Image("file:../Sprites/Item/ItemBlock/Sable.png");
+        if (item instanceof ItemBarreMetal)
+            return new Image("file:../Sprites/Item/ItemCraft/BarreMetal.png");
+        if (item instanceof ItemFil)
+            return new Image("file:../Sprites/Item/ItemCraft/Fil.png");
+        if (item instanceof ItemHache)
+            return new Image("file:../Sprites/Item/ItemCraft/Hache.png");
+        if (item instanceof ItemLancePierre)
+            return new Image("file:../Sprites/Item/ItemCraft/LancePierre.png");
+        if (item instanceof ItemLingotFer)
+            return new Image("file:../Sprites/Item/ItemCraft/LingotFer.png");
+        if (item instanceof ItemPioche)
+            return new Image("file:../Sprites/Item/ItemCraft/Pioche.png");
+        else
+            return new Image("file:../Sprites/Item/ItemVide.png");
+    }
 
 	public Item itemDe(int index) {
 		return this.invJoueur.get(index);
 	}
-
-	public Image imageDe(Item item) {
-	        if (item instanceof ItemTerre)
-	            return new Image("file:../Sprites/Item/ItemBlock/Terre.png");
-	        if (item instanceof ItemBois)
-	            return new Image("file:../Sprites/Item/ItemBlock/Bois.png");
-	        if (item instanceof ItemMineraiFer)
-	            return new Image("file:../Sprites/Item/ItemBlock/MineraiFer.png");
-	        if (item instanceof ItemMineraiRadium)
-	            return new Image("file:../Sprites/Item/ItemBlock/MineraiRadium.png");
-	        if (item instanceof ItemPierre)
-	            return new Image("file:../Sprites/Item/ItemBlock/Pierre.png");
-	        if (item instanceof ItemSable)
-	            return new Image("file:../Sprites/Item/ItemBlock/Sable.png");
-	        if (item instanceof ItemBarreMetal)
-	            return new Image("file:../Sprites/Item/ItemCraft/BarreMetal.png");
-	        if (item instanceof ItemFil)
-	            return new Image("file:../Sprites/Item/ItemCraft/Fil.png");
-	        if (item instanceof ItemHache)
-	            return new Image("file:../Sprites/Item/ItemCraft/Hache.png");
-	        if (item instanceof ItemLancePierre)
-	            return new Image("file:../Sprites/Item/ItemCraft/LancePierre.png");
-	        if (item instanceof ItemLingotFer)
-	            return new Image("file:../Sprites/Item/ItemCraft/LingotFer.png");
-	        if (item instanceof ItemPioche)
-	            return new Image("file:../Sprites/Item/ItemCraft/Pioche.png");
-	        else
-	            return new Image("file:../Sprites/Item/ItemVide.png");
-	    }
-	public Monde getGame() {
-		return game;
+	
+	public ObservableList<Item> getInvJoueur() {
+		return invJoueur;
+	}
+	public HBox getInventaire() {
+		return inventaire;
 	}
 }
