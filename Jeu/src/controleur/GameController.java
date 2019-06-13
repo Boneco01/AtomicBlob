@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
+import modele.Ennemi;
 import modele.Monde;
 
 public class GameController implements Initializable{
@@ -52,6 +53,8 @@ public class GameController implements Initializable{
     @FXML
     private TilePane terrain;
     
+    //private boolean fin=false;
+    
     private void initAnimation() {
         Timeline gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
@@ -67,12 +70,16 @@ public class GameController implements Initializable{
                     }
                     
                     this.game.getJoueur().agir();
-                    this.game.getSentinelle().agir();
+                    for(Ennemi e : this.game.getEnnemis()) {
+                    	e.agir();
+                    }
                     this.jc.getSpriteJoueur().changerSprite(); //TODO faire avec un écouteur
-                    this.ec.getSpriteSentinelle().changerSprite();
+                    for(int i=0;i<this.game.getEnnemis().size();i++) {
+                    	this.ec.getSpriteEnnemi(i).changerSprite();
+                    	this.game.checkEnnemis();
+                    }
                     this.vc.suiviVision();
                     this.hudc.suiviHud();
-                    
                 })
         );
         gameLoop.getKeyFrames().add(kf);

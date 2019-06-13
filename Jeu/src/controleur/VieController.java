@@ -30,12 +30,15 @@ public class VieController {
 			Pane p = (Pane) this.vie.getChildren().get(i);
 			ImageView v = (ImageView) p.getChildren().get(0);
 			v.setImage(new Image("file:../Sprites/Joueur/VieJoueur/CoeurPlein.png"));
-			//if()
 		}
 		if(vie%2 == 1) {
 			Pane p = (Pane) this.vie.getChildren().get((vie/2));
 			ImageView v = (ImageView) p.getChildren().get(0);
 			v.setImage(new Image("file:../Sprites/Joueur/VieJoueur/DemiCoeur.png"));
+		} else if (vie<10) {
+			Pane p = (Pane) this.vie.getChildren().get((vie/2));
+			ImageView v = (ImageView) p.getChildren().get(0);
+			v.setImage(new Image("file:../Sprites/Joueur/VieJoueur/CoeurVide.png"));
 		}
 	}
 	

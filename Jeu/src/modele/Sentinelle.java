@@ -1,25 +1,14 @@
 package modele;
 
-public class Sentinelle extends Personnage {
+public class Sentinelle extends Ennemi {
 	
 	private int hauteurSaut;
 	private int vSaut;
 
-	public Sentinelle(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
-		super(vie, vitesse, largeur, hauteur, nom, x, y, monde);
+	public Sentinelle(double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
+		super(15, vitesse, largeur, hauteur, nom, x, y, monde, 50);
 		this.hauteurSaut = 0;
 		this.vSaut = 3;
-		
-	}
-	
-	public void bindCibleAuJoueur() {
-		this.getXCibleProperty().bind(this.getMonde().getJoueur().getXProperty());
-		this.getYCibleProperty().bind(this.getMonde().getJoueur().getYProperty());
-	}
-
-	@Override
-	public void agir() {
-		seDeplace();
 		
 	}
 
@@ -63,22 +52,10 @@ public class Sentinelle extends Personnage {
         else if (!estAGaucheJoueur() && !estADroiteJoueur() ){
         	setGauche(false);
         	setDroite(false);
-        	this.attaque(this.getMonde().getJoueur());
+        	if(this.getY()<(this.getMonde().getJoueur().getY()+100) && this.getY()>(this.getMonde().getJoueur().getY()-100)) {
+        		this.attaque(this.getMonde().getJoueur(), 1);
+        	}
         }
-	}
-	
-	public boolean estAGaucheJoueur() {
-		if (this.getXProperty().getValue()/64<this.getMonde().getJoueur().getXProperty().getValue()/64) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean estADroiteJoueur() {
-		if (this.getXProperty().getValue()/64>this.getMonde().getJoueur().getXProperty().getValue()/64) {
-			return true;
-		}
-		return false;
 	}
 
 }

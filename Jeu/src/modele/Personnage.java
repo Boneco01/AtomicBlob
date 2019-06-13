@@ -18,10 +18,13 @@ public abstract class Personnage {
 	private IntegerProperty yCibleProperty;
 	private boolean droite;
 	private boolean gauche;
+	private char estRepousse;
 	private BoiteCollision boite;
+	private int vitesseAttaque; // Le nombre de loop qui devront passer avant de lancer une nouvelle attaque
+	private int tempsAttaque;
 	
 	
-	public Personnage (int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
+	public Personnage (int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde, int vitesseAttaque) {
 		this.vie = new SimpleIntegerProperty(vie);
 		this.vitesse=new SimpleDoubleProperty(vitesse);
 		this.largeur = largeur;
@@ -33,10 +36,9 @@ public abstract class Personnage {
 		this.boite=new BoiteCollision(this);
 		this.xCibleProperty=new SimpleIntegerProperty(0);
 		this.yCibleProperty=new SimpleIntegerProperty(0);
-	}
-	
-	public void attaque(Personnage cible) {
-		cible.setVie(cible.getVie()-1);
+		this.estRepousse = 'n';
+		this.vitesseAttaque = vitesseAttaque;
+		this.tempsAttaque = 0;
 	}
 	
 	public void goDroite() {
@@ -53,6 +55,22 @@ public abstract class Personnage {
 	
 	public void tombe() {
 		this.yProperty.setValue(this.yProperty.getValue()+6);
+	}
+	
+	public void repousse(char direction) {
+		if(direction=='d') {
+			this.goDroite();
+		} else {
+			this.goGauche();
+		}
+	}
+	
+	public void setEstRepousse(char c) {
+		this.estRepousse = c;
+	}
+	
+	public char getEstRepousse() {
+		return this.estRepousse;
 	}
 	
 	public String getNom() {
@@ -107,6 +125,14 @@ public abstract class Personnage {
 		return this.vitesse;
 	}
 	
+	public int getX() {
+		return this.xProperty.getValue();
+	}
+	
+	public int getY() {
+		return this.yProperty.getValue();
+	}
+	
 	public boolean getGauche() {
 		return this.gauche;
 	}
@@ -138,6 +164,34 @@ public abstract class Personnage {
 	public int getYCible() {
 		return this.yCibleProperty.getValue();
 	}
+	
+	public boolean estAGaucheCible(Personnage cible) {
+		if (this.getXProperty().getValue()/64<cible.getXProperty().getValue()/64) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean estADroiteCible(Personnage cible) {
+		if (this.getXProperty().getValue()/64>cible.getXProperty().getValue()/64) {
+			return true;
+		}
+		return false;
+	}
+	
+	public int getTempsAttaque() {
+		return this.tempsAttaque;
+	}
+	
+	public void setTempsAttaque(int tempsAttaque) {
+		this.tempsAttaque=tempsAttaque;
+	}
+	
+	public int getVitesseAttaque() {
+		return this.vitesseAttaque;
+	}
+	
+	public abstract void attaque(Personnage cible, int degats);
 	
 	public abstract void agir();
 	

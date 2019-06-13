@@ -14,13 +14,27 @@ public class Joueur extends Personnage{
 	private boolean utiliserMainDroite;
 	
 	public Joueur(int vie, double vitesse, int largeur, int hauteur, String nom, int x, int y, Monde monde) {
-		super(vie, vitesse, largeur, hauteur, nom, x, y,monde);
+		super(vie, vitesse, largeur, hauteur, nom, x, y,monde, 10);
 		this.monde = monde;
 		this.inventaire = new Inventaire(this);
 		this.hauteurSaut = 0;
 		this.vSaut = 3;
 		this.utiliserMainGauche=false;
 		this.utiliserMainDroite=false;	
+	}
+	
+	@Override
+	public void attaque(Personnage cible, int degats) {
+		if(this.getTempsAttaque() == 0) {
+			if(this.estADroiteCible(cible)) {
+				cible.setEstRepousse('d');
+			} else {
+				cible.setEstRepousse('g');
+			}
+			cible.setVie(cible.getVie()-degats);
+    		this.setTempsAttaque(this.getVitesseAttaque());
+    	}
+    	this.setTempsAttaque(this.getTempsAttaque()-1);
 	}
 	
 	public void utiliserItemGauche() {
@@ -83,7 +97,6 @@ public class Joueur extends Personnage{
 		seDeplace();
 		utiliserItemGauche();
 		utiliserItemDroite();
-		//annulationDestruction();
 	}
 	
 	public void seDeplace() {
@@ -102,6 +115,14 @@ public class Joueur extends Personnage{
         if(this.getBoite().collision(0,-3,getLargeur(),-3)) {
         	this.hauteurSaut = 0;
         }
+        
+        /*if(this.getEstRepousse()!='n') {
+        	if(this.getEstRepousse()=='g' && !this.getBoite().collision(-3,6,-3,getHauteur()-6)) {
+        		this.repousse(this.getEstRepousse());
+        	} else if (!this.getBoite().collision(getLargeur()+3,6,getLargeur()+3,-6)){
+        		this.repousse(this.getEstRepousse());
+        	}
+        }*/
         
         if( this.hauteurSaut > 0 ) {
         	this.saute(this.vSaut);

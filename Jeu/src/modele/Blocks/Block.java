@@ -1,4 +1,6 @@
-	package modele.Blocks;
+package modele.Blocks;
+
+import modele.Items.Item;
 
 public abstract class Block {
 	
@@ -7,12 +9,14 @@ public abstract class Block {
 	private boolean collision;
 	private int resistanceTotale;
 	private int resistanceRestante;
+	private Item itemCorrespondant;
 	
-	public Block(char id, boolean collision, int resistanceTotale) {
+	public Block(char id, boolean collision, int resistanceTotale, Item itemCorrespondant) {
 		this.id = id;
 		this.collision = collision;
 		this.resistanceTotale=resistanceTotale;
 		this.resistanceRestante=resistanceTotale;
+		this.itemCorrespondant = itemCorrespondant;
 	}
 	
 	//Modif --> toString en getId
@@ -42,6 +46,10 @@ public abstract class Block {
 	
 	public void seDetruire(int degats) {
 		 this.resistanceRestante-=degats;
+	}
+	
+	public Item itemADrop() {
+		return this.itemCorrespondant;
 	}
 	
 }
