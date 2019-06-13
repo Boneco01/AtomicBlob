@@ -66,8 +66,8 @@ public class GameController implements Initializable{
                         gameLoop.stop();
                     }
                     
-                    this.game.getJoueur().agir();
                     this.game.getSentinelle().agir();
+                    this.game.getJoueur().agir();
                     this.jc.getSpriteJoueur().changerSprite(); //TODO faire avec un écouteur
                     this.ec.getSpriteSentinelle().changerSprite();
                     this.vc.suiviVision();
