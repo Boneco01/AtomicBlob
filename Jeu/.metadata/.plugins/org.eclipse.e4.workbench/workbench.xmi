@@ -78,7 +78,7 @@
           <tags>persp.newWizSC:org.eclipse.xtend.ide.wizards.NewXtendEnumWizard</tags>
           <tags>persp.newWizSC:org.eclipse.xtend.ide.wizards.NewXtendAnnotationWizard</tags>
           <tags>persp.viewSC:org.eclipse.ant.ui.views.AntView</tags>
-          <children xsi:type="basic:PartSashContainer" xmi:id="_JyqeYXJSEemZtbyPtWGl3Q" selectedElement="_JyqeYnJSEemZtbyPtWGl3Q" horizontal="true">
+          <children xsi:type="basic:PartSashContainer" xmi:id="_JyqeYXJSEemZtbyPtWGl3Q" selectedElement="_Jyqea3JSEemZtbyPtWGl3Q" horizontal="true">
             <children xsi:type="basic:PartSashContainer" xmi:id="_JyqeYnJSEemZtbyPtWGl3Q" containerData="2500" selectedElement="_JyqeY3JSEemZtbyPtWGl3Q">
               <children xsi:type="basic:PartStack" xmi:id="_JyqeY3JSEemZtbyPtWGl3Q" elementId="left" containerData="6000" selectedElement="_JyqeZHJSEemZtbyPtWGl3Q">
                 <tags>org.eclipse.e4.primaryNavigationStack</tags>
@@ -95,7 +95,11 @@
               </children>
             </children>
             <children xsi:type="basic:PartSashContainer" xmi:id="_Jyqea3JSEemZtbyPtWGl3Q" containerData="7500" selectedElement="_JyqedXJSEemZtbyPtWGl3Q">
+<<<<<<< HEAD
               <children xsi:type="basic:PartSashContainer" xmi:id="_JyqebHJSEemZtbyPtWGl3Q" containerData="7500" selectedElement="_JyqebXJSEemZtbyPtWGl3Q" horizontal="true">
+=======
+              <children xsi:type="basic:PartSashContainer" xmi:id="_JyqebHJSEemZtbyPtWGl3Q" containerData="7500" horizontal="true">
+>>>>>>> d32d03596a7d3c00bcd9380210c3e51159d83258
                 <children xsi:type="advanced:Placeholder" xmi:id="_JyqebXJSEemZtbyPtWGl3Q" elementId="org.eclipse.ui.editorss" containerData="7500" ref="_Jx8FoHJSEemZtbyPtWGl3Q"/>
                 <children xsi:type="basic:PartSashContainer" xmi:id="_JyqebnJSEemZtbyPtWGl3Q" containerData="2500">
                   <children xsi:type="basic:PartStack" xmi:id="_Jyqeb3JSEemZtbyPtWGl3Q" elementId="org.eclipse.mylyn.tasks.ui.views.tasksMStack" containerData="5000" selectedElement="_JyqecHJSEemZtbyPtWGl3Q">
@@ -233,11 +237,19 @@
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view/>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
+<<<<<<< HEAD
       <menus xmi:id="_9WKZ4I0KEemn-fpfGvTxSg" elementId="org.eclipse.ui.console.ConsoleView">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
       </menus>
       <toolbar xmi:id="_9WKZ4Y0KEemn-fpfGvTxSg" elementId="org.eclipse.ui.console.ConsoleView"/>
+=======
+      <menus xmi:id="_k-PMwI0KEemOFsEV7dR56g" elementId="org.eclipse.ui.console.ConsoleView">
+        <tags>ViewMenu</tags>
+        <tags>menuContribution:menu</tags>
+      </menus>
+      <toolbar xmi:id="_k-PMwY0KEemOFsEV7dR56g" elementId="org.eclipse.ui.console.ConsoleView"/>
+>>>>>>> d32d03596a7d3c00bcd9380210c3e51159d83258
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_JyZYoXJSEemZtbyPtWGl3Q" elementId="org.eclipse.ui.views.BookmarkView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Bookmarks" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/bkmrk_nav.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.ui.internal.views.markers.BookmarksView"/>
@@ -312,7 +324,11 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Jj6QsHJSEemZtbyPtWGl3Q" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_vOzdoI0KEemn-fpfGvTxSg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_IjpGq3JSEemZtbyPtWGl3Q"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_R9JhcI0KEemOFsEV7dR56g" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_IjpGq3JSEemZtbyPtWGl3Q"/>
+>>>>>>> d32d03596a7d3c00bcd9380210c3e51159d83258
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Jj63wHJSEemZtbyPtWGl3Q" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -342,7 +358,11 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Jj7e0HJSEemZtbyPtWGl3Q" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_vO3IAI0KEemn-fpfGvTxSg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_IjofoXJSEemZtbyPtWGl3Q"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_R9L9sY0KEemOFsEV7dR56g" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_IjofoXJSEemZtbyPtWGl3Q"/>
+>>>>>>> d32d03596a7d3c00bcd9380210c3e51159d83258
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Jj7e0XJSEemZtbyPtWGl3Q" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -373,6 +393,11 @@
         <tags>Draggable</tags>
       </children>
       <children xsi:type="menu:ToolControl" xmi:id="_JttF4HJSEemZtbyPtWGl3Q" elementId="org.eclipse.ui.ProgressBar" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.StandardTrim">
+        <tags>Draggable</tags>
+      </children>
+      <children xsi:type="menu:ToolControl" xmi:id="_a54L4I0KEemOFsEV7dR56g" elementId="org.eclipse.ui.internal.intro.impl.presentations.IntroLaunchBar" contributionURI="bundleclass://org.eclipse.ui.intro/org.eclipse.ui.internal.intro.impl.presentations.IntroLaunchBar">
+        <persistedState key="introConfigId" value="org.eclipse.ui.intro.universalConfig"/>
+        <persistedState key="lastPageId" value="qroot"/>
         <tags>Draggable</tags>
       </children>
     </trimBars>
