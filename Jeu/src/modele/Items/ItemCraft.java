@@ -15,7 +15,6 @@ public abstract class ItemCraft extends Item {
 		super(id, quantiteMax, 1);
 		this.degatsBlocks = degatsBlocks;
 		this.degatsEnnemis = degatsEnnemis;
-
 	}
 	
 	@Override
@@ -29,12 +28,16 @@ public abstract class ItemCraft extends Item {
 			ennemiCible = surEnnemi(monde);
 			if(ennemiCible!=null) {
 				monde.getJoueur().attaque(ennemiCible, this.degatsEnnemis);
+				if(monde.getJoueur().getTempsAttaque() == 0) {
+					this.setDurabilite(this.getDurabilite()-1);
+				}
 			} else {
 				monde.getMap().blockParCord(xCible, yCible).seDetruire(this.efficacite(monde.getMap().blockParCord(xCible, yCible)));
-				if (monde.getMap().blockParCord(xCible, yCible).getResistanceRestante()<=0) {
+				if (monde.getMap().blockParCord(xCible, yCible).getResistanceRestante()<=0 && !(monde.getMap().blockParCord(xCible, yCible) instanceof Air)) {
 					Air blockAir=new Air();
 					monde.getJoueur().ramasseBlock(monde.getJoueur().getMonde().getMap().blockParCord(xCible, yCible));
 					monde.getJoueur().getMonde().getMap().remplacerBlock(blockAir, xCible, yCible);
+					this.setDurabilite(this.getDurabilite()-1);
 				}
 			}
 		}

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import modele.Blocks.*;
-import modele.deplacements.Case;
 
 public class Terrain {
 
