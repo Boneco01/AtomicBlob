@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -12,18 +13,21 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import modele.Poubelle;
 import modele.Items.*;
+import vue.SpritePoubelle;
 
 public class DropController {
 	private HUDController hud;
 	private HBox poubelle;
-	private ArrayList<Item> estJeter;
+	private ArrayList<SpritePoubelle> estJeter;
 
 	private ObservableList<Item> corbeille;
 
 	public DropController(HUDController hud, HBox poubelle, Button buttonJeter) {
 		this.hud = hud;
 		this.poubelle = poubelle;
+		estJeter= new ArrayList<>();
 		corbeille = creationCorbeille();
 		buttonJeter.setOnAction(e -> jeterItemButton());
 		creerPoubelle();
@@ -39,7 +43,6 @@ public class DropController {
 	}
 
 	private void jeterItemButton() {
-		//if (estJeter == null && !corbeilleEgaleA(creationCorbeille())) {
 			ArrayList<Item> c = new ArrayList<>();
 			for (int i = 0; i < corbeille.size(); i++) {
 				c.add(corbeille.get(i));
@@ -47,13 +50,21 @@ public class DropController {
 					hud.getGame().getJoueur().desequipeGauche();
 				else if(hud.getGame().getJoueur().getInventaire().getEquipementDroite()==corbeille.get(i))
 					hud.getGame().getJoueur().desequipeDroite();				
+				
 				hud.getIv().changerImageInventaire(removeItemInt(hud.getIv().getInvJoueur(), corbeille.get(i)));
 				corbeille.remove(i);
 				corbeille.add(i, new ItemVide());
 				changerImagePoubelle(i);
 			}
-			estJeter = c;
-		//}
+			SpritePoubelle sp=new SpritePoubelle(new Poubelle(c));
+			hud.getCoucheJoueur().getChildren().add(sp.getSprite());
+			sp.getSprite().setOnMouseClicked(e->gererClickPoubelle(e));
+			sp.getSprite().xProperty().set(hud.getGame().getJoueur().getXProperty().get());
+			sp.getSprite().yProperty().set(hud.getGame().getJoueur().getYProperty().get());
+			estJeter.add(sp);
+	}
+	private void gererClickPoubelle(Event e) {
+		
 	}
 
 	public void creerPoubelle() {
@@ -85,6 +96,7 @@ public class DropController {
 		System.out.print("");
 	}
 
+	@SuppressWarnings("unused")
 	private boolean corbeilleEgaleA(ObservableList<Item> c) {
 		for (int i = 0; i < corbeille.size(); i++) {
 			if (corbeille.get(i).getClass() != c.get(i).getClass())
@@ -101,16 +113,6 @@ public class DropController {
 			}
 		}
 		return 0;
-	}
-
-	public ArrayList<Item> recupEstJeter() {
-
-		ArrayList<Item> c = new ArrayList<>();
-		for (int i = 0; i < corbeille.size(); i++) {
-			c.add(estJeter.get(i));
-		}
-		estJeter = null;
-		return c;
 	}
 
 	public void ecouterPoubelle() {
