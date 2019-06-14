@@ -81,7 +81,6 @@ public class HUDController {
 
 	public void gererRecup(DragEvent e, Pane p) {
 
-		// if(e == .PRIMARY)
 		if (((Pane) e.getGestureSource()).getParent() == iv.getInventaire()
 				&& ((Pane) e.getGestureTarget()).getParent() == tc.getTcv()) {
 			int indexT = ((int) ((e.getSceneX() - 852) / 52)) + (((int) (e.getSceneY() / 52)) * 3);

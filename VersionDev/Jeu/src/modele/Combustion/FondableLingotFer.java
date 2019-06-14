@@ -14,7 +14,7 @@ public class FondableLingotFer extends Fondable {
 		return new ItemLingotFer();
 	}
 	@Override
-	public ArrayList<Item> definirComsomation() {
+	public ArrayList<Item> definirConsommation() {
 		ArrayList<Item> c =new ArrayList<>();;
 		c.add(new ItemMineraiFer());
 		c.add(new ItemMineraiRadium());

@@ -80,7 +80,7 @@ public class GameController implements Initializable{
                     	e.agir();
                     }
                     
-                    this.jc.getSpriteJoueur().changerSprite(); //TODO faire avec un écouteur
+                    this.jc.getSpriteJoueur().changerSprite();
                     
                     for(int i=0;i<this.game.getEnnemis().size();i++) {
                     	this.ec.getSpriteEnnemi(i).changerSprite();

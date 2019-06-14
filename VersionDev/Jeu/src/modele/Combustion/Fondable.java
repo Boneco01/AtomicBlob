@@ -13,11 +13,11 @@ public abstract class Fondable extends Fabrication {
 		int index = 0;
 		boolean estPresent = true;
 		ArrayList<Integer> listI = new ArrayList<>();
-			while (index < super.comsomation.size() && estPresent) {
+			while (index < super.consommation.size() && estPresent) {
 				estPresent = false;
 				int y = 0;
 				while (y < table.size() && !estPresent) {
-					if ((table.get(y).getClass() == comsomation.get(index).getClass() && !estDansTableau(listI, y))) {
+					if ((table.get(y).getClass() == consommation.get(index).getClass() && !estDansTableau(listI, y))) {
 						estPresent = true;
 						listI.add(y);
 					}

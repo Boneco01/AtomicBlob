@@ -2,7 +2,7 @@ package modele;
 
 
 public class BoiteCollision {
-	private Personnage personnage;//TODO 
+	private Personnage personnage;
 	
 	public BoiteCollision(Personnage personnage) {
 		this.personnage=personnage;

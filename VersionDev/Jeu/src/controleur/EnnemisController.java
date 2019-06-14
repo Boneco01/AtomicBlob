@@ -51,8 +51,7 @@ public class EnnemisController {
 	}
 	
 	public void removeSpriteEnnemi(int index) {
-		//this.spriteEnnemis.get(index).changerSprite();
-		this.spriteEnnemis.get(index).setSprite("file:../Sprites/Ennemis/Explosion/ExplosionSentinelle.gif");
+		this.spriteEnnemis.get(index).setSpriteMort();
 		this.spriteEnnemis.remove(index);
 	}
 	

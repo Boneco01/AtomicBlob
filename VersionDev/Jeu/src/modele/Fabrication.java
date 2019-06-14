@@ -8,12 +8,12 @@ import modele.Items.ItemCraft;
 
 public abstract class Fabrication {
 	
-	protected ArrayList<Item> comsomation;
+	protected ArrayList<Item> consommation;
 	
 	public Fabrication() {
-		this.comsomation=definirComsomation();
+		this.consommation=definirConsommation();
 	}
-	public abstract ArrayList<Item> definirComsomation();
+	public abstract ArrayList<Item> definirConsommation();
 	public abstract ItemCraft creeItem();
 	public abstract boolean egale(ObservableList<Item> table);
 

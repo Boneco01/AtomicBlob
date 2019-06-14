@@ -18,7 +18,6 @@ public class DropController {
 	private HUDController hud;
 	private HBox poubelle;
 	private ArrayList<Item> estJeter;
-
 	private ObservableList<Item> corbeille;
 
 	public DropController(HUDController hud, HBox poubelle, Button buttonJeter) {
@@ -39,21 +38,19 @@ public class DropController {
 	}
 
 	private void jeterItemButton() {
-		//if (estJeter == null && !corbeilleEgaleA(creationCorbeille())) {
-			ArrayList<Item> c = new ArrayList<>();
-			for (int i = 0; i < corbeille.size(); i++) {
-				c.add(corbeille.get(i));
-				if(hud.getGame().getJoueur().getInventaire().getEquipementGauche()==corbeille.get(i))
-					hud.getGame().getJoueur().desequipeGauche();
-				else if(hud.getGame().getJoueur().getInventaire().getEquipementDroite()==corbeille.get(i))
-					hud.getGame().getJoueur().desequipeDroite();				
-				hud.getIv().changerImageInventaire(removeItemInt(hud.getIv().getInvJoueur(), corbeille.get(i)));
-				corbeille.remove(i);
-				corbeille.add(i, new ItemVide());
-				changerImagePoubelle(i);
-			}
-			estJeter = c;
-		//}
+		ArrayList<Item> c = new ArrayList<>();
+		for (int i = 0; i < corbeille.size(); i++) {
+			c.add(corbeille.get(i));
+			if(hud.getGame().getJoueur().getInventaire().getEquipementGauche()==corbeille.get(i))
+				hud.getGame().getJoueur().desequipeGauche();
+			else if(hud.getGame().getJoueur().getInventaire().getEquipementDroite()==corbeille.get(i))
+				hud.getGame().getJoueur().desequipeDroite();				
+			hud.getIv().changerImageInventaire(removeItemInt(hud.getIv().getInvJoueur(), corbeille.get(i)));
+			corbeille.remove(i);
+			corbeille.add(i, new ItemVide());
+			changerImagePoubelle(i);
+		}
+		estJeter = c;
 	}
 
 	public void creerPoubelle() {
@@ -83,14 +80,6 @@ public class DropController {
 
 	public void gererClic(MouseEvent e, Pane p, int index) {
 		System.out.print("");
-	}
-
-	private boolean corbeilleEgaleA(ObservableList<Item> c) {
-		for (int i = 0; i < corbeille.size(); i++) {
-			if (corbeille.get(i).getClass() != c.get(i).getClass())
-				return false;
-		}
-		return true;
 	}
 
 	public int removeItemInt(ObservableList<Item> a, Item i) {// Ajouter Try Catch

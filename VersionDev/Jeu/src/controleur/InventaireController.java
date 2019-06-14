@@ -1,19 +1,12 @@
 package controleur;
 
-import java.util.HashMap;
-
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import modele.Monde;
@@ -29,7 +22,6 @@ public class InventaireController {
 	private HBox equipements;
 	private Monde game;
 	private ObservableList<Item> invJoueur;
-	private HashMap<Image, Item> correspondanceImageItem;
 	private TableCraft tc;
 	private HUDController hud;
 	
@@ -39,17 +31,9 @@ public class InventaireController {
 		this.equipements = equipements;
 		this.game = game;
 		this.invJoueur = this.game.getJoueur().getInventaire().getInventaire();
-		this.correspondanceImageItem = new HashMap<Image, Item>(); //Trouver une utilisation
 		this.tc = tc;
-		remplirCorrespondance();
 		creerInventaire();
 		creerEquipements();
-	}
-
-	public void remplirCorrespondance() {
-		for(Item i : this.invJoueur) {
-			this.correspondanceImageItem.put(imageDe(i), i);
-		}
 	}
 	
 	public void creerInventaire() {

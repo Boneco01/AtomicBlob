@@ -11,7 +11,7 @@ public class CraftPioche extends Craft {
 	private ObservableList<Item> craft;
 	
 	@Override
-	public ArrayList<Item> definirComsomation(){
+	public ArrayList<Item> definirConsommation(){
 		ArrayList<Item> a=new ArrayList<>();
 		a.add(new ItemPierre());
 		a.add(new ItemPierre());

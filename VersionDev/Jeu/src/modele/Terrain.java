@@ -11,9 +11,7 @@ import java.util.HashMap;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 import modele.Blocks.*;
-import modele.Items.Item;
 
 public class Terrain {
 
@@ -26,14 +24,24 @@ public class Terrain {
 	public Terrain(String cheminMap) {
 		this.cheminMap = cheminMap;
 		this.map = FXCollections.observableList(new ArrayList<Block>());
-		this.correspondanceIdBlock = new HashMap<Character, Block>(); // Trouver une utilisation
+		this.correspondanceIdBlock = new HashMap<Character, Block>(); // HASHMAP ICI !
 		remplirCorresIdBlock();
 		this.hauteurMap = remplirMap();
 		
 	}
 
 	private void remplirCorresIdBlock() {
-		//TODO Remplir la hashmap de chaque bloc avec un "getId()" qui lui correspond ?
+		this.correspondanceIdBlock.put('T', new Terre());
+		this.correspondanceIdBlock.put('H', new Herbe());
+		this.correspondanceIdBlock.put('P', new Pierre());
+		this.correspondanceIdBlock.put('R', new MineraiRadium());
+		this.correspondanceIdBlock.put('A', new Air());
+		this.correspondanceIdBlock.put('S', new Sable());
+		this.correspondanceIdBlock.put('B', new Bois());
+		this.correspondanceIdBlock.put('F', new MineraiFer());
+		this.correspondanceIdBlock.put('D', new BlockDeDechets());
+		this.correspondanceIdBlock.put('I', new BidonRadioactif());
+		this.correspondanceIdBlock.put('X', new Bedrock());
 	}
 	
 	private int remplirMap() {
@@ -157,31 +165,11 @@ public class Terrain {
 	}
 
 	public Block blockDe(char a) {
-		switch (a) {
-		case 'T':
-			return new Terre();
-		case 'H':
-			return new Herbe();
-		case 'P':
-			return new Pierre();
-		case 'A':
-			return new Air();
-		case 'S':
-			return new Sable();
-		case 'B':
-			return new Bois();
-		case 'F':
-			return new MineraiFer();
-		case 'R':
-			return new MineraiRadium();
-		case 'D':
-			return new BlockDeDechets();
-		case 'C':
-			return new Coffre();
-		case 'I':
-			return new BidonRadioactif();
-		default:
-			return new Bedrock();
+		Character charA = a;
+		if(this.correspondanceIdBlock.containsKey(charA)) {
+			return this.correspondanceIdBlock.get(charA);
+		} else {
+			return null;
 		}
 	}
 	

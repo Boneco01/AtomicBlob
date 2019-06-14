@@ -11,7 +11,7 @@ import modele.Items.Craft.ItemLancePierre;
 public class CraftLancePierre extends Craft {
 	private ObservableList<Item> craft;
 	@Override
-	public ArrayList<Item> definirComsomation(){
+	public ArrayList<Item> definirConsommation(){
 		ArrayList<Item> a=new ArrayList<>();
 		a.add(new ItemBois());
 		a.add(new ItemPierre());
