@@ -17,7 +17,7 @@ public class Monde {
 	public Monde() {
 		this.joueur = new Joueur(10, 3, 44, 26, "Joueur", 3200, 100, this);
 		this.ennemis = FXCollections.observableList(new ArrayList<Ennemi>());
-		this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 2000, 200, this));
+		//this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 2000, 200, this));
 		this.map = new Terrain(this.cheminMap);
 		this.timerSpawn = 2000;
 	}
