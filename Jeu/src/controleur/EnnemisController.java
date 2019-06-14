@@ -53,7 +53,8 @@ public class EnnemisController {
 	}
 	
 	public void removeSpriteEnnemi(int index) {
-		this.spriteEnnemis.get(index).deleteImageView();
+		//this.spriteEnnemis.get(index).changerSprite();
+		this.spriteEnnemis.get(index).setSpriteMort();
 		this.spriteEnnemis.remove(index);
 	}
 	

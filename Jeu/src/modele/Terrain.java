@@ -7,25 +7,36 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import modele.Blocks.*;
+import modele.Items.Item;
 
 public class Terrain {
 
 	private String cheminMap;
 	private ObservableList<Block> map;
+	private HashMap<Character, Block> correspondanceIdBlock;
 	private int hauteurMap;
 	private ArrayList<Block> chemin;
 
 	public Terrain(String cheminMap) {
 		this.cheminMap = cheminMap;
 		this.map = FXCollections.observableList(new ArrayList<Block>());
+		this.correspondanceIdBlock = new HashMap<Character, Block>(); // Trouver une utilisation
+		remplirCorresIdBlock();
 		this.hauteurMap = remplirMap();
 		this.attribuerCoordsBlocks();
 		
 	}
 
+	private void remplirCorresIdBlock() {
+		//TODO Remplir la hashmap de chaque bloc avec un "getId()" qui lui correspond ?
+	}
+	
 	private int remplirMap() {
 		String line;
 		int hauteur = 0;
@@ -135,10 +146,10 @@ public class Terrain {
 				if (voisinX >= 0 && voisinX < largeurMap() && voisinY >= 0 && voisinY < hauteurMap()) {
 					voisins.add(blockParCord(voisinX,voisinY));
 					blockParCord(voisinX,voisinY).setVisitee(true);
+					
 				}
 			}
 		}
-
 		return voisins;
 	}
 	
@@ -175,7 +186,7 @@ public class Terrain {
 		case 'I':
 			return new BidonRadioactif();
 		default:
-			return new Pierre();
+			return new Bedrock();
 		}
 	}
 	

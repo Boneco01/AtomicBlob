@@ -7,6 +7,7 @@ public class ItemHache extends ItemCraft{
 
 	public ItemHache() {
 		super(13, 1, 10, 2);
+		this.setDurabilite(50);
 	}
 	
 	@Override

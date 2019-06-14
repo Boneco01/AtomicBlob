@@ -25,7 +25,7 @@ public class SpriteJoueur extends Sprite {
 		if(this.getSpriteCode() != ancienSpriteCode) {
 			switch(this.getSpriteCode()) {
 				
-			case 'm' : this.setSprite("file:../Sprites/Joueur/JoueurDie/JoueurDie.gif");
+			case 'm' : this.setSpriteMort();
 	   		   		   break;	
 			
 			case 'g' : this.setSprite("file:../Sprites/Joueur/JoueurBase/JoueurBaseLeft.gif");
@@ -39,6 +39,11 @@ public class SpriteJoueur extends Sprite {
 			this.resetTempsAnime();
 		}
 		
+	}
+	
+	@Override
+	public void setSpriteMort() {
+		this.setSprite("file:../Sprites/Joueur/JoueurDie/JoueurDie.gif");
 	}
 
 }

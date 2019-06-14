@@ -55,7 +55,7 @@ public class TerrainController {
         else if (b instanceof BidonRadioactif)
         	return new ImageView(new Image("file:../Sprites/Block/BidonRadioactif.png"));
         else
-            return new ImageView(new Image("file:../Sprites/Block/Pierre.png"));
+            return new ImageView(new Image("file:../Sprites/Block/Bedrock.png"));
     }
 	
 	public void ecouterMap() {

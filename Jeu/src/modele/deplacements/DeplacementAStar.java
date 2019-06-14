@@ -2,6 +2,7 @@ package modele.deplacements;
 
 import java.util.ArrayList;
 import modele.Personnage;
+import modele.Portee;
 import modele.Terrain;
 import modele.Blocks.Block;
 
@@ -30,44 +31,46 @@ public class DeplacementAStar extends Deplacement{
 			this.yJoueur=Joueur.getYProperty().getValue()/64;
 			this.xDrone=(drone.getXProperty().getValue()+drone.getLargeur()/2)/64;	
 			this.yDrone=(drone.getYProperty().getValue()+drone.getLargeur()/2)/64;
-			Block blockDepart = terrain.blockParCord(xJoueur, yJoueur);
-			Block blockArrivee = terrain.blockParCord(xDrone, yDrone);
-			ArrayList<Block> open = new ArrayList<Block>();
-			ArrayList<Block> closed = new ArrayList<Block>();
-			open.add(blockDepart);
+			if (Portee.estAPortee(20,xDrone, yDrone, xJoueur, yJoueur)) {
+				Block blockDepart = terrain.blockParCord(xJoueur, yJoueur);
+				Block blockArrivee = terrain.blockParCord(xDrone, yDrone);
+				ArrayList<Block> open = new ArrayList<Block>();
+				ArrayList<Block> closed = new ArrayList<Block>();
+				open.add(blockDepart);
 
-			while (open.size() > 0) {
-				Block current = open.get(0);
-				for (int i = 1; i < open.size(); i ++) {
-					if (open.get(i).getFCost() < current.getFCost() || open.get(i).getFCost() == current.getFCost()) {
-						if (open.get(i).getHCost() < current.getHCost())
-							current = open.get(i);
-					}
-				}
-
-				open.remove(current);
-				closed.add(current);
-
-
-				if (current == blockArrivee) {
-					remonterChemin(terrain, blockDepart,blockArrivee);
-				}
-
-				for (Block voisin : terrain.getVoisins(current)) {
-					if (!voisin.getCollision() && !closed.contains(voisin)) {
-
-
-						int coutVersVoisin = current.getGCost() + getDistance(current, voisin);
-						if (coutVersVoisin < voisin.getGCost() || !open.contains(voisin)) {
-							voisin.setGCost(coutVersVoisin);
-							voisin.setHCost(getDistance(voisin, blockArrivee));
-							voisin.setParent(current);
-
-							if (!open.contains(voisin))
-								open.add(voisin);
+				while (open.size() > 0) {
+					Block current = open.get(0);
+					for (int i = 1; i < open.size(); i ++) {
+						if (open.get(i).getFCost() < current.getFCost() || open.get(i).getFCost() == current.getFCost()) {
+							if (open.get(i).getHCost() < current.getHCost())
+								current = open.get(i);
 						}
 					}
 
+					open.remove(current);
+					closed.add(current);
+
+
+					if (current == blockArrivee) {
+						remonterChemin(terrain, blockDepart,blockArrivee);
+					}
+
+					for (Block voisin : terrain.getVoisins(current)) {
+						if (!voisin.getCollision() && !closed.contains(voisin)) {
+
+
+							int coutVersVoisin = current.getGCost() + getDistance(current, voisin);
+							if (coutVersVoisin < voisin.getGCost() || !open.contains(voisin)) {
+								voisin.setGCost(coutVersVoisin);
+								voisin.setHCost(getDistance(voisin, blockArrivee));
+								voisin.setParent(current);
+
+								if (!open.contains(voisin))
+									open.add(voisin);
+							}
+						}
+
+					}
 				}
 			}
 		}

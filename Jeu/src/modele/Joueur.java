@@ -76,7 +76,11 @@ public class Joueur extends Personnage{
 	
 	public void ramasseBlock(Block b) {
 		if(b instanceof BidonRadioactif) {
-			this.setVie(this.getVie()+1);
+			if((this.getVie()+4)>10) {
+				this.setVie(10);
+			} else {
+				this.setVie(this.getVie()+4);
+			}
 		} else {
 			this.inventaire.addItemBlock(b);
 		}

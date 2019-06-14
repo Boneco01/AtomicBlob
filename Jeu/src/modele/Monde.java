@@ -11,13 +11,15 @@ public class Monde {
 	private ObservableList<Ennemi> ennemis;
 	private Terrain map;
 	private String cheminMap = "../Map/MapTestModeleV4.csv";
+	private int timerSpawn;
 	
 	public Monde() {
 		this.map = new Terrain(this.cheminMap);
-		this.joueur = new Joueur(10, 3, "Joueur", 500, 200, this);
+		this.joueur = new Joueur(10, 3, "Joueur", 300, 100, this);
 		this.ennemis = FXCollections.observableList(new ArrayList<Ennemi>());
-		this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 600, 100, this));
-		this.ennemis.add(new Drone("drone1",500,200,this));
+		//this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 2000, 200, this));
+		this.ennemis.add(new Drone("drone1",400,200,this));
+		this.timerSpawn = 2000;
 	}
 	
 	public boolean gererCollision(Terrain terrain, int boxLargeur, int boxHauteur, Personnage personnage) {
@@ -46,6 +48,24 @@ public class Monde {
 				this.ennemis.remove(this.ennemis.get(i));
 			}
 		}
+	}
+	
+	public void spawnEnnemi() {
+		if(this.timerSpawn==0) {
+			Ennemi e;
+			int aleaEnnemi = (int) (Math.random()*10);
+			int aleaSpawnX = (int) (Math.random()*400)+400;
+			
+			if(aleaEnnemi<7) {
+				e = new Sentinelle(1, 60, 90, "Sentinelle1", aleaSpawnX, 200, this); //y=100 d�cale la hitbox de l'ennemi d'un bloc en dessous ??
+			} else {
+				e = new Drone("drone1",aleaSpawnX,200,this); // A remplacer par un drone
+			}
+			
+			this.ennemis.add(e);
+			this.timerSpawn=2000;
+		}
+		this.timerSpawn--;
 	}
 	
 	public Terrain getMap() {
