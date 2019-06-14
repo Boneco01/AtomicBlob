@@ -147,9 +147,10 @@ public class DeplacementAStar extends Deplacement{
 			if (this.yDrone<prochainBlock.getY()) {
 				drone.goBas();
 			}
-			if((this.xDrone<this.xJoueur+50 || this.xDrone>this.xJoueur-50) && ( this.yDrone==this.yJoueur )) {
+			//Attaque du drone à revoir
+			/*if((this.xDrone<this.xJoueur+50 || this.xDrone>this.xJoueur-50) && ( this.yDrone==this.yJoueur )) {
 				drone.attaque(this.joueur, 1);
-			}
+			}*/
 		}
 	}
 
