@@ -24,7 +24,7 @@ public class Terrain {
 	public Terrain(String cheminMap) {
 		this.cheminMap = cheminMap;
 		this.map = FXCollections.observableList(new ArrayList<Block>());
-		this.correspondanceIdBlock = new HashMap<Character, Block>(); // Trouver une utilisation
+		this.correspondanceIdBlock = new HashMap<Character, Block>(); // HASHMAP ICI !
 		remplirCorresIdBlock();
 		this.hauteurMap = remplirMap();
 		this.attribuerCoordsBlocks();
@@ -32,7 +32,17 @@ public class Terrain {
 	}
 
 	private void remplirCorresIdBlock() {
-		//TODO Remplir la hashmap de chaque bloc avec un "getId()" qui lui correspond ?
+		this.correspondanceIdBlock.put('T', new Terre());
+		this.correspondanceIdBlock.put('H', new Herbe());
+		this.correspondanceIdBlock.put('P', new Pierre());
+		this.correspondanceIdBlock.put('R', new MineraiRadium());
+		this.correspondanceIdBlock.put('A', new Air());
+		this.correspondanceIdBlock.put('S', new Sable());
+		this.correspondanceIdBlock.put('B', new Bois());
+		this.correspondanceIdBlock.put('F', new MineraiFer());
+		this.correspondanceIdBlock.put('D', new BlockDeDechets());
+		this.correspondanceIdBlock.put('I', new BidonRadioactif());
+		this.correspondanceIdBlock.put('X', new Bedrock());
 	}
 	
 	private int remplirMap() {
@@ -140,6 +150,16 @@ public class Terrain {
 		return this.map;
 	}
 
+	// Ici la fonction "blockDe" utilisant la HashMap. Semble créer des problèmes de résistance des blocks ??
+	/*public Block blockDe(char a) {
+		Character charA = a;
+		if(this.correspondanceIdBlock.containsKey(charA)) {
+			return this.correspondanceIdBlock.get(charA);
+		} else {
+			return null;
+		}
+	}*/
+	
 	public Block blockDe(char a) {
 		switch (a) {
 		case 'T':
