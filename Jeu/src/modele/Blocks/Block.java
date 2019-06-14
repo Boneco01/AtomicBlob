@@ -12,9 +12,9 @@ public abstract class Block {
 	private int y;
 	private boolean visitee;
 	private boolean chemin;
-	private IntegerProperty gCost; //distance depuis la case de depart
-	private IntegerProperty hCost; //distance depuis la case d'arrivee
-	private IntegerProperty fCost; //gCost + hCost
+	private int gCost; //distance depuis la case de depart
+	private int hCost; //distance depuis la case d'arrivee
+	private int fCost; //gCost + hCost
 	private int taillePx = 64;
 	private boolean collision;
 	private int resistanceTotale;
@@ -29,6 +29,10 @@ public abstract class Block {
 		this.visitee=false;
 		this.chemin=false;
 		this.itemCorrespondant = itemCorrespondant;
+		this.gCost=0;
+		this.hCost=0;
+		this.fCost=0;
+		this.fCost=this.gCost+this.hCost;
 	}
 	
 	//Modif --> toString en getId
@@ -64,6 +68,14 @@ public abstract class Block {
 		this.visitee=a;
 	}
 	
+	public void setX(int x) {
+		this.x=x;
+	}
+	
+	public void setY(int y) {
+		this.y=y;
+	}
+	
 	public void setChemin(boolean a) {
 		this.chemin=a;
 	}
@@ -73,16 +85,13 @@ public abstract class Block {
 	}
 	
 	public void setGCost(int g) {
-		this.gCost.setValue(g);
+		this.gCost=g;
 	}
 	
 	public void setHCost(int h) {
-		this.hCost.setValue(h);
+		this.hCost=h;
 	}
 	
-	public void calculerFCost() {
-		this.fCost.setValue(this.gCost.getValue()+this.hCost.getValue());
-	}
 	
 	public int getX() {
 		return this.x;
@@ -92,15 +101,15 @@ public abstract class Block {
 		return this.y;
 	}
 	
-	public IntegerProperty getGCost() {
+	public int getGCost() {
 		return this.gCost;
 	}
 	
-	public IntegerProperty getHCost() {
+	public int getHCost() {
 		return this.hCost;
 	}
 	
-	public IntegerProperty getFCost() {
+	public int getFCost() {
 		return this.fCost;
 	}
 	

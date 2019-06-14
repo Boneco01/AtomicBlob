@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
+import modele.Drone;
 import modele.Ennemi;
 import modele.Monde;
 import modele.Sentinelle;
 import vue.Sprite;
+import vue.SpriteDrone;
 import vue.SpriteSentinelle;
 
 public class EnnemisController {
@@ -67,8 +69,10 @@ public class EnnemisController {
 		if(e instanceof Sentinelle) {
 			Sentinelle s = (Sentinelle)e;
 			return new SpriteSentinelle(s);
+		} else {
+			Drone d = (Drone)e;
+			return new SpriteDrone(d);
 		}
-		return null;
 	}
 	
 	public Sprite getSpriteEnnemi(int index) {

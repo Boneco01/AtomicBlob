@@ -49,10 +49,17 @@ public class Terrain {
 		} catch (Exception E) {
 			E.printStackTrace();
 		}
-
 		return hauteur;
 	}
-
+	
+	public void attribuerCoordsBlocks() {
+		for (int i=0;i<largeurMap();i++) {
+			for (int j=0;j<hauteurMap();j++) {
+				blockParCord(i,j).setX(i);
+				blockParCord(i,j).setY(j);
+			}
+		}
+	}
 	public void sauvegardeMap() {
 		try (FileWriter fw = new FileWriter(new File(cheminMap))) {
 			BufferedWriter bw = new BufferedWriter(fw);
@@ -114,7 +121,7 @@ public class Terrain {
 	
 	public ArrayList<Block> getVoisins(Block blockCible) {
 		ArrayList<Block> voisins = new ArrayList<Block>();
-
+		
 		for (int x = -1; x <= 1; x++) {
 			for (int y = -1; y <= 1; y++) {
 				if (x == 0 && y == 0)
@@ -131,11 +138,6 @@ public class Terrain {
 		}
 
 		return voisins;
-	}
-	
-	
-	public void setChemin(ArrayList<Block> chemin) {
-		this.chemin=chemin;
 	}
 	
 	public ArrayList<Block> getChemin() {

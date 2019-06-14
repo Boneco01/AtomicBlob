@@ -67,7 +67,7 @@ public class GameController implements Initializable{
 
         KeyFrame kf = new KeyFrame(
                 // Nombre de fps
-                Duration.seconds(0.015),
+                Duration.seconds(0.015),//015
                 // A chaque frame
                 (ev ->{
                     

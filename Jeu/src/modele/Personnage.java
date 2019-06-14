@@ -58,6 +58,15 @@ public abstract class Personnage {
 		this.xProperty.setValue(this.xProperty.getValue()-this.vitesse.getValue());
 	}
 	
+	public void goHaut() {
+		this.getYProperty().setValue(this.getYProperty().getValue()-this.getVitesse().getValue());
+	}
+	
+	public void goBas() {
+		this.getYProperty().setValue(this.getYProperty().getValue()+this.getVitesse().getValue());
+	}
+
+	
 	public void saute(int vSaut) {
 		this.yProperty.setValue(this.yProperty.getValue()-(vSaut*this.vitesse.getValue()));
 	}

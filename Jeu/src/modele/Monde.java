@@ -13,10 +13,12 @@ public class Monde {
 	private String cheminMap = "../Map/MapTestModeleV4.csv";
 	
 	public Monde() {
-		this.joueur = new Joueur(10, 3, 44, 26, "Joueur", 300, 100, this);
+		this.map = new Terrain(this.cheminMap);
+		this.map.attribuerCoordsBlocks();
+		this.joueur = new Joueur(10, 3, "Joueur", 500, 200, this);
 		this.ennemis = FXCollections.observableList(new ArrayList<Ennemi>());
 		this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 600, 100, this));
-		this.map = new Terrain(this.cheminMap);
+		this.ennemis.add(new Drone("drone1",500,200,this));
 	}
 	
 	public boolean gererCollision(Terrain terrain, int boxLargeur, int boxHauteur, Personnage personnage) {
