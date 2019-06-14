@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -17,7 +18,6 @@ import modele.Items.*;
 public class DropController {
 	private HUDController hud;
 	private HBox poubelle;
-	private ArrayList<Item> estJeter;
 	private ObservableList<Item> corbeille;
 
 	public DropController(HUDController hud, HBox poubelle, Button buttonJeter) {
@@ -37,20 +37,10 @@ public class DropController {
 		return c;
 	}
 
-	private void jeterItemButton() {
-		ArrayList<Item> c = new ArrayList<>();
-		for (int i = 0; i < corbeille.size(); i++) {
-			c.add(corbeille.get(i));
-			if(hud.getGame().getJoueur().getInventaire().getEquipementGauche()==corbeille.get(i))
-				hud.getGame().getJoueur().desequipeGauche();
-			else if(hud.getGame().getJoueur().getInventaire().getEquipementDroite()==corbeille.get(i))
-				hud.getGame().getJoueur().desequipeDroite();				
-			hud.getIv().changerImageInventaire(removeItemInt(hud.getIv().getInvJoueur(), corbeille.get(i)));
-			corbeille.remove(i);
-			corbeille.add(i, new ItemVide());
-			changerImagePoubelle(i);
-		}
-		estJeter = c;
+	private void jeterItemButton() {}
+
+	private void gererClickPoubelle(Event e) {
+		
 	}
 
 	public void creerPoubelle() {
@@ -82,6 +72,7 @@ public class DropController {
 		System.out.print("");
 	}
 
+
 	public int removeItemInt(ObservableList<Item> a, Item i) {// Ajouter Try Catch
 		for (int index = 0; index < a.size(); index++) {
 			if (a.get(index) == i) {
@@ -90,16 +81,6 @@ public class DropController {
 			}
 		}
 		return 0;
-	}
-
-	public ArrayList<Item> recupEstJeter() {
-
-		ArrayList<Item> c = new ArrayList<>();
-		for (int i = 0; i < corbeille.size(); i++) {
-			c.add(estJeter.get(i));
-		}
-		estJeter = null;
-		return c;
 	}
 
 	public void ecouterPoubelle() {

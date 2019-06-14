@@ -26,16 +26,21 @@ public class HUDController {
 	private TableCraftController tc;
 	private VieController vc;
 	private DropController dc;
+	private Pane cj;
 
 	public HUDController(Pane hud, Monde game, HBox inventaire, HBox equipements, HBox vie, GridPane tableCraftV,
-			Button fabriquer,HBox poubelle,Button buttonJeter) {
+			Button fabriquer,HBox poubelle,Button buttonJeter,Pane coucheJoueur) {
 		TableCraft tableCraftM = new TableCraft();
 		iv = new InventaireController(this, inventaire, equipements, game, tableCraftM);
 		tc = new TableCraftController(this, tableCraftV, tableCraftM, fabriquer);
 		dc = new DropController(this,poubelle,buttonJeter);
+		cj = coucheJoueur;
 		this.vc = new VieController(game, vie);
 		this.game = game;
 		this.hud = hud;
+	}
+	public Pane getCoucheJoueur() {
+		return cj;
 	}
 
 	public Monde getGame() {
