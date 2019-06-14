@@ -57,7 +57,7 @@ public class DeplacementBasique extends Deplacement{
 			personnage.setGauche(false);
 			personnage.setDroite(false);
 			if(personnage.getY()<(this.personnageCible.getY()+100) && personnage.getY()>(this.personnageCible.getY()-100)) {
-				personnage.attaque(this.personnageCible, 1);
+				personnage.attaque(this.personnageCible, 1); // Attaque dans déplacement ?? Endroit le plus logique
 			}
 		}
 	}

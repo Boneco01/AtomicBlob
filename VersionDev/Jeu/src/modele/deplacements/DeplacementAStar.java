@@ -11,7 +11,7 @@ import modele.Blocks.Block;
  */
 public class DeplacementAStar extends Deplacement{
 	private Terrain terrain; 
-	private Personnage Joueur;
+	private Personnage joueur;
 	private ArrayList<Block> chemin;
 	private int frameFixeAStar; //nb de frames au bout duquel un nouveau chemin est calcule.
 	private int frameActuelleAStar;
@@ -21,9 +21,9 @@ public class DeplacementAStar extends Deplacement{
 	private int yDrone;
 
 	public DeplacementAStar(Personnage joueur) {
-		this.Joueur=joueur;
+		this.joueur=joueur;
 		this.chemin=new ArrayList<Block>();
-		this.terrain=Joueur.getMonde().getMap();
+		this.terrain=joueur.getMonde().getMap();
 		this.frameFixeAStar=30;
 		this.frameActuelleAStar=this.frameFixeAStar;
 		this.xJoueur=0;
@@ -38,8 +38,8 @@ public class DeplacementAStar extends Deplacement{
 	 */
 	public void AStar(Personnage drone) {
 		if (this.frameActuelleAStar==0) {
-			this.xJoueur=Joueur.getXProperty().getValue()/64;
-			this.yJoueur=Joueur.getYProperty().getValue()/64;
+			this.xJoueur=joueur.getXProperty().getValue()/64;
+			this.yJoueur=joueur.getYProperty().getValue()/64;
 			this.xDrone=(drone.getXProperty().getValue()+drone.getLargeur()/2)/64;	
 			this.yDrone=(drone.getYProperty().getValue()+drone.getLargeur()/2)/64;
 			Block blockDepart = terrain.blockParCord(xJoueur, yJoueur);
@@ -124,7 +124,7 @@ public class DeplacementAStar extends Deplacement{
 			chemin.add(blockActuel);
 			blockActuel = blockActuel.getParent();
 		}
-		chemin.add(this.terrain.blockParCord(this.Joueur.getX()/64,this.Joueur.getY()/64 ));
+		chemin.add(this.terrain.blockParCord(this.joueur.getX()/64,this.joueur.getY()/64 ));
 		this.chemin=chemin;
 	}
 	
@@ -146,6 +146,9 @@ public class DeplacementAStar extends Deplacement{
 			}
 			if (this.yDrone<prochainBlock.getY()) {
 				drone.goBas();
+			}
+			if((this.xDrone<this.xJoueur+50 || this.xDrone>this.xJoueur-50) && ( this.yDrone==this.yJoueur )) {
+				drone.attaque(this.joueur, 1);
 			}
 		}
 	}

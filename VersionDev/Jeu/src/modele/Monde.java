@@ -15,15 +15,16 @@ public class Monde {
 	
 	public Monde() {
 		this.map = new Terrain(this.cheminMap);
-		this.joueur = new Joueur(10, 3, "Joueur", 300, 100, this);
+		this.joueur = new Joueur(10, 3, "Joueur", 3200, 100, this);
 		this.ennemis = FXCollections.observableList(new ArrayList<Ennemi>());
-		this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 400, 200, this)); //Si voulez placer vous meme un ennemi vous meme
-		this.ennemis.add(new Drone("drone1",400,200,this));
+		//this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 400, 200, this)); //Si vous voulez placer un ennemi par vous même
+		this.ennemis.add(new Drone("drone1",2800,1000,this));
 		this.timerSpawn = 2000;
 	}
 	
 	public boolean gererCollision(Terrain terrain, int boxLargeur, int boxHauteur, Personnage personnage) {
         
+		//64 = nb de pixels d'un bloc. Une constante aurait été plus MVC
         int xPersonnage = (personnage.getXProperty().getValue()+boxLargeur)/64;
         int yPersonnage = (personnage.getYProperty().getValue()+boxHauteur)/64;
         
@@ -59,7 +60,7 @@ public class Monde {
 			if(aleaEnnemi<7) {
 				e = new Sentinelle(1, 60, 90, "Sentinelle1", aleaSpawnX, 200, this); //y=100 d�cale la hitbox de l'ennemi d'un bloc en dessous ??
 			} else {
-				e = new Drone("drone1",aleaSpawnX,200,this); // A remplacer par un drone
+				e = new Drone("drone1",aleaSpawnX,1000,this); // A remplacer par un drone
 			}
 			
 			this.ennemis.add(e);
