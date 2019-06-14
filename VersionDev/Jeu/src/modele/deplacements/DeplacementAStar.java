@@ -2,11 +2,13 @@ package modele.deplacements;
 
 import java.util.ArrayList;
 
-import modele.BoiteCollision;
 import modele.Personnage;
 import modele.Terrain;
 import modele.Blocks.Block;
-
+/*
+ * cette classe est un deplacement. Ce deplacement A* fonctionne mais souffre d'une mauvaise
+ * optimisation. A utiliser avec parcimonie.
+ */
 public class DeplacementAStar extends Deplacement{
 	private Terrain terrain; 
 	private Personnage Joueur;
@@ -24,8 +26,16 @@ public class DeplacementAStar extends Deplacement{
 		this.terrain=Joueur.getMonde().getMap();
 		this.frameFixeAStar=30;
 		this.frameActuelleAStar=this.frameFixeAStar;
+		this.xJoueur=0;
+		this.yJoueur=0;
+		this.xDrone=0;
+		this.yDrone=0;
 	}
-
+	
+	/*
+	 * cette procedure calcule un nouveau chemin le moins couteux toutes les n frames
+	 * d'un joueur a un drone
+	 */
 	public void AStar(Personnage drone) {
 		if (this.frameActuelleAStar==0) {
 			this.xJoueur=Joueur.getXProperty().getValue()/64;
@@ -102,23 +112,26 @@ public class DeplacementAStar extends Deplacement{
 	}
 	
 	/*
-	 * Cette procedure permet au drone de rejoindre le joueur en parcourant le chemin construit par 
-	 * le AStar case par case. 
+	 * cette procedure permet de generer le chemin 
 	 */
 
 	public void remonterChemin(Terrain terrain, Block blockDepart, Block blockArrivee) {
-		ArrayList<Block> path = new ArrayList<Block>();
+		ArrayList<Block> chemin = new ArrayList<Block>();
 		Block blockActuel = blockArrivee;
 
 		while (blockActuel != blockDepart) {
 			blockActuel.setChemin(true);
-			path.add(blockActuel);
+			chemin.add(blockActuel);
 			blockActuel = blockActuel.getParent();
 		}
-		path.add(this.terrain.blockParCord(this.Joueur.getX()/64,this.Joueur.getY()/64 ));
-		this.chemin=path;
+		chemin.add(this.terrain.blockParCord(this.Joueur.getX()/64,this.Joueur.getY()/64 ));
+		this.chemin=chemin;
 	}
-
+	
+	/*
+	 * cette procedure permet au drone de rejoindre le joueur en parcourant le chemin construit par 
+	 * le AStar case par case. 
+	 */
 	public void suitLeChemin(Personnage drone) {
 		if (chemin.size()>1) {
 			Block prochainBlock=this.chemin.get(1);

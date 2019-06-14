@@ -4,6 +4,7 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -35,7 +36,7 @@ public class TableCraftController {
 			v.setOnDragDetected(event -> hud.gererDragOn(event, p)); // DRAG'N'DROP Pour le craft
 			p.setOnDragOver(event -> hud.gererDragUp(event, p));
 			v.setOnDragDropped(event -> hud.gererRecup(event, p));
-			//sp.setOnMousePressed(event -> gererClic(event));
+			p.setOnMousePressed(event -> gererClic(event));
 			fabriquer.setOnAction(event -> lanceFabrique());
 			changerImageTableCraft(i);
 		}
@@ -44,7 +45,7 @@ public class TableCraftController {
 	}
 
 	public void lanceFabrique() {
-		
+
 		if (tcm.aCraft().getClass() != new ItemVide().getClass()) {
 			Inventaire i = hud.getGame().getJoueur().getInventaire().copyInv(hud.getGame().getJoueur());
 			i.videInventaire(tcm);
@@ -57,11 +58,11 @@ public class TableCraftController {
 		}
 	}
 
-	
-
 	public void gererClic(MouseEvent e) {
-		int index = ((int) ((e.getSceneX() - 852) / 52)) + (((int) (e.getSceneY() / 52)) * 3);
-		tcm.getTc().set(index, new ItemVide());
+		if (e.getButton() == MouseButton.SECONDARY) {
+			int index = ((int) ((e.getSceneX() - 852) / 52)) + (((int) (e.getSceneY() / 52)) * 3);
+			tcm.getTc().set(index, new ItemVide());
+		}
 	}
 
 	public void ecouterTableCraft() {
@@ -87,9 +88,11 @@ public class TableCraftController {
 		Image png = hud.getIv().imageDe(tcm.getTc().get(index));
 		v.setImage(png);
 	}
+
 	public TableCraft getTcm() {
 		return tcm;
 	}
+
 	public GridPane getTcv() {
 		return tcv;
 	}

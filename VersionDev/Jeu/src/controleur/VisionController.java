@@ -9,6 +9,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import modele.Monde;
 
+/*
+ * cette classe gere le scrolling de la camera, ainsi  que le clic de la souris
+ */
 public class VisionController {
 	
 	private Pane vision;
