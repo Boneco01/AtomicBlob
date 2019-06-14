@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.GameController">
+
+	<center>
+		<Pane fx:id="vision" prefHeight="6400.0" prefWidth="6400.0">
+			<Pane fx:id="coucheJoueur" prefHeight="1080.0" prefWidth="1920.0">
+				<children>
+					<TilePane fx:id="terrain" prefHeight="6400.0" prefWidth="6400.0" />
+				</children>
+			</Pane>
+			<Pane fx:id="hud" prefHeight="1080.0" prefWidth="1920.0">
+				<children>
+               <Button fx:id="fabriquer" focusTraversable="false" layoutX="850.0" layoutY="162.0" mnemonicParsing="false" pickOnBounds="false" prefHeight="26.0" prefWidth="158.0" text="Fabriquer" />
+					<HBox fx:id="inventaire" prefHeight="66.0" prefWidth="659.0" style="-fx-background-color: grey;">
+						<children>
+							<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+								<children>
+            									<ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+									<Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font></Label>
+								</children>
+                        <HBox.margin>
+                           <Insets />
+                        </HBox.margin>
+							</Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="0">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+						</children>
+					</HBox>
+					<HBox fx:id="equipements" layoutX="690.0" prefHeight="66.0" prefWidth="130.0" style="-fx-background-color: grey;">
+                  <children>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="G">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="66.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label alignment="CENTER" layoutX="43.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: white;" text="D">
+                              <font>
+                                 <Font size="11.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
+                  </children>
+					</HBox>
+					<GridPane fx:id="tableCraft" gridLinesVisible="true" layoutX="851.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="156.0">
+						<columnConstraints>
+							<ColumnConstraints hgrow="SOMETIMES" maxWidth="52.0" minWidth="52.0" prefWidth="52.0" />
+							<ColumnConstraints hgrow="SOMETIMES" maxWidth="52.0" minWidth="52.0" prefWidth="52.0" />
+							<ColumnConstraints hgrow="SOMETIMES" maxWidth="52.0" minWidth="52.0" prefWidth="52.0" />
+						</columnConstraints>
+						<rowConstraints>
+							<RowConstraints maxHeight="52.0" minHeight="52.0" prefHeight="52.0" vgrow="SOMETIMES" />
+							<RowConstraints maxHeight="52.0" minHeight="52.0" prefHeight="52.0" vgrow="SOMETIMES" />
+							<RowConstraints maxHeight="52.0" minHeight="52.0" prefHeight="52.0" vgrow="SOMETIMES" />
+						</rowConstraints>
+						<children>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="52.0">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="52.0" GridPane.columnIndex="1">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="52.0" GridPane.columnIndex="2">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="52.0" GridPane.rowIndex="1">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="52.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="52.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="52.0" GridPane.rowIndex="2">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="52.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="52.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <children>
+                           <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+						</children>
+					</GridPane>
+               <HBox fx:id="vie" layoutX="410.0" layoutY="66.0" prefHeight="50.0" prefWidth="250.0">
+                  <children>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
+                        <children>
+                           <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
+                        <children>
+                           <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
+                        <children>
+                           <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
+                        <children>
+                           <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
+                        <children>
+                           <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </Pane>
+                  </children>
+               </HBox>
+				</children>
+			</Pane>
+		</Pane>
+	</center>
+</BorderPane>

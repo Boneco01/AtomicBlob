@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.SampleController">
+   <center>
+      <Pane fx:id="coucheJoueur" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TilePane fx:id="terrain" prefHeight="1920.0" prefWidth="1080.0" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
