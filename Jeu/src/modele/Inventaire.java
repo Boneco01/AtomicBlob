@@ -111,7 +111,8 @@ public class Inventaire {
 	public boolean removeItem() {
 
 		for (int i = 0; i < this.inventaire.size(); i++) {
-			if (this.inventaire.get(i).getQuantitee() <= 0) {
+			Item item = this.inventaire.get(i);
+			if (item.getQuantitee()<=0 || item.getDurabilite()<=0) {
 				this.inventaire.set(i, new ItemVide());
 				this.nbItems--;
 				return true;

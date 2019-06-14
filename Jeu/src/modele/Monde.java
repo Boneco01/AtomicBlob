@@ -14,7 +14,6 @@ public class Monde {
 	
 	public Monde() {
 		this.map = new Terrain(this.cheminMap);
-		this.map.attribuerCoordsBlocks();
 		this.joueur = new Joueur(10, 3, "Joueur", 500, 200, this);
 		this.ennemis = FXCollections.observableList(new ArrayList<Ennemi>());
 		this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 600, 100, this));

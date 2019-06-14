@@ -7,8 +7,6 @@ import modele.Items.Block.ItemBois;
 import modele.Items.Block.ItemPierre;
 import modele.Items.Craft.ItemFil;
 import modele.Items.Craft.ItemLancePierre;
-import modele.Items.Craft.ItemLingotFer;
-import modele.Items.Craft.ItemPioche;
 
 public class CraftLancePierre extends Craft {
 	private ObservableList<Item> craft;

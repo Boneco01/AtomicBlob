@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import modele.Items.Item;
-import modele.Items.ItemBlock;
 import modele.Items.ItemCraft;
 
 public abstract class Fabrication {

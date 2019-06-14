@@ -14,7 +14,7 @@ public class Coffre extends Block {
 	private int nbItems;
 	
 	public Coffre() {
-		super('C',true,300, null); //Doit correspondre un itemCoffre
+		super('C',true,300);
 		this.contenu = FXCollections.observableList(new ArrayList<Item>());
 		this.limiteContenu = 5;
 		this.nbItems = 0;
@@ -54,6 +54,11 @@ public class Coffre extends Block {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public Item itemADrop() {
+		return null; ////Doit renvoyer un itemCoffre
 	}
 	
 }

@@ -1,5 +1,7 @@
 package controleur;
 
+import java.util.HashMap;
+
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
@@ -27,6 +29,7 @@ public class InventaireController {
 	private HBox equipements;
 	private Monde game;
 	private ObservableList<Item> invJoueur;
+	private HashMap<Image, Item> correspondanceImageItem;
 	private TableCraft tc;
 	private HUDController hud;
 	
@@ -36,11 +39,19 @@ public class InventaireController {
 		this.equipements = equipements;
 		this.game = game;
 		this.invJoueur = this.game.getJoueur().getInventaire().getInventaire();
+		this.correspondanceImageItem = new HashMap<Image, Item>(); //Trouver une utilisation
 		this.tc = tc;
+		remplirCorrespondance();
 		creerInventaire();
 		creerEquipements();
 	}
 
+	public void remplirCorrespondance() {
+		for(Item i : this.invJoueur) {
+			this.correspondanceImageItem.put(imageDe(i), i);
+		}
+	}
+	
 	public void creerInventaire() {
 
 		for (int i = 0; i < this.invJoueur.size(); i++) {
@@ -178,6 +189,7 @@ public class InventaireController {
 		nbItem.textProperty().bind(this.invJoueur.get(index).quantiteeProperty().asString());
 		v.setImage(png);
 	}
+	
 	public Image imageDe(Item item) {
         if (item instanceof ItemTerre)
             return new Image("file:../Sprites/Item/ItemBlock/Terre.png");

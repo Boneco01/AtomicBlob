@@ -1,5 +1,6 @@
 package modele;
 
+import modele.Blocks.BidonRadioactif;
 import modele.Blocks.Block;
 import modele.Items.Item;
 import modele.deplacements.DeplacementJoueur;
@@ -23,10 +24,10 @@ public class Joueur extends Personnage{
 		
 		if (this.utiliserMainGauche) {
 			this.inventaire.getEquipementGauche().utiliser(monde);
-			if(this.inventaire.getEquipementGauche().getQuantitee()<=0) {
+			if(this.inventaire.getEquipementGauche().getQuantitee()<=0 || this.inventaire.getEquipementGauche().getDurabilite()<=0) {
 				this.desequipeGauche();
-				this.inventaire.removeItem();
 			}
+			this.inventaire.removeItem();
 		}
 	}
 	
@@ -34,10 +35,10 @@ public class Joueur extends Personnage{
 		
 		if (this.utiliserMainDroite) {
 			this.inventaire.getEquipementDroite().utiliser(monde);
-			if(this.inventaire.getEquipementDroite().getQuantitee()<=0) {
+			if(this.inventaire.getEquipementDroite().getQuantitee()<=0 || this.inventaire.getEquipementDroite().getDurabilite()<=0) {
 				this.desequipeDroite();
-				this.inventaire.removeItem();
 			}
+			this.inventaire.removeItem();
 		}
 	}
 	
@@ -74,7 +75,11 @@ public class Joueur extends Personnage{
 	}
 	
 	public void ramasseBlock(Block b) {
-		this.inventaire.addItemBlock(b);
+		if(b instanceof BidonRadioactif) {
+			this.setVie(this.getVie()+1);
+		} else {
+			this.inventaire.addItemBlock(b);
+		}
 	}
 	
 	public void equipeGauche(Item item) {

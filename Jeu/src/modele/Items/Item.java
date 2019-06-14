@@ -11,12 +11,23 @@ public abstract class Item  {
 	private int id;
 	private IntegerProperty quantitee;
 	private int quantiteeMax;
+	private int durabilite;
 	
 	public Item(int id, int quantiteeMax, int distance) {
 		this.quantitee = new SimpleIntegerProperty(1);
 		this.quantiteeMax = quantiteeMax;
 		this.id = id;
+		this.durabilite = 20;
 	}
+	
+	public int getDurabilite() {
+		return this.durabilite;
+	}
+	
+	public void setDurabilite(int durabilite) {
+		this.durabilite = durabilite;
+	}
+	
 	public int getQuantitee() {
 		return this.quantitee.getValue();
 	}

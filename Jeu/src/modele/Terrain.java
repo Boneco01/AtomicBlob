@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import modele.Blocks.*;
-import modele.deplacements.Case;
 
 public class Terrain {
 
@@ -23,6 +22,7 @@ public class Terrain {
 		this.cheminMap = cheminMap;
 		this.map = FXCollections.observableList(new ArrayList<Block>());
 		this.hauteurMap = remplirMap();
+		this.attribuerCoordsBlocks();
 		
 	}
 
@@ -98,6 +98,8 @@ public class Terrain {
 	}
 
 	public void remplacerBlock(Block blockQuiRemplace, int x, int y) {
+		blockQuiRemplace.setX(x);
+		blockQuiRemplace.setY(y);
 		this.map.set((largeurMap() * y) + x, blockQuiRemplace);
 		if (y>0 && blockQuiRemplace instanceof Terre && blockParCord(x, y-1) instanceof Air) {
 			this.map.set((largeurMap() * y) + x, new Herbe());
