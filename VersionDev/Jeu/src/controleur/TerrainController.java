@@ -7,7 +7,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import modele.Monde;
 import modele.Blocks.*;
-
+/*
+ * cette classe fait le lien entre le modele Terrain et sa vue a savoir les images
+ * des blocks.
+ */
 public class TerrainController {
 	
 	private TilePane terrain;
@@ -18,7 +21,9 @@ public class TerrainController {
 		this.game = game;
 		creerTerrain();
 	}
-	
+	/*
+	 * cette procedure place les images correspondantes dans une TilePane pour afficher le terrain.
+	 */
 	public void creerTerrain() {
 
     	terrain.setMinSize(game.getMap().largeurMap()*64, 64*game.getMap().hauteurMap());
@@ -31,6 +36,9 @@ public class TerrainController {
         ecouterMap();
     }
 	
+	/*
+	 * cette fonction fait correspondre a chaque block une ImageView qui lui correspond.
+	 */
 	public ImageView imageDe(Block b) {
         if (b instanceof Terre)
             return new ImageView(new Image("file:../Sprites/Block/Terre.png"));
@@ -58,6 +66,10 @@ public class TerrainController {
             return new ImageView(new Image("file:../Sprites/Block/Bedrock.png"));
     }
 	
+	/*
+	 * cette procedure ecoute les changement de la liste de block et 
+	 * appelle changerImageBlock() pour changer l'image.
+	 */
 	public void ecouterMap() {
     	this.game.getMap().getListMap().addListener(new ListChangeListener<Block>() {
 
