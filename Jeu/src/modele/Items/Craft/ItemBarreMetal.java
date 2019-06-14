@@ -5,7 +5,8 @@ import modele.Items.ItemCraft;
 public class ItemBarreMetal extends ItemCraft {
 	
 	public ItemBarreMetal() {
-		super(16, 1, 10, 3);
+		super(16, 1, 10, 5);
+		this.setDurabilite(50);
 	}
 
 }

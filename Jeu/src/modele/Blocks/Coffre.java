@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 import modele.Items.Item;
 import modele.Items.ItemVide;
 
-public class Coffre extends Block {
+public class Coffre extends Block { // Inutilisé
 	
 	private ObservableList<Item> contenu;
 	private int limiteContenu;

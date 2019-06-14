@@ -48,6 +48,8 @@ public abstract class Sprite {
 		this.sprite.setVisible(false);
 	}
 	
+	public abstract void setSpriteMort();
+	
 	public abstract void changerSprite();
 	
 	

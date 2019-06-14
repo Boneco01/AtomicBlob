@@ -74,17 +74,21 @@ public class GameController implements Initializable{
                     if (this.game.getJoueur().getVie()==0) {
                         gameLoop.stop();
                     }
-                    
-
                     this.game.getJoueur().agir();
+                    
                     for(Ennemi e : this.game.getEnnemis()) {
                     	e.agir();
                     }
+                    
                     this.jc.getSpriteJoueur().changerSprite(); //TODO faire avec un écouteur
+                    
                     for(int i=0;i<this.game.getEnnemis().size();i++) {
                     	this.ec.getSpriteEnnemi(i).changerSprite();
                     	this.game.checkEnnemis();
                     }
+                    
+                    this.game.spawnEnnemi();
+                    
                     this.vc.suiviVision();
                     this.hudc.suiviHud();
                 })

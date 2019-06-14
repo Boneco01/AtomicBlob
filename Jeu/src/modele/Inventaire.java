@@ -46,7 +46,19 @@ public class Inventaire {
 		for (int i = 0; i < this.limiteInventaire; i++) {
 			this.inventaire.add(new ItemVide());
 		}
-		ItemBois b = new ItemBois();
+		ItemPierre p = new ItemPierre();
+		p.setQuantitee(64);
+		this.addItem(p);
+		ItemPioche pio1 = new ItemPioche();
+		this.addItem(pio1);
+		ItemPioche pio2 = new ItemPioche();
+		this.addItem(pio2);
+		ItemPioche pio3 = new ItemPioche();
+		this.addItem(pio3);
+		ItemTerre t = new ItemTerre();
+		t.setQuantitee(64);
+		this.addItem(t);
+		/*ItemBois b = new ItemBois();
 		b.setQuantitee(8);
 		this.addItem(b);
 		ItemFil f = new ItemFil();
@@ -60,7 +72,7 @@ public class Inventaire {
 		this.addItem(mf);
 		ItemMineraiRadium mr = new ItemMineraiRadium();
 		mr.setQuantitee(3);
-		this.addItem(mr);
+		this.addItem(mr);*/
 	}
 	
 	public void videInventaire(TableCraft tc) {

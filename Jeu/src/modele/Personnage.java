@@ -51,15 +51,21 @@ public abstract class Personnage {
 	}
 	
 	public void goDroite() {
-		this.xProperty.setValue(this.xProperty.getValue()+this.vitesse.getValue());
+		if(this.xProperty.getValue()<6300) {
+			this.xProperty.setValue(this.xProperty.getValue()+this.vitesse.getValue());
+		}
 	}
 	
 	public void goGauche() {
-		this.xProperty.setValue(this.xProperty.getValue()-this.vitesse.getValue());
+		if(this.xProperty.getValue()>100) {
+			this.xProperty.setValue(this.xProperty.getValue()-this.vitesse.getValue());
+		}
 	}
 	
 	public void saute(int vSaut) {
-		this.yProperty.setValue(this.yProperty.getValue()-(vSaut*this.vitesse.getValue()));
+		if(this.yProperty.getValue()>100) {
+			this.yProperty.setValue(this.yProperty.getValue()-(vSaut*this.vitesse.getValue()));
+		}
 	}
 	
 	public void tombe() {

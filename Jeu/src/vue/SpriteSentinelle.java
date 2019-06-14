@@ -26,17 +26,25 @@ public class SpriteSentinelle extends Sprite {
 		
 		if(this.getSpriteCode() != ancienSpriteCode) {
 			switch(this.getSpriteCode()) {
-				
-				case 'g' : this.setSprite("file:../Sprites/Ennemis/Sentinelle/SentinelleWalk/SentinelleWalk.gif");
+			
+				case 'g' : this.setSprite("file:../Sprites/Ennemis/Sentinelle/SentinelleWalk/SentinelleWalkLeft.gif");
 				   		   break;
-				case 'd' : this.setSprite("file:../Sprites/Ennemis/Sentinelle/SentinelleWalk/SentinelleWalk.gif");
+				case 'd' : this.setSprite("file:../Sprites/Ennemis/Sentinelle/SentinelleWalk/SentinelleWalkRight.gif");
 							break;
 						   
-				default : this.setSprite("file:../Sprites/Ennemis/Sentinelle/SentinelleFight/SentinelleFight.gif");
+				default : if(ancienSpriteCode=='g') {
+								this.setSprite("file:../Sprites/Ennemis/Sentinelle/SentinelleFight/SentinelleFightLeft.gif");
+						  } else {
+							  	this.setSprite("file:../Sprites/Ennemis/Sentinelle/SentinelleFight/SentinelleFightRight.gif");
+						  }
 				   		  break;
-			
 			}
 		}
 		
+	}
+	
+	@Override
+	public void setSpriteMort() {
+		this.setSprite("file:../Sprites/Ennemis/Explosion/ExplosionSentinelle.gif");
 	}
 }

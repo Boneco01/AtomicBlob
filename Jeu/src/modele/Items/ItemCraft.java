@@ -4,6 +4,7 @@ import modele.Ennemi;
 import modele.Monde;
 import modele.Portee;
 import modele.Blocks.Air;
+import modele.Blocks.Bedrock;
 import modele.Blocks.Block;
 
 public abstract class ItemCraft extends Item {
@@ -33,7 +34,7 @@ public abstract class ItemCraft extends Item {
 				}
 			} else {
 				monde.getMap().blockParCord(xCible, yCible).seDetruire(this.efficacite(monde.getMap().blockParCord(xCible, yCible)));
-				if (monde.getMap().blockParCord(xCible, yCible).getResistanceRestante()<=0 && !(monde.getMap().blockParCord(xCible, yCible) instanceof Air)) {
+				if ( (monde.getMap().blockParCord(xCible, yCible).getResistanceRestante()<=0) && ( !(monde.getMap().blockParCord(xCible, yCible) instanceof Air) && !(monde.getMap().blockParCord(xCible, yCible) instanceof Bedrock) )) {
 					Air blockAir=new Air();
 					monde.getJoueur().ramasseBlock(monde.getJoueur().getMonde().getMap().blockParCord(xCible, yCible));
 					monde.getJoueur().getMonde().getMap().remplacerBlock(blockAir, xCible, yCible);
