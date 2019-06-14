@@ -10,14 +10,14 @@ public class Monde {
 	private Joueur joueur;
 	private ObservableList<Ennemi> ennemis;
 	private Terrain map;
-	private String cheminMap = "../Map/MapTestModeleV4.csv";
+	private String cheminMap = "../Map/TileMap/MapFinaleAllegee.csv";
 	private int timerSpawn;
 	
 	public Monde() {
 		this.map = new Terrain(this.cheminMap);
 		this.joueur = new Joueur(10, 3, "Joueur", 300, 100, this);
 		this.ennemis = FXCollections.observableList(new ArrayList<Ennemi>());
-		//this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 2000, 200, this));
+		this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 400, 200, this)); //Si voulez placer vous meme un ennemi vous meme
 		this.ennemis.add(new Drone("drone1",400,200,this));
 		this.timerSpawn = 2000;
 	}
@@ -29,9 +29,9 @@ public class Monde {
         
         if(!terrain.blockParCord(xPersonnage, yPersonnage).getCollision()) {
             return true;
-        } else {
-            return false;
-        }
+        } 
+        return false;
+        
     }
 	
 	public Joueur getJoueur() {

@@ -11,19 +11,19 @@ public abstract class Personnage {
 	private int hauteurSaut;
 	private int vSaut;
 	private IntegerProperty vie;
-	private DoubleProperty vitesse; //nb de pixels parcourus en un d�placement ( un tour de jeu ) A utiliser plus tard.
-	private int largeur; //sert � la hitbox du personnage, � choisir en fonction de la largeur du sprite
-	private int hauteur; //sert � la hitbox du personnage, � choisir en fonction du la hauteur du sprite
-	private IntegerProperty xProperty;
-	private IntegerProperty yProperty;
+	private DoubleProperty vitesse; //nb de pixels parcourus en un d�placement ( un tour de jeu )
+	private int largeur; //determine la largeur de la hitBox du personnage, choisir en fonction de la largeur du sprite
+	private int hauteur; //determine la hauteur de la hitBox du personnage, choisir en fonction de la hauteur du sprite
 	private Monde monde;
 	private IntegerProperty xCibleProperty;
 	private IntegerProperty yCibleProperty;
+	private IntegerProperty xProperty;
+	private IntegerProperty yProperty;
 	private boolean droite;
 	private boolean gauche;
 	private boolean haut;
 	private BoiteCollision boite;
-	private Deplacement deplacement;
+	private Deplacement deplacement;  //chaque personnage a un type de deplacement
 	private char estRepousse;
 	private int vitesseAttaque; // Le nombre de loop qui devront passer avant de lancer une nouvelle attaque
 	private int tempsAttaque;

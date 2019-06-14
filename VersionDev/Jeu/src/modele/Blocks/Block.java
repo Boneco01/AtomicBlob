@@ -29,7 +29,6 @@ public abstract class Block {
 		this.chemin=false;
 		this.gCost=0;
 		this.hCost=0;
-		this.fCost=0;
 		this.fCost=this.gCost+this.hCost;
 	}
 	

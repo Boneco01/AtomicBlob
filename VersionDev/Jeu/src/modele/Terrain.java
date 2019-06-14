@@ -11,9 +11,7 @@ import java.util.HashMap;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 import modele.Blocks.*;
-import modele.Items.Item;
 
 public class Terrain {
 
@@ -132,26 +130,7 @@ public class Terrain {
 		return this.map;
 	}
 	
-	public ArrayList<Block> getVoisins(Block blockCible) {
-		ArrayList<Block> voisins = new ArrayList<Block>();
-		
-		for (int x = -1; x <= 1; x++) {
-			for (int y = -1; y <= 1; y++) {
-				if (x == 0 && y == 0)
-					continue;
-
-				int voisinX = blockCible.getX() + x;
-				int voisinY = blockCible.getY() + y;
-
-				if (voisinX >= 0 && voisinX < largeurMap() && voisinY >= 0 && voisinY < hauteurMap()) {
-					voisins.add(blockParCord(voisinX,voisinY));
-					blockParCord(voisinX,voisinY).setVisitee(true);
-					
-				}
-			}
-		}
-		return voisins;
-	}
+	
 	
 	public ArrayList<Block> getChemin() {
 		return this.chemin;
