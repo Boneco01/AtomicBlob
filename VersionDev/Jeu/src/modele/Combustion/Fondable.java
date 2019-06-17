@@ -1,4 +1,4 @@
-package modele.Combustion;
+ package modele.Combustion;
 
 import java.util.ArrayList;
 
@@ -37,7 +37,7 @@ public abstract class Fondable extends Fabrication {
 			return false;
 	}
 
-	private boolean estDansTableau(ArrayList<Integer> listI, int i) {
+	protected boolean estDansTableau(ArrayList<Integer> listI, int i) {
 		for (int y = 0; y < listI.size(); y++)
 			if (i == listI.get(y))
 				return true;

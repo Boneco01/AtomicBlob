@@ -29,15 +29,6 @@ public class DropController {
 		creerPoubelle();
 
 	}
-
-	private ObservableList<Item> creationCorbeille() {
-		ObservableList<Item> c = FXCollections.observableList(new ArrayList<Item>());
-		c.add(new ItemVide());
-		c.add(new ItemVide());
-		c.add(new ItemVide());
-		return c;
-	}
-
 	public int removeItemInt(ObservableList<Item> a, Item i) throws ItemInexistantException {
 		for (int index = 0; index < a.size(); index++) {
 			if (a.get(index) == i) {
@@ -68,6 +59,16 @@ public class DropController {
 		}
 
 	}
+
+	private ObservableList<Item> creationCorbeille() {
+		ObservableList<Item> c = FXCollections.observableList(new ArrayList<Item>());
+		c.add(new ItemVide());
+		c.add(new ItemVide());
+		c.add(new ItemVide());
+		return c;
+	}
+
+
 
 
 	public void creerPoubelle() {
