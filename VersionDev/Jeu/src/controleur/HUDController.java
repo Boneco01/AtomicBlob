@@ -32,7 +32,7 @@ public class HUDController {
 		TableCraft tableCraftM = new TableCraft();
 		iv = new InventaireController(this, inventaire, equipements, game, tableCraftM);
 		tc = new TableCraftController(this, tableCraftV, tableCraftM, fabriquer);
-		dc = new DropController(this,poubelle,buttonJeter);
+		dc = new DropController(game, this,poubelle,buttonJeter);
 		this.vc = new VieController(game, vie);
 		this.game = game;
 		this.hud = hud;

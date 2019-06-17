@@ -46,7 +46,7 @@ public class Inventaire {
 		for (int i = 0; i < this.limiteInventaire; i++) {
 			this.inventaire.add(new ItemVide());
 		}
-		ItemPierre p = new ItemPierre();
+		/*ItemPierre p = new ItemPierre();
 		p.setQuantitee(64);
 		this.addItem(p);
 		ItemPioche pio1 = new ItemPioche();
@@ -58,7 +58,7 @@ public class Inventaire {
 		ItemTerre t = new ItemTerre();
 		t.setQuantitee(64);
 		this.addItem(t);
-		/*ItemBois b = new ItemBois();
+		ItemBois b = new ItemBois();
 		b.setQuantitee(8);
 		this.addItem(b);
 		ItemFil f = new ItemFil();
@@ -132,6 +132,12 @@ public class Inventaire {
 		}
 
 		return false;
+	}
+	
+	public boolean removeItemPoubelle(int index) {
+		this.inventaire.set(index, new ItemVide());
+		this.nbItems--;
+		return true;
 	}
 
 	public boolean removeItemCraft(Item item) {
