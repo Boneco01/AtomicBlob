@@ -12,16 +12,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import modele.Monde;
 import modele.Items.*;
 
 public class DropController {
+	private Monde game;
 	private HUDController hud;
 	private HBox poubelle;
 	private ArrayList<Item> estJeter;
 
 	private ObservableList<Item> corbeille;
 
-	public DropController(HUDController hud, HBox poubelle, Button buttonJeter) {
+	public DropController(Monde game, HUDController hud, HBox poubelle, Button buttonJeter) {
+		this.game = game;
 		this.hud = hud;
 		this.poubelle = poubelle;
 		corbeille = creationCorbeille();
@@ -41,7 +44,8 @@ public class DropController {
 	public int removeItemInt(ObservableList<Item> a, Item i) throws ItemInexistantException {
 		for (int index = 0; index < a.size(); index++) {
 			if (a.get(index) == i) {
-				a.set(index, new ItemVide());
+				this.game.getJoueur().getInventaire().removeItemPoubelle(index);
+				//a.set(index, new ItemVide()); // Ne vide pas réellement l'inventaire.
 				return index;
 			}
 		}

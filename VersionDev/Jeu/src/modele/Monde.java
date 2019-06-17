@@ -17,8 +17,8 @@ public class Monde {
 		this.map = new Terrain(this.cheminMap);
 		this.joueur = new Joueur(10, 3, "Joueur", 3200, 100, this);
 		this.ennemis = FXCollections.observableList(new ArrayList<Ennemi>());
-		//this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 400, 200, this)); //Si vous voulez placer un ennemi par vous même
-		this.ennemis.add(new Drone("drone1",2800,1000,this));
+		//this.ennemis.add(new Sentinelle(1, 60, 90, "Sentinelle1", 2800, 200, this)); //Si vous voulez placer un ennemi par vous même
+		//this.ennemis.add(new Drone("drone1",2800,1000,this));
 		this.timerSpawn = 2000;
 	}
 	
