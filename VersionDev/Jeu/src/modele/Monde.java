@@ -55,7 +55,7 @@ public class Monde {
 		if(this.timerSpawn==0) {
 			Ennemi e;
 			int aleaEnnemi = (int) (Math.random()*10);
-			int aleaSpawnX = (int) (Math.random()*400)+400;
+			int aleaSpawnX = (int) (Math.random()*5600)+400;
 			
 			if(aleaEnnemi<7) {
 				e = new Sentinelle(1, 60, 90, "Sentinelle1", aleaSpawnX, 200, this); //y=100 d�cale la hitbox de l'ennemi d'un bloc en dessous ??
