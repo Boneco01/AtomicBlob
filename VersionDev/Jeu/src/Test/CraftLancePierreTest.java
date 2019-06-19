@@ -1,4 +1,4 @@
-package modele.Craft;
+package Test;
 
 import static org.junit.Assert.*;
 
@@ -13,11 +13,8 @@ import modele.Items.Item;
 import modele.Items.ItemVide;
 import modele.Items.Block.ItemBois;
 import modele.Items.Block.ItemMineraiFer;
-import modele.Items.Block.ItemMineraiRadium;
 import modele.Items.Block.ItemPierre;
-import modele.Items.Block.ItemTerre;
 import modele.Items.Craft.ItemFil;
-import modele.Items.Craft.ItemLingotFer;
 
 public class CraftLancePierreTest {
 
@@ -25,7 +22,7 @@ public class CraftLancePierreTest {
 	public final void egaleTest() {
 		CraftLancePierre lp = new CraftLancePierre();
 
-		// Test Vrai
+		// Test Vrai Si respecte exactement le schema
 		ArrayList<Item> tcV = new ArrayList<>();
 		ObservableList<Item> tableV = FXCollections.observableArrayList(tcV);
 
@@ -37,11 +34,14 @@ public class CraftLancePierreTest {
 		tableV.add(new ItemFil());
 		tableV.add(new ItemVide());
 		tableV.add(new ItemBois());
-		tableV.add(new ItemVide());// Test Faux
-		System.out.println(lp.egale(tableV));
+		tableV.add(new ItemVide());
 		assertTrue("Bon Schema", lp.egale(tableV));
 
-		// Test Faux
+		/* 	Test Faux :
+		*	Si ne respecte pas exactement le schema donc 
+		*	s'il manque les items vides ou que des items sont
+		*	inversés ou encore le schema d'un autre outil
+		*/
 
 		ArrayList<Item> tcF = new ArrayList<>();
 		ObservableList<Item> tableF = FXCollections.observableArrayList(tcF);
@@ -95,6 +95,25 @@ public class CraftLancePierreTest {
 		tableF.add(new ItemBois());
 
 		assertFalse("Bon schema sans les ItemVide", lp.egale(tableF));
+		
+		tableF.remove(0);
+		tableF.remove(0);
+		tableF.remove(0);
+		tableF.remove(0);
+		tableF.remove(0);
+		tableF.remove(0);
+		tableF.remove(0);
+		tableF.add(new ItemPierre());
+		tableF.add(new ItemPierre());
+		tableF.add(new ItemPierre());
+		tableF.add(new ItemVide());
+		tableF.add(new ItemBois());
+		tableF.add(new ItemVide());
+		tableF.add(new ItemVide());
+		tableF.add(new ItemBois());
+		tableF.add(new ItemVide());
+
+		assertFalse("Autre Schema", lp.egale(tableF));
 	}
 
 	@Test(expected = IndexOutOfBoundsException.class)

@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import modele.Craft.CraftLancePierre;
 import modele.Items.Item;
 import modele.Items.ItemVide;
 import modele.Items.Block.ItemMineraiFer;
@@ -21,7 +22,7 @@ public class FondableItemTest {
 	
 	@Test
 	public final void egaleTest() {
-		FondableLingotFer lf = new FondableLingotFer();
+		FondableLingotFerPourTest lf = new FondableLingotFerPourTest();
 
 		//Test Vrai
 		ArrayList<Item> tcV = new ArrayList<>();
@@ -29,7 +30,6 @@ public class FondableItemTest {
 		
 		tableV.add(new ItemMineraiFer());
 		tableV.add(new ItemMineraiRadium());
-		System.out.println(lf.egale(tableV));
 		assertTrue("Uniquement bon materiaux",lf.egale(tableV));
 
 		tableV.add(new ItemVide());
@@ -92,7 +92,7 @@ public class FondableItemTest {
 	
 	@Test 
 	public final void estDansTableauTest() {
-		FondableLingotFer lf = new FondableLingotFer();
+		FondableLingotFerPourTest lf = new FondableLingotFerPourTest();
 		
 		//Test Vrai
 		ArrayList<Integer> a = new ArrayList<>();
@@ -132,8 +132,11 @@ public class FondableItemTest {
 		assertFalse("Pas dans Tableau",lf.estDansTableau(b, 1));//Pas dans Tableau
 		assertFalse("Chiffre negatif pas dans Tableau",lf.estDansTableau(b, -1));//Chiffre negatif
 		
-		
-		
 	}
-
+	
+	public final void definirConsomationTest() {
+		FondableLingotFerPourTest lf = new FondableLingotFerPourTest();
+		CraftLancePierre lp = new CraftLancePierre();
+		assertFalse("Seul dans tableau",lf.definirComsomation()==lp.definirComsomation());
+	}
 }

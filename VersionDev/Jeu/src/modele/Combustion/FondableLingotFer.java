@@ -20,6 +20,5 @@ public class FondableLingotFer extends Fondable {
 		c.add(new ItemMineraiRadium());
 		return c;
 	}
-	
 
 }
